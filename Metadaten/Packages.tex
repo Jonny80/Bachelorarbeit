@@ -1,0 +1,72 @@
+% !TEX root = ../Grunddatei.tex
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{here}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{multirow}
+
+
+%Zeilenabstände und Seitenränder
+\usepackage{setspace}
+\singlespacing
+\sloppy
+\usepackage[
+  left=4cm,
+  right=2cm,
+  top=3cm,
+  bottom=3cm,
+  headsep=1.25cm,    % Abstand zwischen Kopfzeile und Text
+  footskip=1.25cm,   % Abstand zwischen Text und Fußzeile
+  includehead=false, % Ränder gelten ab Blattkante (exklusive Header)
+  includefoot=false
+]{geometry}\onehalfspacing   % 1,5-facher Zeilenabstand (Standard für Hausarbeiten)
+
+
+% Ebene 1: 16 Pkt, Fett, Linksbündig
+\setkomafont{section}{\fontsize{16pt}{20pt}\selectfont\bfseries}
+
+% Ebene 2: 14 Pkt, Fett, Linksbündig
+\setkomafont{subsection}{\fontsize{14pt}{18pt}\selectfont\bfseries}
+
+% Ebene 3: 12 Pkt, Fett, Linksbündig
+\setkomafont{subsubsection}{\fontsize{12pt}{14pt}\selectfont\bfseries}
+
+% Ebene 4: 12 Pkt, Kursiv, Linksbündig
+% (In scrartcl ist die 4. Ebene meist \paragraph)
+\setkomafont{paragraph}{\fontsize{12pt}{14pt}\selectfont\itshape}
+
+\usepackage{scrlayer-scrpage}
+%fortlaufendes Durchnummerieren der Fußnoten
+\usepackage{chngcntr}
+
+%wichtig für korrekte Zitierweise
+\usepackage[numbers,square]{natbib}
+
+
+%Abkürzungsbibliothek
+\usepackage[printonlyused]{acronym}
+%Glossar
+\usepackage[acronym, style=list, hyperfirst=true,toc]{glossaries}
+\renewcommand{\glossaryname}{Glossar}
+\makeglossaries
+\renewcommand*{\glstextformat}[1]{\textit{#1}}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman} % Legt Times New Roman als Hauptschriftart fest
+%Code
+%Siehe auch: http://ctan.ebinger.cc/tex-archive/macros/latex/contrib/listings/lstdrvrs.pdf
+\usepackage{listings}
+%\usepackage{uarial}
+
+
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\usepackage[perpage]{footmisc}
+\usepackage[ngerman]{babel}
+

@@ -1,0 +1,60 @@
+\documentclass[
+   12pt, % Schriftgröße
+   headsepline=0pt,
+   ngerman, % für Umlaute, Silbentrennung etc.
+   a4paper, % Papierformat
+   oneside, % einseitiges Dokument
+   titlepage, % es wird eine Titelseite verwendet
+   parskip=full, % Abstand zwischen Absätzen (halbe Zeile)
+   listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
+   bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+   index=totoc, % Index im Inhaltsverzeichnis aufführen
+   final, % Status des Dokuments (final/draft)
+   numbers=noenddot
+]{scrartcl}
+
+%Abstände ändern
+%\renewcommand*{\chapterheadstartvskip}{\vspace{-1\baselineskip}} %Abstand vor Section
+\setlength{\headsep}{30pt} %Abstand Kopfzeile Textkörper
+
+\usepackage{graphicx}
+
+\input{Metadaten/Meta.tex} %Informationen über das Dokument
+
+\input{Metadaten/Packages.tex} %benötigte Packages
+ 
+\makeindex
+
+\input{Metadaten/Seitenstil.tex} %Kopf- und Fußzeilen, Seitenränder..
+
+%Hier beginnt das eigentliche Dokument
+\begin{document}
+\include{Metadaten/Deckblatt} %Deckblatt
+
+%\include{Inhalt/Danksagung} %Danksagung
+
+\tableofcontents %Inhaltsverzeichnis
+
+%\include{Metadaten/Akronyme} %Abkürzungsverzeichnis
+\clearpage
+
+% Text includes
+\include{Metadaten/Glossar}
+\include{Metadaten/Inhalt}
+\include{Metadaten/Erklaerung}
+\newpage
+\printglossaries
+\clearpage
+
+\input{Inhalt/Anhang}
+
+% Literaturverzeichnis 
+%\bibliography{Bibliographie} % Aufruf: bibtex Bibliographie.bib
+%\bibliographystyle{natdin} % DIN-Stil des Literaturverzeichnisses
+
+% Selbständigkeitserklärung
+%\include{Metadaten/Erklaerung} %Erklaerung.tex
+
+% Ende des Dokuments
+\end{document}
+%------------------------------------------
