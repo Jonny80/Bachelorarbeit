@@ -1,60 +1,59 @@
 \documentclass[
-   12pt, % Schriftgröße
+   12pt,
    headsepline=0pt,
-   ngerman, % für Umlaute, Silbentrennung etc.
-   a4paper, % Papierformat
-   oneside, % einseitiges Dokument
-   titlepage, % es wird eine Titelseite verwendet
-   parskip=full, % Abstand zwischen Absätzen (halbe Zeile)
-   listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
-   bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
-   index=totoc, % Index im Inhaltsverzeichnis aufführen
-   final, % Status des Dokuments (final/draft)
+   ngerman,
+   a4paper,
+   oneside,
+   titlepage,
+   parskip=full,
+   listof=totoc,
+   bibliography=totoc,
+   index=totoc,
+   final,
    numbers=noenddot
 ]{scrartcl}
 
-%Abstände ändern
-%\renewcommand*{\chapterheadstartvskip}{\vspace{-1\baselineskip}} %Abstand vor Section
-\setlength{\headsep}{30pt} %Abstand Kopfzeile Textkörper
+\input{Metadaten/Meta.tex}
+\input{Metadaten/Packages.tex}
+\input{Metadaten/Seitenstil.tex}
 
-\usepackage{graphicx}
 
-\input{Metadaten/Meta.tex} %Informationen über das Dokument
 
-\input{Metadaten/Packages.tex} %benötigte Packages
- 
 \makeindex
 
-\input{Metadaten/Seitenstil.tex} %Kopf- und Fußzeilen, Seitenränder..
-
-%Hier beginnt das eigentliche Dokument
 \begin{document}
-\include{Metadaten/Deckblatt} %Deckblatt
 
-%\include{Inhalt/Danksagung} %Danksagung
+% --- 1. DECKBLATT ---
+\include{Metadaten/Deckblatt}
 
-\tableofcontents %Inhaltsverzeichnis
+% --- 2. VORSPANN (Römisch & KEINE Kapitelnummern) ---
+\clearpage
+\pagenumbering{Roman}      % Startet I, II, III...
+\setcounter{secnumdepth}{-1} % Schaltet Kapitelnummern AUS (z.B. für Abstract, Verzeichnisse)
 
-%\include{Metadaten/Akronyme} %Abkürzungsverzeichnis
+\include{Inhalt/Abstract}
+\tableofcontents 
 \clearpage
 
-% Text includes
+\include{Inhalt/Abkürzungsverzeichnis}
 \include{Metadaten/Glossar}
-\include{Metadaten/Inhalt}
+\include{Inhalt/Abbildungsverzeichnis}
+\clearpage
+
+% --- 3. HAUPTTEIL (Arabisch & MIT Kapitelnummern) ---
+\pagenumbering{arabic}     % Startet wieder bei 1
+\setcounter{secnumdepth}{3}  % Schaltet Kapitelnummern wieder EIN (1. Kapitel, 1.1 etc.)
+
+\include{Metadaten/Inhalt}   % Dein eigentlicher Text
+
+% --- 4. NACHSPANN ---
 \include{Metadaten/Erklaerung}
 \newpage
 \printglossaries
 \clearpage
-
 \input{Inhalt/Anhang}
 
-% Literaturverzeichnis 
-%\bibliography{Bibliographie} % Aufruf: bibtex Bibliographie.bib
-%\bibliographystyle{natdin} % DIN-Stil des Literaturverzeichnisses
+\bibliographystyle{unsrt} % 'unsrt' sortiert nach Erscheinen im Text (Standard für IT)
+\bibliography{Bibliographie} % Ohne die Endung .bib
 
-% Selbständigkeitserklärung
-%\include{Metadaten/Erklaerung} %Erklaerung.tex
-
-% Ende des Dokuments
 \end{document}
-%------------------------------------------

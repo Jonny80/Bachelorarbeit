@@ -1,0 +1,44 @@
+## LaTeX - Hilfsdateien (Standard)
+*.aux
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.bbl
+*.blg
+*.bcf
+*.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdfsync
+*.ind
+*.glsdefs
+*.ilg
+*.idx
+
+## Spezifisch für Verzeichnisse (Glossaries/Biblatex)
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+*.mw
+
+## VS Code & LaTeX Workshop spezifisch
+.vscode/
+*.history
+*.bak
+
+## Backup-Dateien
+*~
+*.sav
+*.backup
+
+## PDF-Endergebnis (Optional)
+## Viele Entwickler ignorieren das PDF, da es aus dem Quellcode generiert wird.
+## Wenn du das PDF NICHT in Git haben willst, entferne die Raute unten:
+# *.pdf
