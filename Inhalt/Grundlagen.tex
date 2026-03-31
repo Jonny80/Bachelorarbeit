@@ -1,3 +1,27 @@
 \section{Grundlagen}
 \subsection{IFC-Standard}
-Der IFC Standard (Industry Foundation Classes) ist ein Set aus standartisierten Classen um Elemente im Baugewerbe digital zu beschreiben. Es ist eine 
+Der IFC Standard (Industry Foundation Classes) ist eine offene, internationale Spezifikation zur Beschreibung von Bauelementen und deren Beziehungen 
+zueinander. Er wird seit 1994 von der Organisation buildingSMART im \gls{Express} Schema entwickelt um die Digitalisierung auf Baustellen zu 
+vereinheitlichen. Er wird von den meisten \ac{BIM} Softwarelösungen verwendet, welche ihre Modellierungen als .ifc Datei exportieren können.
+Der IFC Standard besteht aus Objekten, Attributen und Beziehungen. Die Objekte sind hierarchisch aufgebaut. Jedes Object 
+startet mit der Klasse \textit{IfcRoot} und erbt weitere Attributen von allgemeineren Basisklassen. \
+Das Beispiel zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{IfcWallHierarchie.png} 
+    \caption{Hierarchischer Aufbau der IFC-Klassen.}
+    \label{fig:wall_hier}
+\end{figure}
+
+Die Objecte werden mittels Beziehung in Verbindung gebracht. Zum Beispiel hängt ein Gebäude (\textit{IfcBuilding}) mittels der Relation \textit{IfcRelAggregates}
+an einem Bauplatz (\textit{IfcSite}). Als visuelles Beispiel soll folgende Graphik dienen:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{LocationStructrue.png} 
+    \caption{Hierarchischer Aufbau der IFC-Klassen.}
+    \label{fig:loc_structure}
+\end{figure}
+
+\subsection{Neo4j}
+Neo4j ist eine Graphdatenbank. Im Gegensatz zu relationellen Datenbanken speichert eine Graphdatenbank ihre Daten als Knoten (Nodes)
+und verbindet diese mittels Kanten (Edges). 

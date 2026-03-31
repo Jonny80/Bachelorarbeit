@@ -27,7 +27,7 @@
   includefoot=false
 ]{geometry}\onehalfspacing   % 1,5-facher Zeilenabstand (Standard für Hausarbeiten)
 
-
+\graphicspath{{Bilder/}}
 % Ebene 1: 16 Pkt, Fett, Linksbündig
 \setkomafont{section}{\fontsize{16pt}{20pt}\selectfont\bfseries\rmfamily}
 
@@ -50,10 +50,8 @@
 %Abkürzungsbibliothek
 \usepackage[printonlyused]{acronym}
 %Glossar
-\usepackage[acronym, style=list, hyperfirst=true,toc]{glossaries}
-\renewcommand{\glossaryname}{Glossar}
+\usepackage[toc]{glossaries}
 \makeglossaries
-\renewcommand*{\glstextformat}[1]{\textit{#1}}
 
 \usepackage{fontspec}
 \setmainfont{Times New Roman} % Legt Times New Roman als Hauptschriftart fest
