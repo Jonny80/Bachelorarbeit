@@ -10,7 +10,7 @@ Großbauvorhaben gefährden.
 Ein zentrales Hemmnis ist die mangelnde Interkonnektivität der eingesetzten Softwaresysteme. 
 Da einheitliche Standards und Schnittstellen oft fehlen, entstehen isolierte Datensilos. 
 Dies führt regelmäßig zum sogenannten „Excel-Fallback“ \cite{feth2023studie}: 
-Um den Informationsfluss zwischen heterogenen Systemen und verschiedenen Akteuren aufrechtzuerhalten, 
+Um den Informationsfluss zwischen den unterschiedlichen Systemen und verschiedenen Akteuren aufrechtzuerhalten, 
 werden Daten manuell in Tabellenkalkulationen übertragen. Dieser Prozess ist nicht nur fehleranfällig, 
 sondern verhindert auch eine revisionssichere Dokumentation und Echtzeit-Auswertungen.
 \newline
@@ -18,32 +18,34 @@ Zusätzlich verschärft das Problem des Vendor-Locks die Situation.
 Unternehmen sind oft an geschlossene Ökosysteme einzelner Softwareanbieter gebunden, 
 was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert.
 Bestehende Anwendungen agieren häufig als Insellösungen, 
-die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, 
-nicht gerecht werden
+die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, nicht gerecht werden
 \newline
 Erschwert wird der digitale Einsatz vor Ort durch die oft mangelhafte Infrastruktur. 
 Auf Baustellen ist eine stabile Mobilfunkabdeckung oder Breitbandanbindung keine Selbstverständlichkeit. 
 Viele aktuelle Cloud-Lösungen setzen jedoch eine permanente Internetverbindung voraus und stoßen bei instabilem Netz an ihre Grenzen. 
 Ohne robuste Offline-First-Strategien führt dies zu Datenverlusten oder Unterbrechungen im digitalen Workflow, 
 was die Akzeptanz digitaler Werkzeuge beim Personal vor Ort weiter sinken lässt.
-\subsection{Zielsetzung}
-Das primäre Ziel dieser Arbeit ist die Konzeption einer technologischen Architektur,
-die den systemimmanenten Vendor-Lock und die Problematik proprietärer Insellösungen durch Transparenz überwindet. 
-Im Zentrum steht dabei die Nutzung des \ac{IFC}-Standards als universelle Sprache für Bauwerksdaten. 
-Um die hochkomplexen, nicht-linearen Beziehungen zwischen Bauteilen, Gewerken und Prozessen performant abzubilden,
-wird das System auf einer Graph-Datenbank aufgesetzt. Im Gegensatz zu starren relationalen Tabellen 
-ermöglicht die Graphentechnologie eine flexible Verknüpfung heterogener Datenquellen und bildet so das semantische Rückgrat 
-für die Interkonnektivität zwischen den Projektbeteiligten.
-Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-On-fähige Software-Architektur.
-Diese erlaubt es, spezifische Fachlogiken für das Inbetriebnahmemanagement als modulare Erweiterungen zu implementieren,
-ohne den stabilen Software-Kern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
-entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Software-Gewerken sicherstellt, sondern Unternehmen die 
-Souveränität über ihre digitalen Prozesse zurückgibt und eine zukunftssichere Skalierbarkeit in Großprojekten ermöglicht.
-\subsection{Forschungsfragen}
+\subsection{Forschungslücke}
+Trotz der Verfügbarkeit diverser Softwarelösungen im BIM-Kontext, primär in den Bereichen des digitalen Bautagebuchs und der Mängelerfassung, weisen diese oftmals Defizite hinsichtlich ihrer Flexibilität und Adaptierbarkeit an spezifische 
+Projektanforderungen auf. Zur Lösung dieser Problematik ist eine modulare Architektur erforderlich, die in der Lage ist, bestehende Datenbestände und Infrastrukturen nahtlos zu integrieren. Um den damit verbundenen Informationsfluss lückenlos zu gewährleisten,
+ bedarf es zwingend einer einheitlichen semantischen Datenmodellierung sowie einer standardisierten Abfragesprache.
+ \subsection{Forschungsfragen}
 Um die oben genannten Zielsetzungen methodisch zu untersuchen, konzentriert sich diese Arbeit auf die Beantwortung der folgenden drei Kernfragen:
 \begin{description}
     \item[FF1:] Wie lässt sich eine Graph-basierte Datenstruktur auf Basis des IFC-Standards gestalten, um die komplexen funktionalen Abhängigkeiten der TGA und MSR effizient abzubilden und als Grundlage für ein erweiterbares Inbetriebnahmemanagement zu nutzen?
     \item[FF2:] Welche Synchronisationsstrategien eignen sich, um eine konsistente Datenhaltung zwischen mobilen Clients und einem Zentralsystem unter volatilen Netzwerkbedingungen auf Großbaustellen zu gewährleisten?
     \item[FF3:] Wie lässt sich eine modulare Multi-Tenant-Architektur für Inbetriebnahmemanagement-Software gestalten, welche funktionale Erweiterungen ermöglicht?
 \end{description}
-\subsection{Forschungslücke}
+\subsection{Zielsetzung}
+Das primäre Ziel dieser Arbeit ist die Konzeption einer technologischen Architektur,
+die den systemimmanenten Vendor-Lock und die Problematik proprietärer Insellösungen durch Transparenz überwindet. 
+Im Zentrum steht dabei die Nutzung des \ac{IFC}-Standards als universelle Sprache für Bauwerksdaten. 
+Um die komplexen Beziehungen zwischen Bauteilen, Gewerken und Prozessen performant abzubilden,
+wird das System auf einer Graphdatenbank aufgesetzt. Im Gegensatz zu starren relationalen Tabellen 
+ermöglicht die Graphentechnologie eine flexible Verknüpfung der Datenquellen und bildet so das Rückgrat 
+für die Interkonnektivität zwischen den Projektbeteiligten.
+Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-On-fähige Software-Architektur.
+Diese erlaubt es, spezifische Anforderungen für das Inbetriebnahmemanagement als modulare Erweiterungen zu implementieren,
+ohne den Software-Kern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
+entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern Unternehmen die 
+Souveränität über ihre digitalen Prozesse zurückgibt und eine zukunftssichere Skalierbarkeit in Großprojekten ermöglicht.
