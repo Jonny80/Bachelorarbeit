@@ -3,7 +3,30 @@
 %\usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{hyperref} 
+\hypersetup{
+    colorlinks=true,      % Schaltet die farbigen Boxen aus und färbt stattdessen den Text
+    linkcolor=blue,       % Farbe für interne Links (Inhaltsverzeichnis, Abbildungen)
+    citecolor=blue,       % Farbe für Zitate (Literaturverzeichnis)
+    filecolor=magenta,    % Farbe für Dateilinks
+    urlcolor=blue,        % Farbe für externe URLs
+    pdftitle={Software Driven Inbetriebnahme-Management}, % Optional: Metadaten für das PDF
+    pdfpagemode=FullScreen,
+}
 \usepackage{subcaption}
+\captionsetup{
+    font=small,              % Etwas kleiner als der Haupttext
+    labelfont=bf,            % "Abbildung 1:" in fett
+    labelsep=colon,          % Doppelpunkt nach der Nummer
+    format=plain,            % Text bündig unter dem Label
+    margin=10pt              % Einrückung links/rechts zur besseren Trennung vom Text
+}
+
+% Spezielle Konfiguration für die kleinen Unterabbildungen (falls nötig)
+\captionsetup[sub]{
+    font=footnotesize,       % Noch ein Stück kleiner für a), b), c)
+    labelfont=md             % Label hier nicht fett, sondern normal
+}
 \usepackage{here}
 \usepackage{color}
 \usepackage{textcomp}

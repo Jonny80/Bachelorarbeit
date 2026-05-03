@@ -24,4 +24,17 @@ an einem Bauplatz (\textit{IfcSite}). Als visuelles Beispiel soll folgende Grafi
 
 \subsection{Graphdatenbanken}
 Graphdatenbanken organisieren ihre Daten, wie der Name vermuten lässt, in Graphen. Das bedeutet Objekte werden als Knoten dargestellt, verbunden durch Kanten. Der große Vorteil hierbei ist die native Darstellung von Beziehungen zwischen den Objekten.
-Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zueinander ein elementarer Bestandteil der Datenerhebung darstellt. 
+Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zueinander ein elementarer Bestandteil der Datenerhebung darstellt. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labled Property Graphs. Hierbei können nicht nur
+Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden. Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier der Datensatz logisch miteinander verknüpft werden kann und aufwände JOIN Operationen vermieden
+werden können. 
+%TODO Anwendungsfälle beschreiben
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{property-graph.png} 
+    \caption{Labled Property Graph \newline 
+    (\url{https://dist.neo4j.com/wp-content/uploads/20240604025137/property-graph-model-1.png})}
+    \label{fig:property_graph}
+\end{figure}
+
+\subsection{neo4j}
+Neo4j ist eine Graphdatenbank auf der Grundlage von Labled Property Graphs, welche 2010 veröffentlicht wurde und zu einer der weltweit führenden Graphdatenbanken avancierte. 
