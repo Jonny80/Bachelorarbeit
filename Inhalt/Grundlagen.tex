@@ -38,8 +38,42 @@ werden können \cite{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem 
 steht.
 %%TODO Eventuell Umschreiben (letzter Satz)
 \subsubsection{neo4j}
-Neo4j ist eine \gls{acid} konforme Graphdatenbank auf der Grundlage von Labled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken.
+Neo4j ist eine \gls{acid} konforme Graphdatenbank auf der Grundlage von Labled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
+Abfragesprache Cypher. Sie ist eine SQL ähnliche deklarative Sprache, das Bedeutet, dass im Fokus die Frage steht was gesucht wird. Dabei folgt sie folgendem Grundaufbau:
+\begin{itemize}
+  \item Knoten werden in Klammern dargestellt \texttt{(Node)}
+  \item Beziehungen werden als Pfeile zwischen den Knoten dargestellt \texttt{-[:FOLGT]->}
+  \item Eigenschaften selbst sind Schlüssel-Wert-Paare: \texttt{\{name: 'Max'\}}
+\end{itemize}
+Folgend ist als Beispiel eine Abfrage über offene Mängel an einer technischen Komponente.
+\begin{lstlisting}[language=cypher, caption={Abfrage von offenen Mängeln an einer technischen Komponente}]
+MATCH (c:Component {id: 'Pumpe-01'})-[:HAS_ISSUE]->(i:Issue)
+WHERE i.status <> 'CLOSED'
+RETURN c, i
+\end{lstlisting}
+%% TODO Eventuell noch auf Flexibilität und Performance eingehen
+
 
 \subsubsection{GraphQL}
+Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizient der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um somit nur die benötigten
+Daten zu erhalten, wodurch sogenanntes Overfetching verhindert werden kann. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
+\begin{itemize}
+  \item Schemen
+  \item Resolver
+  \item Mutationen
+  \item Abfragen
+\end{itemize}
+Das Herzstück von GraphQL sind die \texttt{Schemas}. Sie definieren die Struktur der Daten, welche abgefragt werden können und werden in der stark typisierten Schemadefinitionssprache (SDL) geschrieben. \newline
+Während Schemas die Struktur der Daten definieren, werden durch \texttt{Resolver} beschreiben, wie oder woher diese Daten abgerufen werden. Jedes Feld in einem Schema ist mit einem Resolver verknüpft, welcher definiert, wie dieses Datenfeld abgefragt wird. \newline
+Abfragen, oder auch \texttt{Queries} genannt, ist eine Anfrage des Clients an den Server. Sie beschreibt, welche Daten der Client abrufen möchte. Anstatt wie bei REST gehen alle Anfragen nur gegen eine GraphQL-Schnittstelle. Von dort an validiert der Server
+anhand der Schemas was angefragt wurde und bearbeitet sie.
+Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese Vorgänge 'ersetzen', die \texttt{POST-,PUT-,PATCH} und \texttt{DELETE} Operatoren, welche von REST bekannt sind. Analog zu den Abfragen werden auch Mutationen in Schemas validiert.
+\cite{ibm_graphql_2024}
+\subsection{React}
+React ist eine von Meta entwickelte Javascript Bibliothek um Webseiten und \glspl{SPA} zu entwickeln. Dabei fundiert React auf einen komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
+führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
+interaktiver Benutzeroberflächen etabliert.
 \subsection{Mircofrontends}
-\subsection{Monorepos}
+Während in der Serverwelt Microservices, also das Zerteilen von monolithischen Srtukturen in mehrere kleinere Strukturen, schon lange etabliert sind, stellt es in der Frontendentwicklung ein Paradigmenwechsel dar. Dabei ist die Idee die Selbe: Anstatt
+auf eine Codebasis zu setzen, wird bei Mircofrontends das Frontend in einzelne unabhängige Komponenten eingeteilt. 
+\subsection{Monorepositories}

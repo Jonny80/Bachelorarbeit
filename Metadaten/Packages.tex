@@ -65,6 +65,9 @@
 \setkomafont{paragraph}{\fontsize{12pt}{14pt}\selectfont\itshape}
 
 \usepackage{scrlayer-scrpage}
+\usepackage{enumitem}
+% Optional: Global alle Listen kompakter machen
+\setlist[itemize]{noitemsep, topsep=0pt}
 
 %wichtig für korrekte Zitierweise
 \usepackage[numbers,square]{natbib}
@@ -81,7 +84,27 @@
 %Code
 %Siehe auch: http://ctan.ebinger.cc/tex-archive/macros/latex/contrib/listings/lstdrvrs.pdf
 \usepackage{listings}
+\usepackage{xcolor}
 %\usepackage{uarial}
+\lstdefinelanguage{cypher}{
+    morekeywords={MATCH, WHERE, RETURN, AND, NOT, OR, WITH, UNWIND, CREATE, MERGE, DELETE, SET, REMOVE},
+    sensitive=true,
+    morecomment=[l]{//},
+    morestring=[b]",
+    morestring=[b]',
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    frame=lines,
+    captionpos=b
+}
 
 
 \usepackage{chngcntr}
