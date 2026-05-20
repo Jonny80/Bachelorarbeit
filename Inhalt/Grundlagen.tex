@@ -8,7 +8,7 @@ startet mit der Klasse \textit{IfcRoot} und erbt weitere Attributen von allgemei
 Das Beispiel zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{IfcWallHierarchie.png} 
+    \includegraphics[width=1\textwidth]{Hierarchie.png} 
     \caption{Hierarchischer Aufbau der IFC-Klassen.}
     \label{fig:wall_hier}
 \end{figure}
@@ -17,7 +17,7 @@ Die Objekte werden mittels Beziehung in Verbindung gebracht. Zum Beispiel hängt
 an einem Bauplatz (\textit{IfcSite}). Als visuelles Beispiel soll folgende Grafik dienen:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{LocationStructrue.png} 
+    \includegraphics[width=1\textwidth]{LocationStructure.png} 
     \caption{Struktueller Aufbau der IFC-Klassen.}
     \label{fig:loc_structure}
 \end{figure}
@@ -28,7 +28,7 @@ Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zuei
 Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{property-graph.png} 
+    \includegraphics[width=0.5\textwidth]{Graph_Database.png} 
     \caption{Labled Property Graph \newline 
     (\url{https://dist.neo4j.com/wp-content/uploads/20240604025137/property-graph-model-1.png})}
     \label{fig:property_graph}
@@ -74,6 +74,7 @@ React ist eine von Meta entwickelte Javascript Bibliothek um Webseiten und \glsp
 führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
 interaktiver Benutzeroberflächen etabliert.
 \subsection{Mircofrontends}
-Während in der Serverwelt Microservices, also das Zerteilen von monolithischen Srtukturen in mehrere kleinere Strukturen, schon lange etabliert sind, stellt es in der Frontendentwicklung ein Paradigmenwechsel dar. Dabei ist die Idee die Selbe: Anstatt
-auf eine Codebasis zu setzen, wird bei Mircofrontends das Frontend in einzelne unabhängige Komponenten eingeteilt. 
-\subsection{Monorepositories}
+Analog zu dem Konzept der Microservices Serverseitens, zerteilen Microfrontends das Frontend in mehrere, unabhängige Komponenten. Die grundlegende Idee dahinter ist es ein Problem in Teilprobleme zu zerteilen und getrennt zu bearbeiten. Neben diesem Vorteil bietet
+dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vor allem unter Last können diese separat hochskaliert werden oder bei Fehlern fällt nicht immer zwangsläufig das ganze System aus, sondern nur das betroffene Microfrontend. Durch die modulare
+Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann den Anforderungen entsprechend die Beste für die benötigten Anforderungen wählen. \newline
+Neben diesen Vorteilen existieren auch Nachteile, welche Microfrontends mitbringen. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten und mögliche Synchronisationsprobleme und natürlich der erhöhte Koordinationsaufwand.
