@@ -1,11 +1,21 @@
-\section{Graphbasiertes Datenmodell und Schnittstellendesign}
-%% IFC Datenmodell sehr hierarchisch und vernetzt
-%% in STEP Files organisiert
-%% relationelle Datenbanken ungeignet weil Beziehungen nicht nativ, JOIN Operatoren notwenig -> aufwendug
-%% realitätsnah und intuitive Darstellung der Daten
-\subsection{Graphbasierte Domänenmodellierung für IFC-Daten}
+\section{Grafbasiertes Datenmodell und Schnittstellendesign}
+Der IFC Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale  Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
+aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Grafdatenbanken diese effizient darstellen\cite{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
+der grafbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. \todo{erklärung digitaler zwilling}
+
+
+\subsection{Grafbasierte Domänenmodellierung für IFC-Daten}
+%% Überführung der ifc files (In step format) in eine grafbasierte wissensdatenbank
+%% eher eine umsetzungsbeschriebung
+%% Ziel ist ein digitaler Zwilling
+%% Labels für IFC Klassen
+%% Daten als Knoten
+%% Beziehungen als Kanten
 \subsection{GraphQL als Vermittlungsinstanz}
-%% Bessereres Wort als Vermittler irgendwas was die Kommunikation
+%% Lösung die von webanwendungen genutzt werden kann 
+%% intitive abfrage ohne api auswenig zu lernen
+%% transparent und dadurch wiederverwendbar bzw einfach nutzbar
+%% Middleware
 %% stuert strukturiert und vereinfacht -> schema gibt typsicherheit
 %% resolver können Daten effizient abfragen, Mutationen sichern revisionssicherheit etc.
 \subsection{Das einheitliche API-Gateway: Datenabfrage via GraphQL}
