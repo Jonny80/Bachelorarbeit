@@ -34,7 +34,8 @@ ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Method
 \todo{Auszug der GRaphdatenbank}
 \subsection{GraphQL als Vermittlungsinstanz}
 Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
-Datenabruf bereitstellt. Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQl Schemata definiert werden, um genau jenes zu verhindern\cite{wolf_20206_graphql}. \newline
+Datenabruf bereitstellt. 
+Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQl Schemata definiert werden, um genau jenes zu verhindern\cite{wolf_20206_graphql}. \newline
 Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{Object} und dessen Superklassen zu sehen: \newpage
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 interface IfcRoot {
@@ -56,16 +57,17 @@ interface IfcObject implements IfcRoot & IfcObjectDefinition {
   objectType: String
 }
 \end{lstlisting}
-Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konformes Datenmodelle innerhalb der Graphdatenbank, sowie die Abbildung der hierarchischen Struktur\cite{wolf:2025:ifc2graphql}. 
-
-%% verhindert overfetching - effizient
-%% selbst dukumentierend
-%% intitive abfrage ohne api auswenig zu lernen
-%% transparent und dadurch wiederverwendbar bzw einfach nutzbar
-%% resolver können Daten effizient abfragen, Mutationen sichern revisionssicherheit etc.
+Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQl serverseitig 
+eingehende Anfragen gegen die Schemate validiert\cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutations gesteurt werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
+Konformität zu gewährleisten. Da jede Mutation ein strikt typisiertes Schemata bestehen muss, verhindert dies ein unkontrolliertes einbringen nicht standardisierter Objekte.
+Ein weiterer Vorteil ist die optimierung von Datenabfragen. Während klassische REST APIs zu Overfetching neigen, eliminiert GraphQl diese vollständig. Die Clients definieren durch ihre Queries selbstständig welche Daten
+sie benötigen. Diese Queries werden von Resolvern (siehe \label{2.2.2}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen um effizient die Datena aus der Graphdatenbank abzurufen.
 \subsection{Das einheitliche API-Gateway: Datenabfrage via GraphQL}
 %% Warum GraphQL geeignet ist als Vermittler
 %% fest definierte allgemeine schnittstelle
 %% Überleitung Frontend Vermittlungsschicht die mehr abstrahiert als Neo4js Cypher
 %% Transparenz übergeifend
+%% intitive abfrage ohne api auswenig zu lernen
 %% Revisionssicherheit durch Mutationen Schemas quasi Ground truth (Graphdatenbank) behalten
+%% transparent und dadurch wiederverwendbar bzw einfach nutzbar
+%% selbst dukumentierend
