@@ -1,26 +1,70 @@
-\section{Grafbasiertes Datenmodell und Schnittstellendesign}
+\section{Graphbasiertes Datenmodell und Schnittstellendesign}
 Der IFC Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale  Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
-aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Grafdatenbanken diese effizient darstellen\cite{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
-der grafbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. \todo{erklärung digitaler zwilling}
+aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen\cite{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
+der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. 
 
 
-\subsection{Grafbasierte Domänenmodellierung für IFC-Daten}
-%% Überführung der ifc files (In step format) in eine grafbasierte wissensdatenbank
-%% eher eine umsetzungsbeschriebung
-%% Ziel ist ein digitaler Zwilling
-%% Labels für IFC Klassen
-%% Daten als Knoten
-%% Beziehungen als Kanten
+\subsection{Graphbasierte Domänenmodellierung für IFC-Daten}
+Das Ziel der Domänenmodellierung ist es, mit Hilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung der bereits bestehenden IFC Dateien zu erschaffen. Einen sogenannten \textit{digitalen Zwilling}. 
+IFC Dateien nutzen das \gls{STEP} Dateiformat. um ihren Inhalt zu beschreiben. 
+\begin{lstlisting}[caption={Beispielhafter IFC-Datenauszug im STEP-Dateiformat (ISO 10303-21).}, label={lst:ifc_step_example}]
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0]'),'2;1');
+FILE_NAME('Bautagebuch_Modell.ifc','2026-06-02T22:15:00',('Architekt Max'),('Ingenieurbuero X'),'IFC-Exporter v1.0','CAD-BIM-Software 2026',_ );
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+
+DATA;
+/* 1. Projekt- und Gelaendebasisstrukturen */
+#10= IFCPROJECT('0Yn$b7pX187R3W84z_uXy1',#15,'Projekt Grossbaustelle IBN','Beschreibung des Grossprojekts',$,$,$,(#40),#30);
+#15= IFCOWNERHISTORY(#20,#25,$,.ADDED.,$,$,$,1717366500);
+#20= IFCPERSONANDORGANIZATION(#21,#22,$);
+#21= IFCPERSON('ID_01','Mustermann','Max',$,$,$,$,$);
+#22= IFCORGANIZATION('ORG_01','Bauunternehmung GmbH',$,$,$);
+#25= IFCAPPLICATION(#22,'v1.0','BIM-Software','App_ID');
+\end{lstlisting}
+Man kann dieses Schema bereits als eine Art Graph verstehen. Die Objekte selber können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen interpretiert werden.
+\newline
+\todo{Eventuell in eigenes Kapitel schreiben}
+Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, verlustfrei \todo{nahezu verlustfrei siehe Giehl 4.3 (evtl erwähnung eines sekundargraphens siehe Koray Inal  seite 40)} und realitätsnah abbilden\cite{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcWall} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
+Die Attribute dieser Klassen werden in den Objekten analog zum IFC Standard, als Eigenschaften gespeichert. \todo{Graphik mit zwei objekten und einer beziehung}
+Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken, wie zum Beispiel Neo4j. Man kann die Knoten und Kanten mit sogenannten \textit{Labels} versehen, also Bezeichnungen. Dies ermöglicht es, diese als
+ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur\cite{giehl}.
+\todo{Auszug der GRaphdatenbank}
 \subsection{GraphQL als Vermittlungsinstanz}
-%% Lösung die von webanwendungen genutzt werden kann 
+Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
+Datenabruf bereitstellt. Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQl Schemata definiert werden, um genau jenes zu verhindern\cite{wolf_20206_graphql}. \newline
+Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{Object} und dessen Superklassen zu sehen: \newpage
+\begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
+interface IfcRoot {
+  globalId: ID!
+  name: String
+  description: String
+}
+
+interface IfcObjectDefinition implements IfcRoot {
+  globalId: ID!
+  name: String
+  description: String
+}
+
+interface IfcObject implements IfcRoot & IfcObjectDefinition {
+  globalId: ID!
+  name: String
+  description: String
+  objectType: String
+}
+\end{lstlisting}
+Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konformes Datenmodelle innerhalb der Graphdatenbank, sowie die Abbildung der hierarchischen Struktur\cite{wolf:2025:ifc2graphql}. 
+
+%% verhindert overfetching - effizient
+%% selbst dukumentierend
 %% intitive abfrage ohne api auswenig zu lernen
 %% transparent und dadurch wiederverwendbar bzw einfach nutzbar
-%% Middleware
-%% stuert strukturiert und vereinfacht -> schema gibt typsicherheit
 %% resolver können Daten effizient abfragen, Mutationen sichern revisionssicherheit etc.
 \subsection{Das einheitliche API-Gateway: Datenabfrage via GraphQL}
 %% Warum GraphQL geeignet ist als Vermittler
-%% Was die Vorteile sind -> Schema, Typsicherheit
 %% fest definierte allgemeine schnittstelle
 %% Überleitung Frontend Vermittlungsschicht die mehr abstrahiert als Neo4js Cypher
 %% Transparenz übergeifend

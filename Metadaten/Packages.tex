@@ -94,6 +94,13 @@
     morestring=[b]',
 }
 
+\lstdefinelanguage{IFC}{
+    morekeywords={ISO, HEADER, FILE_DESCRIPTION, FILE_NAME, FILE_SCHEMA, ENDSEC, DATA, END, IFCPROJECT, IFCOWNERHISTORY, IFCPERSONANDORGANIZATION, IFCPERSON, IFCORGANIZATION, IFCAPPLICATION, IFCUNITASSIGNMENT, IFCSIUNIT, IFCGEOMETRICREPRESENTATIONCONTEXT, IFCAXIS2PLACEMENT3D, IFCCARTESIANPOINT, IFCSITE, IFCBUILDING, IFCPOSTALADDRESS, IFCBUILDINGSTOREY, IFCWALLSTANDARDCASE, IFCLOCALPLACEMENT, IFCPRODUCTDEFINITIONSHAPE, SHAPEREPRESENTATION, EXTRUDEDAREASOLID, IFCRECTANGLEPROFILEDEF, IFCDIRECTION, IFCRELCONTAINEDINSPATIALSTRUCTURE},
+    sensitive=true,
+    morecomment=[s]{/*}{*/},
+    morestring=[b]'
+}
+
 \lstset{
     basicstyle=\ttfamily\small,
     breaklines=true,
@@ -104,6 +111,32 @@
     commentstyle=\color{green!60!black},
     frame=lines,
     captionpos=b
+}
+\lstdefinelanguage{GraphQL}{
+  keywords={interface, implements, type, schema, scalar, input},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={ID, String, Int, Float, Boolean},
+  ndkeywordstyle=\color{purple}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=true,
+  comment=[l]{\#},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]",
+}
+
+% Globale Einstellungen für den Code-Block
+\lstset{
+  language=GraphQL,
+  backgroundcolor=\color{gray!5},
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  captionpos=b,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  tabsize=2,
+  showstringspaces=false
 }
 
 
