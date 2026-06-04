@@ -41,4 +41,4 @@
 ## PDF-Endergebnis (Optional)
 ## Viele Entwickler ignorieren das PDF, da es aus dem Quellcode generiert wird.
 ## Wenn du das PDF NICHT in Git haben willst, entferne die Raute unten:
-# *.pdf
+*.pdf
