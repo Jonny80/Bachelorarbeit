@@ -58,16 +58,15 @@ interface IfcObject implements IfcRoot & IfcObjectDefinition {
 }
 \end{lstlisting}
 Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQl serverseitig 
-eingehende Anfragen gegen die Schemate validiert\cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutations gesteurt werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
+eingehende Anfragen gegen die Schemata validiert\cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
 Konformität zu gewährleisten. Da jede Mutation ein strikt typisiertes Schemata bestehen muss, verhindert dies ein unkontrolliertes einbringen nicht standardisierter Objekte.
-Ein weiterer Vorteil ist die optimierung von Datenabfragen. Während klassische REST APIs zu Overfetching neigen, eliminiert GraphQl diese vollständig. Die Clients definieren durch ihre Queries selbstständig welche Daten
+Ein weiterer Vorteil liegt in der Optimierung von Datenabfragen. Während klassische REST APIs zu Over- oder Underfetching neigen, eliminiert GraphQl diese vollständig. Die Clients definieren durch ihre Queries selbstständig welche Daten
 sie benötigen. Diese Queries werden von Resolvern (siehe \label{2.2.2}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen, um effizient die Daten aus der Graphdatenbank abzurufen.
-\subsection{Das einheitliche API-Gateway: Datenabfrage via GraphQL}
+\subsection{GraphQl als einheitliche API}
+In einer Add-On fähigen Softwarearchitektur, in der ggf. unterschiedliche Entwickler arbeiten, ist eine flexible API von großem Vorteil. Während REST-APIs auf starre vordefinierte Endpunkte setzen, basiert GraphQl auf clientgesteuerte Abfragen. 
 %% Warum GraphQL geeignet ist als Vermittler
 %% fest definierte allgemeine schnittstelle
 %% Überleitung Frontend Vermittlungsschicht die mehr abstrahiert als Neo4js Cypher
 %% Transparenz übergeifend
 %% intitive abfrage ohne api auswenig zu lernen
-%% Revisionssicherheit durch Mutationen Schemas quasi Ground truth (Graphdatenbank) behalten
-%% transparent und dadurch wiederverwendbar bzw einfach nutzbar
 %% selbst dukumentierend
