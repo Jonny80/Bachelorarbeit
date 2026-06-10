@@ -50,7 +50,6 @@ MATCH (c:Component {id: 'Pumpe-01'})-[:HAS_ISSUE]->(i:Issue)
 WHERE i.status <> 'CLOSED'
 RETURN c, i
 \end{lstlisting}
-%% TODO Eventuell noch auf Flexibilität und Performance eingehen
 
 
 \subsubsection{GraphQL}
