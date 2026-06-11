@@ -1,6 +1,6 @@
 \section{Graphbasiertes Datenmodell und Schnittstellendesign}
 Der IFC Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale  Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
-aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen\cite{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
+aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \citep{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
 der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. 
 
 
@@ -14,29 +14,26 @@ FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0]'),'2;1');
 FILE_NAME('Bautagebuch_Modell.ifc','2026-06-02T22:15:00',('Architekt Max'),('Ingenieurbuero X'),'IFC-Exporter v1.0','CAD-BIM-Software 2026',_ );
 FILE_SCHEMA(('IFC4'));
 ENDSEC;
-
 DATA;
-/* 1. Projekt- und Gelaendebasisstrukturen */
-#10= IFCPROJECT('0Yn$b7pX187R3W84z_uXy1',#15,'Projekt Grossbaustelle IBN','Beschreibung des Grossprojekts',$,$,$,(#40),#30);
-#15= IFCOWNERHISTORY(#20,#25,$,.ADDED.,$,$,$,1717366500);
-#20= IFCPERSONANDORGANIZATION(#21,#22,$);
-#21= IFCPERSON('ID_01','Mustermann','Max',$,$,$,$,$);
-#22= IFCORGANIZATION('ORG_01','Bauunternehmung GmbH',$,$,$);
-#25= IFCAPPLICATION(#22,'v1.0','BIM-Software','App_ID');
+10= IFCPROJECT('0Yn$b7pX187R3W84z_uXy1',#15,'Projekt Grossbaustelle IBN','Beschreibung des Grossprojekts',$,$,$,(#40),#30);
+15= IFCOWNERHISTORY(#20,#25,$,.ADDED.,$,$,$,1717366500);
+20= IFCPERSONANDORGANIZATION(#21,#22,$);
+21= IFCPERSON('ID_01','Mustermann','Max',$,$,$,$,$);
+22= IFCORGANIZATION('ORG_01','Bauunternehmung GmbH',$,$,$);
+25= IFCAPPLICATION(#22,'v1.0','BIM-Software','App_ID');
 \end{lstlisting}
 Man kann dieses Schema bereits als eine Art Graph verstehen. Die Objekte selber können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen interpretiert werden.
 \newline
 \todo{Eventuell in eigenes Kapitel schreiben}
-Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, verlustfrei \todo{nahezu verlustfrei siehe Giehl 4.3 (evtl erwähnung eines sekundargraphens siehe Koray Inal  seite 40)} und realitätsnah abbilden\cite{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcWall} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
+Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, nahezu verlustfrei \citep{giehl}\todo{nahezu verlustfrei siehe Giehl 4.3 (evtl erwähnung eines sekundargraphens siehe Koray Inal  seite 40)} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcWall} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
 Die Attribute dieser Klassen werden in den Objekten analog zum IFC Standard, als Eigenschaften gespeichert. \todo{Graphik mit zwei objekten und einer beziehung}
 Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken, wie zum Beispiel Neo4j. Man kann die Knoten und Kanten mit sogenannten \textit{Labels} versehen, also Bezeichnungen. Dies ermöglicht es, diese als
-ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur\cite{giehl}.
+ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \citep{giehl}.
 \todo{Auszug der GRaphdatenbank}
-\todo{Wolf ifc2graphql übersetzung feasible but not very practicallys}
 \subsection{GraphQL als Vermittlungsinstanz}
 Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
-Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQl Schemata definiert werden, um genau jenes zu verhindern\cite{wolf_20206_graphql}. \newline
+Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQl Schemata definiert werden, um genau jenes zu verhindern \citep{wolf_20206_graphql}. \newline
 Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{Object} und dessen Superklassen zu sehen: \newpage
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 interface IfcRoot {
@@ -59,7 +56,7 @@ interface IfcObject implements IfcRoot & IfcObjectDefinition {
 }
 \end{lstlisting}
 Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQl serverseitig 
-eingehende Anfragen gegen die Schemata validiert\cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
+eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
 Konformität zu gewährleisten. Da jede Mutation ein strikt typisiertes Schemata bestehen muss, verhindert dies ein unkontrolliertes einbringen nicht standardisierter Objekte.
 Ein weiterer Vorteil liegt in der Optimierung von Datenabfragen. Während klassische REST APIs zu Over- oder Underfetching neigen, eliminiert GraphQl diese vollständig. Die Clients definieren durch ihre Queries selbstständig welche Daten
 sie benötigen. Diese Queries werden von Resolvern (siehe \label{2.2.2}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen, um effizient die Daten aus der Graphdatenbank abzurufen.

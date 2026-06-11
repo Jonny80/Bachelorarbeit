@@ -69,11 +69,7 @@
   name={Webanwendung},
   description={Eine Anwendung, die über einen Webbrowser zugänglich ist.}
 }
-\newglossaryentry{Grafik-Engine}{
-    name={Grafik-Engine},
-    description={Eine Grafik-Engine (auch Render-Engine genannt) ist eine \\ Software-Komponente, die für die Darstellung von 2D- oder 3D-Grafiken verantwortlich ist. Ihre Hauptaufgabe ist es, aus geometrischen Daten, Texturen und Lichtinformationen ein sichtbares Bild zu generieren. 
-    }
-}
+
 \newglossaryentry{Bibliothek}{
     name={Bibliothek},
     description={ Eine Bibliothek ist eine Sammlung von Funktionen oder Klassen, die eine Programmiersprache um weitere Befehle erweitert. 
@@ -92,12 +88,6 @@
     Ein Plugin ist eine Softwareerweiterung, die eine Anwendung um zusätzliche Funktionalität erweitert, ohne den Quellcode der Hauptanwendung zu ändern.
     }
 }
-\newglossaryentry{Bubblewrap}{
-    name={Bubblewrap},
-    description={
-        Ein von Google entwickeltes Befehlszeilen-Tool, das Progressive Web Apps (PWAs) in native Android-Apps verpackt. Es automatisiert die Erstellung einer Trusted Web Activity (TWA), um eine PWA für die Veröffentlichung im Google Play Store vorzubereiten. Es liest die Metadaten aus dem Web-App-Manifest der PWA und generiert ein Android-Projekt, das die PWA als eigenständige Anwendung starten kann.
-    }
-}
 
 \newglossaryentry{GooglePlayStore}{
     name={Google Play Store},
@@ -114,7 +104,8 @@
 \newglossaryentry{APK}{
     name={APK},
     description={
-        Die Abkürzung für "Android Package Kit". Es handelt sich um ein Dateiformat, das von Android zur Verteilung und Installation mobiler Anwendungen verwendet wird. Eine APK-Datei ist im Wesentlichen ein Archiv, das alle Elemente enthält, die eine Anwendung für die korrekte Installation auf einem Android-Gerät benötigt, darunter der kompilierte Code, Ressourcen, Assets und die Manifest-Datei.
+        Die Abkürzung für "Android Package Kit". Es handelt sich um ein Dateiformat, das von Android zur Verteilung und Installation mobiler Anwendungen verwendet wird.
+         Eine APK-Datei ist im Wesentlichen ein Archiv, das alle Elemente enthält, die eine Anwendung für die korrekte Installation auf einem Android-Gerät benötigt, darunter der kompilierte Code, Ressourcen, Assets und die Manifest-Datei.
     }
 }
 
@@ -139,12 +130,20 @@
 \newglossaryentry{SPA}
 {
     name={SPA},
-    description={Eine Single-Page-Application (deutsch: Einzelseiten-Anwendung) ist eine Webapplikation, die aus einem einzigen HTML-Dokument besteht. Anstatt bei jeder Nutzerinteraktion die komplette Seite vom Server neu zu laden, werden Inhalte dynamisch via JavaScript (z. B. durch \textit{React}) nachgeladen und manipuliert. Dies ermöglicht eine flüssige Benutzererfahrung, die der einer nativen Desktop-Anwendung ähnelt. Im Kontext des Inbetriebnahme-Managements ist dies die Voraussetzung für die \textit{Offline-Fähigkeit}, da die Anwendungslogik bereits im Browser geladen ist und auch ohne aktive Netzverbindung auf Benutzereingaben reagieren kann},
+    description={Eine Single-Page-Application (deutsch: Einzelseiten-Anwendung) ist eine Webapplikation, die aus einem einzigen HTML-Dokument besteht.
+     Anstatt bei jeder Nutzerinteraktion die komplette Seite vom Server neu zu laden, werden Inhalte dynamisch via JavaScript (z. B. durch \textit{React}) nachgeladen und manipuliert. Dies ermöglicht eine flüssige Benutzererfahrung, die der einer nativen Desktop-Anwendung ähnelt. Im Kontext des Inbetriebnahme-Managements ist dies die Voraussetzung für die \textit{Offline-Fähigkeit}, da die Anwendungslogik bereits im Browser geladen ist und auch ohne aktive Netzverbindung auf Benutzereingaben reagieren kann},
     first={Single-Page-Application (SPA)},
     plural={SPAs}
 }
 \newglossaryentry{STEP}{
     name={STEP},
     long={Standard for the Exchange of Product Model Data},
-    description={Standard for the Exchange of Product Model Data (normiert nach ISO 10303). Ein plattformunabhängiges, standardisiertes Datenformat zum Austausch von 3D-Produktdaten und Bauwerksmodellen zwischen heterogenen CAx- und BIM-Systemen. Im Kontext von \textit{Building Information Modeling} (BIM) bildet die physikalische Textdatei nach ISO 10303-21 (\textit{Clear Text Encoding}) das fundamentale Austauschformat für klassische ifc-Dateien. }
+    description={Standard for the Exchange of Product Model Data (normiert nach ISO 10303). Ein plattformunabhängiges, standardisiertes Datenformat zum Austausch von 3D-Produktdaten und Bauwerksmodellen zwischen heterogenen CAx- und BIM-Systemen. 
+    Im Kontext von \textit{Building Information Modeling} (BIM) bildet die physikalische Textdatei nach ISO 10303-21 (\textit{Clear Text Encoding}) das fundamentale Austauschformat für klassische ifc-Dateien. }
+}
+\newglossaryentry{webpack}
+{
+    name={Webpack},
+    description={Ein moderner Open-Source-Modul-Bundler für JavaScript-Anwendungen. Webpack analysiert den Modul-Graphen einer Webapplikation, löst Abhängigkeiten auf und bündelt diese in optimierte statische Assets.
+    In der vorliegenden Arbeit dient Webpack als technische Basis für die Implementierung der Micro-Frontend-Architektur mittels \textit{Module Federation}, welches das dynamische Laden von funktionalen Add-Ons zur Laufzeit ermöglicht}
 }

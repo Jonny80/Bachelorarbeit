@@ -33,9 +33,8 @@ Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden.
     \label{fig:property_graph}
 \end{figure}
 Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier der Datensatz logisch miteinander verknüpft werden kann und aufwände JOIN Operationen vermieden
-werden können \cite{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten, wie Social Media, Betrugerkennung oder bei Lieferketten \cite{google_graphdb}, da hierbei der Analyse der Verbindungen im Vordergrund
+werden können \citep{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten, wie Social Media, Betrugerkennung oder bei Lieferketten \citep{google_graphdb}, da hierbei der Analyse der Verbindungen im Vordergrund
 steht.
-\todo{Eventuell Umschreiben (letzter Satz)}
 \subsubsection{neo4j}
 Neo4j ist eine \gls{acid} konforme Graphdatenbank auf der Grundlage von Labled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
 Abfragesprache Cypher. Sie ist eine SQL ähnliche deklarative Sprache, das Bedeutet, dass im Fokus die Frage steht was gesucht wird. Dabei folgt sie folgendem Grundaufbau:
@@ -66,7 +65,7 @@ Während Schemas die Struktur der Daten definieren, werden durch \texttt{Resolve
 Abfragen, oder auch \texttt{Queries} genannt, ist eine Anfrage des Clients an den Server. Sie beschreibt, welche Daten der Client abrufen möchte. Anstatt wie bei REST gehen alle Anfragen nur gegen eine GraphQL-Schnittstelle. Von dort an validiert der Server
 anhand der Schemas was angefragt wurde und bearbeitet sie.
 Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese Vorgänge 'ersetzen', die \texttt{POST-,PUT-,PATCH} und \texttt{DELETE} Operatoren, welche von REST bekannt sind. Analog zu den Abfragen werden auch Mutationen in Schemas validiert.
-\cite{ibm_graphql_2024}
+\citep{ibm_graphql_2024}
 \subsection{React}
 React ist eine von Meta entwickelte Javascript Bibliothek um Webseiten und \glspl{SPA} zu entwickeln. Dabei fundiert React auf einen komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
 führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
@@ -76,3 +75,6 @@ Analog zu dem Konzept der Microservices Serverseitens, zerteilen Microfrontends 
 dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vor allem unter Last können diese separat hochskaliert werden oder bei Fehlern fällt nicht immer zwangsläufig das ganze System aus, sondern nur das betroffene Microfrontend. Durch die modulare
 Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann den Anforderungen entsprechend die Beste für die benötigten Anforderungen wählen. \newline
 Neben diesen Vorteilen existieren auch Nachteile, welche Microfrontends mitbringen. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten und mögliche Synchronisationsprobleme und natürlich der erhöhte Koordinationsaufwand.
+\subsubsection{Module Federation}
+Module Federation ist eine von Zack Jackson erfundene Architektur, welche 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
+in Mircofrontends zu unterteilen. 
