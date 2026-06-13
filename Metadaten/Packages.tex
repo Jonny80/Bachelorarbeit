@@ -86,6 +86,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 %\usepackage{uarial}
+\definecolor{json_key}{rgb}{0,0,0.6}
+\definecolor{json_string}{rgb}{0,0.5,0}
 \lstdefinelanguage{cypher}{
     morekeywords={MATCH, WHERE, RETURN, AND, NOT, OR, WITH, UNWIND, CREATE, MERGE, DELETE, SET, REMOVE},
     sensitive=true,
@@ -123,6 +125,19 @@
   commentstyle=\color{gray}\ttfamily,
   stringstyle=\color{red}\ttfamily,
   morestring=[b]",
+}
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily\small,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    string=[s]{"}{"},
+    comment=[l]{:\ },
+    morecomment=[s]{"{}}{"},
 }
 
 % Globale Einstellungen für den Code-Block

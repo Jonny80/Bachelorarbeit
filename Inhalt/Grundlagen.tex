@@ -76,5 +76,59 @@ dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vo
 Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann den Anforderungen entsprechend die Beste für die benötigten Anforderungen wählen. \newline
 Neben diesen Vorteilen existieren auch Nachteile, welche Microfrontends mitbringen. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten und mögliche Synchronisationsprobleme und natürlich der erhöhte Koordinationsaufwand.
 \subsubsection{Module Federation}
-Module Federation ist eine von Zack Jackson erfundene Architektur, welche 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
-in Mircofrontends zu unterteilen. 
+Module Federation ist eine von Zack Jackson erfundene Architekturmuster, welche 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
+in Mircofrontends zu unterteilen. Dabei wird eine Anwendung als Host und die restlichen Anwendungen als Remotes definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der Remotes zugreifen, welche diese aktiv teilen (siehe \ref{fig:mf_vergleich}). 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=json, caption={Host}, label={lst:host}]
+{
+ import('mfe1/Cmp')
+
+ remotes: {
+  mfe1: "mfe1"
+ }
+}
+        \end{lstlisting}
+    \end{minipage}
+    \hfill 
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote}]
+{
+  "exposes": {
+    "./Cmp": "./my.cmp.ts"
+  }
+}
+        \end{lstlisting}
+    \end{minipage}
+    \caption{Webpack-Konfiguration für Host und Remote (Quelle: \citep{heise_mf})}
+    \label{fig:mf_vergleich}
+\end{figure} 
+
+
+Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten der einzelnen Anwendungen untereinander geteilt werden können \citep{heise_mf}, womit die Bundlegrößen erheblich verkleinert und die Effizienz gesteigert wird.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=json, caption={Host}, label={lst:host}]
+{
+
+ shared: [
+  "@angular/core", "..."
+ ]
+}
+        \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote}]
+{
+  shared: [
+  "@angular/core", "..."
+ ]
+}
+        \end{lstlisting}
+    \end{minipage}
+    \caption{Module Federation erlaubt das Teilen von Bibliotheken zwischen einzelnen Anwendungen (Quelle: \citep{heise_mf})}
+    \label{fig:mf_vergleich}
+\end{figure} 
