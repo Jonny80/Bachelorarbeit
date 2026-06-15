@@ -1,17 +1,14 @@
 % !TEX root = ../Grunddatei.tex
 \usepackage{amsmath}
-%\usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref} 
 \hypersetup{
-    colorlinks=true,      % Schaltet die farbigen Boxen aus und färbt stattdessen den Text
-    linkcolor=blue,       % Farbe für interne Links (Inhaltsverzeichnis, Abbildungen)
-    citecolor=blue,       % Farbe für Zitate (Literaturverzeichnis)
-    filecolor=magenta,    % Farbe für Dateilinks
-    urlcolor=blue,        % Farbe für externe URLs
-    pdftitle={Software Driven Inbetriebnahme-Management}, % Optional: Metadaten für das PDF
-    pdfpagemode=FullScreen,
+    colorlinks=true,
+    linkcolor=black,    % Interne Links (Inhaltsverzeichnis etc.)
+    citecolor=black,    % Zitate
+    filecolor=black,
+    urlcolor=black      % Web-Links
 }
 \usepackage{subcaption}
 \captionsetup{
@@ -38,17 +35,17 @@
 %Zeilenabstände und Seitenränder
 \usepackage{setspace}
 \singlespacing
-\sloppy
-\usepackage[
-  left=4cm,
-  right=2cm,
-  top=3cm,
-  bottom=3cm,
-  headsep=1.25cm,    % Abstand zwischen Kopfzeile und Text
-  footskip=1.25cm,   % Abstand zwischen Text und Fußzeile
-  includehead=false, % Ränder gelten ab Blattkante (exklusive Header)
-  includefoot=false
-]{geometry}\onehalfspacing   % 1,5-facher Zeilenabstand (Standard für Hausarbeiten)
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=40mm,           % Linker Rand (Bindung)
+  right=20mm,          % Rechter Rand
+  top=30mm,            % Oberer Rand
+  bottom=30mm,         % Unterer Rand
+  headsep=12.5mm,      % Abstand zu Kopfzeile (1,25 cm)
+  footskip=12.5mm,     % Abstand zu Fußzeile (1,25 cm)
+  includeheadfoot=false % Ränder gelten ab Blattkante
+}
 
 \graphicspath{{Bilder/}}
 % Ebene 1: 16 Pkt, Fett, Linksbündig

@@ -1,17 +1,30 @@
 % !TEX root = Abschkussarbeit_DE.tex
 
-% Zeilenabstand 1,5 Zeilen
+% --- Seitenstil-Bereinigung und Linien-Aktivierung ---
 \clearpairofpagestyles
 
-\renewcommand{\headfont}{\normalfont} %Schriftform der Kopfzeile
+% Aktiviert die Trennlinien für Kopf- und Fußzeile exakt nach Vorgabe
+\KOMAoptions{
+  headsepline=0.4pt, % Waagerechter Strich unter der Kopfzeile
+}
 
-% Kopfzeile
-\rohead{\includegraphics[scale=0.1]{\logo}}
-\lehead{\leftmark} % aktueller Kapitelname links
+% --- Typografie in Kopf- und Fußzeile ---
+% Laut Vorgabe: Kopf-/Fußzeilentext in 10 Pkt.
+\setkomafont{pageheadfoot}{\fontsize{10}{12}\selectfont\normalfont\rmfamily}
+% Laut Vorgabe: Seitennummer in 12 Pkt.
+\setkomafont{pagenumber}{\fontsize{12}{14}\selectfont\normalfont\rmfamily}
 
-\setlength{\headheight}{21mm} % Höhe der Kopfzeile
-\setkomafont{pagenumber}{\normalfont\rmfamily}
-% Fußzeile
+% --- Geometrie-Anpassung für das Logo ---
+\setlength{\headheight}{21mm} % Höhe der Kopfzeile (beibehalten wegen des Logos)
+% Wichtig für den Druck: Der Fließtext muss nach der Trennlinie nach unten verschoben werden
+\geometry{headsep=12.5mm} 
+
+% --- Kopfzeile Definition ---
+\rohead{\includegraphics[scale=0.1]{\logo}} % Logo rechts oben
+\lehead{\leftmark} % Aktueller Kapitelname links oben
+
+% --- Fußzeile Definition ---
 \ifoot{}
 \cfoot{}
-\ofoot[\pagemark]{\pagemark} % Setzt die Seitenzahl nach rechts außen
+% Setzt die Seitenzahl nach rechts außen (sowohl auf normalen Seiten [obacht] als auch auf Kapitelseiten)
+\ofoot[\pagemark]{\pagemark}

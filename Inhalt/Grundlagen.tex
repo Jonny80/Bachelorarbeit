@@ -95,8 +95,10 @@ in Mircofrontends zu unterteilen. Dabei wird eine Anwendung als Host und die res
     \begin{minipage}{0.48\textwidth}
         \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote}]
 {
-  "exposes": {
-    "./Cmp": "./my.cmp.ts"
+  exposes: {
+
+    ./Cmp: "./my.cmp.ts"
+
   }
 }
         \end{lstlisting}
@@ -112,7 +114,6 @@ Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten 
     \begin{minipage}{0.48\textwidth}
         \begin{lstlisting}[language=json, caption={Host}, label={lst:host}]
 {
-
  shared: [
   "@angular/core", "..."
  ]
