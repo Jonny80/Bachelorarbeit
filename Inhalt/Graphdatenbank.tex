@@ -25,11 +25,26 @@ DATA;
 Man kann dieses Schema bereits als eine Art Graph verstehen. Die Objekte selber können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen interpretiert werden.
 \newline
 \todo{Eventuell in eigenes Kapitel schreiben}
-Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcWall} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
-Die Attribute dieser Klassen werden in den Objekten analog zum IFC Standard, als Eigenschaften gespeichert. \todo{Graphik mit zwei objekten und einer beziehung}
+Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
+Die Attribute dieser Klassen werden in den Objekten analog zum IFC Standard, als Eigenschaften (\textit{Properties}) gespeichert.
+Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Example_Attributes.png} 
+    \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser}
+    \label{fig:attr_example}
+\end{figure}
 Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken, wie zum Beispiel Neo4j. Man kann die Knoten und Kanten mit sogenannten \textit{Labels} versehen, also Bezeichnungen. Dies ermöglicht es, diese als
 ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \citep{giehl}.
-\todo{Auszug der GRaphdatenbank}
+Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j Browser} ein integriertes Werkzeug, welches die Verknüpfungen grafisch aufbereitet:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{TestAufbauNeo4j.png} 
+    \caption{Exemplarischer Aufbau und Visualisierung im Neo4j Browser}
+    \label{fig:graphdb_test}
+\end{figure}
+Wie in der Abbildung \ref{fig:graphdb_test} zu sehen ist, werden die Knoten anhand ihrer Labels farbig kodiert. 
+In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den Labeled Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
 \subsection{GraphQL als Vermittlungsinstanz}
 Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
@@ -64,7 +79,7 @@ sie benötigen. Diese Queries werden von Resolvern (siehe \label{2.2.2}) verarbe
 In einer Add-On fähigen Softwarearchitektur, in der ggf. unterschiedliche Entwickler arbeiten, ist eine flexible API von großem Vorteil. Während REST-APIs auf starre vordefinierte Endpunkte setzen, basiert GraphQl auf clientgesteuerte Abfragen. Somit können
 Entwickler benötigte Schnittstellen flexibel und eigenständig über die bestehenden Schemata abbilden. Zudem können Clients mittels der sogenannten \textit{Schema Introspection}, die vorhandenen Schemata abfragen. Durch diese Transparenz entfallen sonst notwendige
 Dokumentationen, wodurch die Einstiegshürden für neue Entwickler drastisch gesenkt werden und das Erstellen neuer Add-Ons auf Basis des Domänenmodells vereinfacht wird. \newline
-Neben diesen Vorteilen bietet das Verwenden von GraphQL als Middleware eine wesentlich zugänglicherere Abstraktionsebene als gängige Abfragesprachen für Graphdatenbanken wie Cypher oder SPARQL. 
+Neben diesen Vorteilen bietet das Verwenden von GraphQL als Middleware eine wesentlich zugänglichere Abstraktionsebene als gängige Abfragesprachen für Graphdatenbanken wie Cypher oder SPARQL. 
 \subsection{Implementierung am Beispiel von MSR}
 %% Anzeigen übertragung Graphql schema von Website (Ifc Standard)
 %% Implements müssen die Eigenschaften mitnehmen also nochmal extra mitgeschrieben werden
