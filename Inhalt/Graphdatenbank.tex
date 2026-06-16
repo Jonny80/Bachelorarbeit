@@ -49,7 +49,7 @@ In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den La
 Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
 Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL Schemata definiert werden, um genau jenes zu verhindern \citep{wolf_20206_graphql}. \newline
-Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{Object} und dessen Superklassen zu sehen: \newpage
+Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{IfcObject} und dessen Superklassen zu sehen:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 interface IfcRoot {
   globalId: ID!
