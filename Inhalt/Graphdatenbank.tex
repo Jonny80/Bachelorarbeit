@@ -28,6 +28,7 @@ Dieses Schema lässt sich bereits als eine Art Graph verstehen. Die Objekte selb
 Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen, werden konkrete IFC-Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
 Die Attribute dieser Klassen werden in den Objekten analog zum IFC-Standard als Eigenschaften (\textit{Properties}) gespeichert.
 Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
+\todo{Hinzufügen dass die id nur ein temporärer und für die performance geeignetes attribut ist}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Example_Attributes.png} 
@@ -49,7 +50,8 @@ In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den La
 Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
 Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \citep{wolf_20206_graphql}.
-
+\todo{Füge hinzu dass anders als bei gängigen Programmiersprachen die Attribute bei vererbungen hinzugefügt werden müssen,
+außerdem sollte IfcObjectDefinition geändert werden weil da nicht dazu kommt}
 Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 interface IfcRoot {
