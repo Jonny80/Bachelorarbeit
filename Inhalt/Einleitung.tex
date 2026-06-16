@@ -1,5 +1,5 @@
 \section{Einleitung}
-\subsection{Problemstellung} 
+\subsection{Problemstellung} \label{sec:problemstellung} 
 Die Baubranche stellt eine der tragenden Säulen der deutschen Wirtschaft dar, sieht sich jedoch 
 im Vergleich zu anderen Industriezweigen mit einer signifikanten Digitalisierungslücke konfrontiert \citep{BBSR}.
 Während in der Planungsphase durch Methoden wie Building Information Modeling (BIM) bereits digitale 
@@ -13,13 +13,13 @@ Dies führt regelmäßig zum sogenannten „Excel-Fallback“ \citep{feth2023stu
 Um den Informationsfluss zwischen den unterschiedlichen Systemen und verschiedenen Akteuren aufrechtzuerhalten, 
 werden Daten manuell in Tabellenkalkulationen übertragen. Dieser Prozess ist nicht nur fehleranfällig, 
 sondern verhindert auch eine revisionssichere Dokumentation und Echtzeit-Auswertungen.
-\newline
+
 Zusätzlich verschärft das Problem des Vendor-Locks die Situation \citep{feth2023studie}.
 Unternehmen sind oft an geschlossene Ökosysteme einzelner Softwareanbieter gebunden, 
 was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert.
 Bestehende Anwendungen agieren häufig als Insellösungen, 
-die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, nicht gerecht werden
-\newline
+die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, nicht gerecht werden.
+
 Erschwert wird der digitale Einsatz vor Ort durch die oft mangelhafte Infrastruktur \citep{BBSR}. 
 Auf Baustellen ist eine stabile Mobilfunkabdeckung oder Breitbandanbindung keine Selbstverständlichkeit. 
 Viele aktuelle Cloud-Lösungen setzen jedoch eine permanente Internetverbindung voraus und stoßen bei instabilem Netz an ihre Grenzen. 
@@ -28,11 +28,12 @@ was die Akzeptanz digitaler Werkzeuge beim Personal vor Ort weiter sinken lässt
 \subsection{Forschungslücke}
 Trotz der Verfügbarkeit diverser Softwarelösungen im BIM-Kontext, primär in den Bereichen des digitalen Bautagebuchs und der Mängelerfassung, weisen diese oftmals Defizite hinsichtlich ihrer Flexibilität und Adaptierbarkeit an spezifische 
 Projektanforderungen auf. Zur Lösung dieser Problematik ist eine modulare Architektur erforderlich, die es ermöglicht, spezialisierte Anwendungen flexibel als Add-ons zu integrieren, sodass diese nahtlos auf bestehende Daten zugreifen können. 
-Um dies zu ermöglichen, bedarf es eine standardisierte und transparente Schnittstellen um einen problemlosen Informationsaustausch zu gewährleisten. 
-Es existieren bereits Forschungen und etablierte Ansätze für graphbasierte Domänenmodelle, sowie die Nutzung von GraphQL als Vermittlungsschicht, um die komplexen Strukturen des IFC Standards abzubilden. Arbeiten wie \citep{wolf:2025:ifc2graphql} zeigen bereits,
-dass die Überführung von IFC-Daten in ein GraphQL Schemata grundlegend machbar ist, jedoch eine exakte 1:1 Abbildungen an ihre Grenzen hinsichtlich der Komplexität stößt. Trotzdem wird deutlich, dass eine solche Überführung Vorteile in Form von Effizient
-und Entwicklerfreundlichkeit mit sich bringt. \newline
-Es fehlt jedoch an einer Verknüpfung dieser Modelle mit einer modularen Architektur als Frontend, mit welcher die beschriebenen Probleme aus \label{1.1}, gezielt angegangen werden können. 
+Um dies zu ermöglichen, bedarf es einer standardisierten und transparenten Schnittstelle, um einen problemlosen Informationsaustausch zu gewährleisten. 
+Es existieren bereits Forschungen und etablierte Ansätze für graphbasierte Domänenmodelle sowie die Nutzung von GraphQL als Vermittlungsschicht, um die komplexen Strukturen des IFC-Standards abzubilden. Arbeiten wie \citep{wolf:2025:ifc2graphql} zeigen bereits,
+dass die Überführung von IFC-Daten in ein GraphQL-Schema grundlegend machbar ist, jedoch eine exakte 1:1-Abbildung an ihre Grenzen hinsichtlich der Komplexität stößt. Trotzdem wird deutlich, dass eine solche Überführung Vorteile in Form von Effizienz
+und Entwicklerfreundlichkeit mit sich bringt.
+
+Es fehlt jedoch an einer Verknüpfung dieser Modelle mit einer modularen Architektur als Frontend, mit welcher die beschriebenen Probleme aus \ref{sec:problemstellung} gezielt angegangen werden können. 
 \subsection{Forschungsfragen}
 Um die oben genannten Zielsetzungen methodisch zu untersuchen, konzentriert sich diese Arbeit auf die Beantwortung der folgenden zwei Kernfragen:
 \begin{description}
@@ -47,13 +48,14 @@ Um die komplexen Beziehungen zwischen Bauteilen, Gewerken und Prozessen performa
 wird das System auf einer Graphdatenbank aufgesetzt. Im Gegensatz zu starren relationalen Tabellen 
 ermöglicht die Graphentechnologie eine flexible Verknüpfung der Datenquellen und bildet so das Rückgrat 
 für die Interkonnektivität zwischen den Projektbeteiligten.
-Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-On-fähige Software-Architektur.
+Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-on-fähige Software-Architektur.
 Diese erlaubt es, spezifische Anforderungen für das Inbetriebnahmemanagement als modulare Erweiterungen zu implementieren,
 ohne den Software-Kern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
 entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern Unternehmen die 
 Souveränität über ihre digitalen Prozesse zurückgibt und eine zukunftssichere Skalierbarkeit in Großprojekten ermöglicht.
 \subsection{Methodik}
-Um die beschriebenen Zielsetzung zu erreichen wird diese Arbeit in drei Teilschritte unterteilt. Zuerst soll durch Literaturrecherche und prototypischen Tests ein Domänenmodell mit der Graphdatenbank \textit{Neo4j} und dem Framework \textit{GraphQL} als Vermittlerinstanz
-auf seine Vorteile und Machbarkeit untersucht werden. Als nächster Schritt soll eine modulare Softwarearchitektur, aufbauend auf dem Konzept der Microfrontends, entworfen werden. Die technische Umsetzung soll mit dem Build-Tool \textit{Vite} und dem Architekturmuster
-\textit{Module Federation} erfolgen. Das finale Ziel dieses Schrittes ist ein Prototyp als Proof of Concept. Das Zusammenspiel dieser beiden Technologien bietet eine moderne und entwicklerfreundliche Möglichkeit, Mircofrontends als Webapplikationen herauszuführen. \newline
-Auf diesen beiden Lösungsansätzen aufbauend soll als letzter Schritt die Zusammenführung beider Teilsysteme erfolgen. Hierbei wird der Prototyp der modularen Softwarearchitektur über die GraphQL Schnittstelle an die Graphdatenbank angebunden. 
+Um die beschriebene Zielsetzung zu erreichen, wird diese Arbeit in drei Teilschritte unterteilt. Zuerst soll durch Literaturrecherche und prototypische Tests ein Domänenmodell mit der Graphdatenbank \textit{Neo4j} und dem Framework \textit{GraphQL} als Vermittlerinstanz
+auf seine Vorteile und Machbarkeit untersucht werden. Im nächsten Schritt soll eine modulare Softwarearchitektur, aufbauend auf dem Konzept der Microfrontends, entworfen werden. Die technische Umsetzung soll mit dem Build-Tool \textit{Vite} und dem Architekturmuster
+\textit{Module Federation} erfolgen. Das finale Ziel dieses Schrittes ist ein Prototyp als Proof of Concept. Das Zusammenspiel dieser beiden Technologien bietet eine moderne und entwicklerfreundliche Möglichkeit, Microfrontends als Webapplikationen herauszuführen.
+
+Auf diesen beiden Lösungsansätzen aufbauend soll als letzter Schritt die Zusammenführung beider Teilsysteme erfolgen. Hierbei wird der Prototyp der modularen Softwarearchitektur über die GraphQL-Schnittstelle an die Graphdatenbank angebunden. 

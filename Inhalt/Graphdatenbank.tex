@@ -1,13 +1,13 @@
 \section{Graphbasiertes Datenmodell und Schnittstellendesign}
-Der IFC Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale  Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
-aufwändig über rechenintensive \texttt{JOIN} Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \citep{alkhatib2021graph}. Somit könne Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
+Der IFC-Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
+aufwändig über rechenintensive \texttt{JOIN}-Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \citep{alkhatib2021graph}. Somit können Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
 der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. 
 
 
 \subsection{Graphbasierte Domänenmodellierung für IFC-Daten}
-Das Ziel der Domänenmodellierung ist es, mit Hilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung der bereits bestehenden IFC Dateien zu erschaffen. Einen sogenannten \textit{digitalen Zwilling}. 
-IFC Dateien nutzen das \gls{STEP} Dateiformat. um ihren Inhalt zu beschreiben. 
-\begin{lstlisting}[caption={Beispielhafter IFC-Datenauszug im STEP-Dateiformat (ISO 10303-21).}, label={lst:ifc_step_example}]
+Das Ziel der Domänenmodellierung ist es, mithilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung der bereits bestehenden IFC-Dateien – einen sogenannten \textit{digitalen Zwilling} – zu erschaffen. 
+IFC-Dateien nutzen das \gls{STEP}-Dateiformat, um ihren Inhalt zu beschreiben. 
+\begin{lstlisting}[language=IFC, caption={Beispielhafter IFC-Datenauszug im STEP-Dateiformat (ISO 10303-21).}, label={lst:ifc_step_example}]
 ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0]'),'2;1');
@@ -22,11 +22,11 @@ DATA;
 22= IFCORGANIZATION('ORG_01','Bauunternehmung GmbH',$,$,$);
 25= IFCAPPLICATION(#22,'v1.0','BIM-Software','App_ID');
 \end{lstlisting}
-Man kann dieses Schema bereits als eine Art Graph verstehen. Die Objekte selber können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen interpretiert werden.
-\newline
+Dieses Schema lässt sich bereits als eine Art Graph verstehen. Die Objekte selbst können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen, interpretiert werden.
+
 \todo{Eventuell in eigenes Kapitel schreiben}
-Durch ein graphbasiertes Domänenmodell lässt sich der IFC Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen werden konkrete IFC Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
-Die Attribute dieser Klassen werden in den Objekten analog zum IFC Standard, als Eigenschaften (\textit{Properties}) gespeichert.
+Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen, werden konkrete IFC-Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
+Die Attribute dieser Klassen werden in den Objekten analog zum IFC-Standard als Eigenschaften (\textit{Properties}) gespeichert.
 Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
 \begin{figure}[H]
     \centering
@@ -34,8 +34,8 @@ Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j
     \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser}
     \label{fig:attr_example}
 \end{figure}
-Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken, wie zum Beispiel Neo4j. Man kann die Knoten und Kanten mit sogenannten \textit{Labels} versehen, also Bezeichnungen. Dies ermöglicht es, diese als
-ihre äquivalenten IFC Klassen oder Beziehung zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \citep{giehl}.
+Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken wie zum Beispiel Neo4j. Knoten und Kanten können mit sogenannten \textit{Labels} (Bezeichnungen) versehen werden. Dies ermöglicht es, diese als
+ihre äquivalenten IFC-Klassen oder -Beziehungen zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \citep{giehl}.
 Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j Browser} ein integriertes Werkzeug, welches die Verknüpfungen grafisch aufbereitet:
 \begin{figure}[H]
     \centering
@@ -43,13 +43,14 @@ Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j 
     \caption{Exemplarischer Aufbau und Visualisierung im Neo4j Browser}
     \label{fig:graphdb_test}
 \end{figure}
-Wie in der Abbildung \ref{fig:graphdb_test} zu sehen ist, werden die Knoten anhand ihrer Labels farbig kodiert. 
-In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den Labeled Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
+Wie in Abbildung \ref{fig:graphdb_test} dargestellt, werden die Knoten anhand ihrer Labels farbig kodiert. 
+In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den Labeled-Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
 \subsection{GraphQL als Vermittlungsinstanz}
-Für eine effiziente und IFC konforme Kommunikation wird als Vermittlungsschicht GraphQl zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
+Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
-Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL Schemata definiert werden, um genau jenes zu verhindern \citep{wolf_20206_graphql}. \newline
-Folgend ist exemplarisch ein Schemata zu der IFC Klasse \textit{IfcObject} und dessen Superklassen zu sehen:
+Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \citep{wolf_20206_graphql}.
+
+Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 interface IfcRoot {
   globalId: ID!
@@ -70,15 +71,15 @@ interface IfcObject implements IfcRoot & IfcObjectDefinition {
   objectType: String
 }
 \end{lstlisting}
-Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQl eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQl serverseitig 
-eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC 
-Konformität zu gewährleisten. Da jede Mutation ein strikt typisiertes Schemata bestehen muss, verhindert dies ein unkontrolliertes einbringen nicht standardisierter Objekte.
-Ein weiterer Vorteil liegt in der Optimierung von Datenabfragen. Während klassische REST APIs zu Over- oder Underfetching neigen, eliminiert GraphQl diese vollständig. Die Clients definieren durch ihre Queries selbstständig welche Daten
-sie benötigen. Diese Queries werden von Resolvern (siehe \label{2.2.2}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen, um effizient die Daten aus der Graphdatenbank abzurufen.
+Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQL eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC-konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQL serverseitig 
+eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten. Da jede Mutation einem strikt typisierten Schema entsprechen muss, verhindert dies ein unkontrolliertes Einbringen nicht-standardisierter Objekte.
+Ein weiterer Vorteil liegt in der Optimierung von Datenabfragen. Während klassische REST-APIs zu Over- oder Underfetching neigen, eliminiert GraphQL diese Phänomene vollständig. Die Clients definieren durch ihre Queries selbstständig, welche Daten
+sie benötigen. Diese Queries werden von Resolvern (siehe \ref{sec:graphql}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen, um effizient die Daten aus der Graphdatenbank abzurufen.
 \subsection{GraphQL als einheitliche API}
-In einer Add-On fähigen Softwarearchitektur, in der ggf. unterschiedliche Entwickler arbeiten, ist eine flexible API von großem Vorteil. Während REST-APIs auf starre vordefinierte Endpunkte setzen, basiert GraphQl auf clientgesteuerte Abfragen. Somit können
-Entwickler benötigte Schnittstellen flexibel und eigenständig über die bestehenden Schemata abbilden. Zudem können Clients mittels der sogenannten \textit{Schema Introspection}, die vorhandenen Schemata abfragen. Durch diese Transparenz entfallen sonst notwendige
-Dokumentationen, wodurch die Einstiegshürden für neue Entwickler drastisch gesenkt werden und das Erstellen neuer Add-Ons auf Basis des Domänenmodells vereinfacht wird. \newline
+In einer Add-on-fähigen Softwarearchitektur, in der ggf. unterschiedliche Entwickler arbeiten, ist eine flexible API von großem Vorteil. Während REST-APIs auf starre vordefinierte Endpunkte setzen, basiert GraphQL auf clientgesteuerten Abfragen. Somit können
+Entwickler benötigte Schnittstellen flexibel und eigenständig über die bestehenden Schemata abbilden. Zudem können Clients mittels der sogenannten \textit{Schema Introspection} die vorhandenen Schemata abfragen. Durch diese Transparenz entfallen sonst notwendige
+Dokumentationen, wodurch die Einstiegshürden für neue Entwickler drastisch gesenkt werden und das Erstellen neuer Add-Ons auf Basis des Domänenmodells vereinfacht wird.
+
 Neben diesen Vorteilen bietet das Verwenden von GraphQL als Middleware eine wesentlich zugänglichere Abstraktionsebene als gängige Abfragesprachen für Graphdatenbanken wie Cypher oder SPARQL. 
 \subsection{Implementierung am Beispiel von MSR}
 %% Anzeigen übertragung Graphql schema von Website (Ifc Standard)

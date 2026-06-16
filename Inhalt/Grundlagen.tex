@@ -1,11 +1,11 @@
 \section{Grundlagen}
 \subsection{IFC-Standard}
-Der IFC Standard (Industry Foundation Classes) ist eine offene, internationale Spezifikation zur Beschreibung von Bauelementen und deren Beziehungen 
-zueinander. Er wird seit 1994 von der Organisation buildingSMART im \gls{Express} Schema entwickelt, um die Digitalisierung auf Baustellen zu 
-vereinheitlichen. Er wird von den meisten \ac{BIM} Softwarelösungen verwendet, welche ihre Modellierungen als .ifc Datei exportieren können.
-Der IFC Standard besteht aus Objekten, Attributen und Beziehungen. Die Objekte sind hierarchisch aufgebaut. Jedes Objekt 
-startet mit der Klasse \textit{IfcRoot} und erbt weitere Attributen von allgemeineren Basisklassen. \
-Das Beispiel zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
+Der IFC-Standard (Industry Foundation Classes) ist eine offene, internationale Spezifikation zur Beschreibung von Bauelementen und deren Beziehungen 
+zueinander. Er wird seit 1994 von der Organisation buildingSMART im \gls{Express}-Schema entwickelt, um die Digitalisierung auf Baustellen zu 
+vereinheitlichen. Er wird von den meisten \ac{BIM}-Softwarelösungen verwendet, welche ihre Modellierungen als .ifc-Datei exportieren können.
+Der IFC-Standard besteht aus Objekten, Attributen und Beziehungen. Die Objekte sind hierarchisch aufgebaut. Jedes Objekt 
+startet mit der Klasse \textit{IfcRoot} und erbt weitere Attribute von allgemeineren Basisklassen.
+Abbildung \ref{fig:wall_hier} zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Hierarchie.png} 
@@ -13,37 +13,37 @@ Das Beispiel zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
     \label{fig:wall_hier}
 \end{figure}
 
-Die Objekte werden mittels Beziehung in Verbindung gebracht. Zum Beispiel hängt ein Gebäude (\textit{IfcBuilding}) mittels der Relation \textit{IfcRelAggregates}
-an einem Bauplatz (\textit{IfcSite}). Als visuelles Beispiel soll folgende Grafik dienen:
+Die Objekte werden mittels Beziehungen in Verbindung gebracht. Zum Beispiel hängt ein Gebäude (\textit{IfcBuilding}) mittels der Relation \textit{IfcRelAggregates}
+an einem Bauplatz (\textit{IfcSite}). Dies ist schematisch in Abbildung \ref{fig:loc_structure} dargestellt:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{LocationStructure.png} 
-    \caption{Struktueller Aufbau der IFC-Klassen.}
+    \caption{Struktureller Aufbau der IFC-Klassen.}
     \label{fig:loc_structure}
 \end{figure}
 
 \subsection{Graphdatenbanken}
-Graphdatenbanken organisieren ihre Daten, wie der Name schon vermuten lässt, in Graphen. Das bedeutet Objekte werden als Knoten dargestellt, verbunden durch Kanten. Der große Vorteil hierbei ist die native Darstellung von Beziehungen zwischen den Objekten.
-Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zueinander ein elementarer Bestandteil der Datenerhebung darstellt. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labled Property Graphs. Hierbei können nicht nur
+Graphdatenbanken organisieren ihre Daten, wie der Name schon vermuten lässt, in Graphen. Das bedeutet, dass Objekte als Knoten dargestellt und durch Kanten verbunden werden. Der große Vorteil hierbei ist die native Darstellung von Beziehungen zwischen den Objekten.
+Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zueinander einen elementaren Bestandteil der Datenerhebung darstellen. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labeled Property Graphs. Hierbei können nicht nur
 Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{Graph_Database.png} 
-    \caption{Labled Property Graph}
+    \caption{Labeled Property Graph}
     \label{fig:property_graph}
 \end{figure}
-Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier der Datensatz logisch miteinander verknüpft werden kann und aufwände JOIN Operationen vermieden
-werden können \citep{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten, wie Social Media, Betrugerkennung oder bei Lieferketten \citep{google_graphdb}, da hierbei der Analyse der Verbindungen im Vordergrund
+Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier die Datenobjekte logisch miteinander verknüpft werden können und aufwändige JOIN-Operationen vermieden
+werden können \citep{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten wie Social Media, Betrugserkennung oder bei Lieferketten \citep{google_graphdb}, da hierbei die Analyse der Verbindungen im Vordergrund
 steht.
 \subsubsection{neo4j}
-Neo4j ist eine \gls{acid} konforme Graphdatenbank auf der Grundlage von Labled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
-Abfragesprache Cypher. Sie ist eine SQL ähnliche deklarative Sprache, das Bedeutet, dass im Fokus die Frage steht was gesucht wird. Dabei folgt sie folgendem Grundaufbau:
+Neo4j ist eine \gls{acid}-konforme Graphdatenbank auf der Grundlage von Labeled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
+Abfragesprache Cypher. Sie ist eine SQL-ähnliche deklarative Sprache, das bedeutet, dass im Fokus die Frage steht, was gesucht wird. Dabei folgt sie folgendem Grundaufbau:
 \begin{itemize}
   \item Knoten werden in Klammern dargestellt \texttt{(Node)}
   \item Beziehungen werden als Pfeile zwischen den Knoten dargestellt \texttt{-[:FOLGT]->}
   \item Eigenschaften selbst sind Schlüssel-Wert-Paare: \texttt{\{name: 'Max'\}}
 \end{itemize}
-Folgend ist als Beispiel eine Abfrage über offene Mängel an einer technischen Komponente.
+Das folgende Listing zeigt beispielhaft eine Abfrage von offenen Mängeln an einer technischen Komponente:
 \begin{lstlisting}[language=cypher, caption={Abfrage von offenen Mängeln an einer technischen Komponente}]
 MATCH (c:Component {id: 'Pumpe-01'})-[:HAS_ISSUE]->(i:Issue)
 WHERE i.status <> 'CLOSED'
@@ -51,33 +51,36 @@ RETURN c, i
 \end{lstlisting}
 
 
-\subsubsection{GraphQL}
-Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizient der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um somit nur die benötigten
-Daten zu erhalten, wodurch sogenanntes Overfetching verhindert werden kann. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
+\subsubsection{GraphQL} \label{sec:graphql}
+Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizienz der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um nur die benötigten
+Daten zu erhalten und so sogenanntes Overfetching zu verhindern. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
 \begin{itemize}
-  \item Schemen
+  \item Schemata
   \item Resolver
   \item Mutationen
   \item Abfragen
 \end{itemize}
-Das Herzstück von GraphQL sind die \texttt{Schemas}. Sie definieren die Struktur der Daten, welche abgefragt werden können und werden in der stark typisierten Schemadefinitionssprache (SDL) geschrieben. \newline
-Während Schemas die Struktur der Daten definieren, werden durch \texttt{Resolver} beschreiben, wie oder woher diese Daten abgerufen werden. Jedes Feld in einem Schema ist mit einem Resolver verknüpft, welcher definiert, wie dieses Datenfeld abgefragt wird. \newline
-Abfragen, oder auch \texttt{Queries} genannt, ist eine Anfrage des Clients an den Server. Sie beschreibt, welche Daten der Client abrufen möchte. Anstatt wie bei REST gehen alle Anfragen nur gegen eine GraphQL-Schnittstelle. Von dort an validiert der Server
-anhand der Schemas was angefragt wurde und bearbeitet sie.
-Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese Vorgänge 'ersetzen', die \texttt{POST-,PUT-,PATCH} und \texttt{DELETE} Operatoren, welche von REST bekannt sind. Analog zu den Abfragen werden auch Mutationen in Schemas validiert.
+Das Herzstück von GraphQL sind die \texttt{Schemata}. Sie definieren die Struktur der Daten, welche abgefragt werden können, und werden in der stark typisierten Schemadefinitionssprache (SDL) geschrieben.
+
+Während Schemata die Struktur der Daten definieren, wird durch \texttt{Resolver} beschrieben, wie oder woher diese Daten abgerufen werden. Jedes Feld in einem Schema ist mit einem Resolver verknüpft, welcher definiert, wie dieses Datenfeld abgefragt wird.
+
+Abfragen, auch \texttt{Queries} genannt, sind Anfragen des Clients an den Server. Sie beschreiben, welche Daten der Client abrufen möchte. Anders als bei REST werden alle Anfragen an eine einzige GraphQL-Schnittstelle gesendet. Von dort aus validiert der Server
+anhand der Schemata, was angefragt wurde, und bearbeitet sie.
+Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese Vorgänge ersetzen die \texttt{POST}-, \texttt{PUT}-, \texttt{PATCH}- und \texttt{DELETE}-Operatoren, die von REST bekannt sind. Analog zu den Abfragen werden auch Mutationen in Schemata validiert.
 \citep{ibm_graphql_2024}
 \subsection{React}
-React ist eine von Meta entwickelte Javascript Bibliothek um Webseiten und \glspl{SPA} zu entwickeln. Dabei fundiert React auf einen komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
+React ist eine von Meta entwickelte Javascript-Bibliothek, um Webseiten und \glspl{SPA} zu entwickeln. Dabei basiert React auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
 führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
 interaktiver Benutzeroberflächen etabliert.
-\subsection{Mircofrontends}
-Analog zu dem Konzept der Microservices Serverseitens, zerteilen Microfrontends das Frontend in mehrere, unabhängige Komponenten. Die grundlegende Idee dahinter ist es ein Problem in Teilprobleme zu zerteilen und getrennt zu bearbeiten. Neben diesem Vorteil bietet
-dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vor allem unter Last können diese separat hochskaliert werden oder bei Fehlern fällt nicht immer zwangsläufig das ganze System aus, sondern nur das betroffene Microfrontend. Durch die modulare
-Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann den Anforderungen entsprechend die Beste für die benötigten Anforderungen wählen. \newline
-Neben diesen Vorteilen existieren auch Nachteile, welche Microfrontends mitbringen. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten und mögliche Synchronisationsprobleme und natürlich der erhöhte Koordinationsaufwand.
+\subsection{Microfrontends}
+Analog zum Konzept der serverseitigen Microservices zerteilen Microfrontends das Frontend in mehrere, unabhängige Komponenten. Die grundlegende Idee dahinter ist es, ein Problem in Teilprobleme zu zerteilen und getrennt zu bearbeiten. Neben diesem Vorteil bietet
+dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vor allem unter Last können diese separat hochskaliert werden. Zudem fällt bei Fehlern nicht zwangsläufig das ganze System aus, sondern nur das betroffene Microfrontend. Durch die modulare
+Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann die für den jeweiligen Anwendungsfall am besten geeignete Technologie wählen.
+
+Neben diesen Vorteilen bringen Microfrontends auch Nachteile mit sich. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten, potenzielle Synchronisationsprobleme sowie ein erhöhter Koordinationsaufwand.
 \subsubsection{Module Federation}
-Module Federation ist eine von Zack Jackson erfundene Architekturmuster, welche 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
-in Mircofrontends zu unterteilen. Dabei wird eine Anwendung als Host und die restlichen Anwendungen als Remotes definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der Remotes zugreifen, welche diese aktiv teilen (siehe \ref{fig:mf_vergleich}). 
+Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, welches 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
+in Microfrontends zu unterteilen. Dabei wird eine Anwendung als Host und die restlichen Anwendungen als Remotes definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der Remotes zugreifen, welche diese aktiv teilen (siehe \ref{fig:mf_vergleich_konfig}). 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
@@ -112,7 +115,7 @@ Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
-        \begin{lstlisting}[language=json, caption={Host}, label={lst:host}]
+        \begin{lstlisting}[language=json, caption={Host}, label={lst:host_shared}]
 {
  shared: [
   "@angular/core", "..."
@@ -122,7 +125,7 @@ Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten 
     \end{minipage}
     \hfill
     \begin{minipage}{0.48\textwidth}
-        \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote}]
+        \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote_shared}]
 {
   shared: [
   "@angular/core", "..."
