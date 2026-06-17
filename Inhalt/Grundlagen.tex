@@ -72,11 +72,10 @@ Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese V
 React ist eine von Meta entwickelte Javascript-Bibliothek, um Webseiten und \glspl{SPA} zu entwickeln. Dabei basiert React auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
 führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
 interaktiver Benutzeroberflächen etabliert.
-\subsection{Microfrontends}
+\subsection{Microfrontends} \label{sec:microfrontends}
 Analog zum Konzept der serverseitigen Microservices zerteilen Microfrontends das Frontend in mehrere, unabhängige Komponenten. Die grundlegende Idee dahinter ist es, ein Problem in Teilprobleme zu zerteilen und getrennt zu bearbeiten. Neben diesem Vorteil bietet
 dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vor allem unter Last können diese separat hochskaliert werden. Zudem fällt bei Fehlern nicht zwangsläufig das ganze System aus, sondern nur das betroffene Microfrontend. Durch die modulare
 Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann die für den jeweiligen Anwendungsfall am besten geeignete Technologie wählen.
-
 Neben diesen Vorteilen bringen Microfrontends auch Nachteile mit sich. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten, potenzielle Synchronisationsprobleme sowie ein erhöhter Koordinationsaufwand.
 \subsubsection{Module Federation}
 Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, welches 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 

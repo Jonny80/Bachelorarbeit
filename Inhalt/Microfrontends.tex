@@ -1,22 +1,30 @@
 % !TEX root = ../Abschlussarbeit_DE.tex
 \section{Modulare Softwarearchitektur mittels Module Federation}
-Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch viele Softwarelösungen als Allround-Lösungen konzipiert sind, 
-scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex und können so ihr Potenzial bei Weitem nicht ausschöpfen \cite[Kap.~3.1]{feth2023studie}. 
-In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller - ein Prozess, der meist mit erheblichen Zusatzkosten und langen Entwicklungszeiten 
-verbunden ist \cite[Kap.~4.1]{feth2023studie}. 
-Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen unkompliziert implementiert werden können. 
-Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige Webapplikationen entwickelt, 
-die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. 
-%% Einzelne Gewerke können einfach hinzugefügt werden oder erp software
-%% Vorteile gegenüber Monolithen (z.B. unabhängige Entwicklung und Deployment, skaliebarkeit, spezielle Lösungen)
-%% Wichtige Dinge wie Kommunikation erwähnen 
+Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch viele Softwarelösungen als Allround-Lösungen konzipiert sind,
+scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex und können so ihr Potenzial bei Weitem nicht ausschöpfen \cite[Kap.~3.1]{feth2023studie}.
+In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller - ein Prozess, der meist mit erheblichen Zusatzkosten und langen Entwicklungszeiten
+verbunden ist \cite[Kap.~4.1]{feth2023studie}.
+Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen unkompliziert implementiert werden können.
+Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige Webapplikationen entwickelt,
+die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, die sogenannte Shell, als Container, in welche die einzelnen
+Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
+einzelne Gewerke wie \ac{MSR} oder \ac{TGA} fungieren. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, bietet dieser Ansatz mehrere Vorteile. Somit kann gewährleistet werden,
+dass bei Änderungen oder Updates nicht das Gesamtsystem beeinträchtigt wird und so ein kontinuierlicher Betrieb auf der Baustelle sichergestellt werden kann.
+Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke durch beispielsweise Prüfprozesse oder Mängelbehebungen Vorteile. So ist es möglich einzelne
+Microfrontends unabhängig voneinander zu skalieren.
 \subsection{Aufbau von Microfrontends}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{Microfrontends_Aufbau.jpg}
+    \caption{Exemplarischer Aufbau von Microfrontends}
+    \label{fig:micro_frontends}
+\end{figure}
 %% Aufbau (einzelne Komponenten wie z.B. Header )
 %% Erklärung von Shell und Routing
 \subsection{Kommunikation zwischen Microfrontends}
 %% LocalStorage oder andere muss noch recherchiert ewrden
 %% Nutzen von GraphQL mit listeners
-\subsection{Konfiguration einer Microfrontendarchitektur}
+\subsection{Konfiguration von Module Federation}
 %% Beispiel Vite
 %% Erwähnung Monorepo
 %% relativ straight forward wie gemacht wird
