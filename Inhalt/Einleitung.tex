@@ -1,7 +1,8 @@
+% !TEX root = ../Abschlussarbeit_DE.tex
 \section{Einleitung}
 \subsection{Problemstellung} \label{sec:problemstellung} 
 Die Baubranche stellt eine der tragenden Säulen der deutschen Wirtschaft dar, sieht sich jedoch 
-im Vergleich zu anderen Industriezweigen mit einer signifikanten Digitalisierungslücke konfrontiert \citep{BBSR}.
+im Vergleich zu anderen Industriezweigen mit einer signifikanten Digitalisierungslücke konfrontiert \cite{BBSR}.
 Während in der Planungsphase durch Methoden wie Building Information Modeling (BIM) bereits digitale 
 Fortschritte erzielt werden, hinkt insbesondere die Ausführungsphase auf der Baustelle deutlich hinterher. 
 Dieser Rückstand führt in der Praxis zu einer Vielzahl von Ineffizienzen, die den Projekterfolg bei 
@@ -9,18 +10,18 @@ Großbauvorhaben gefährden.
 \newline
 Ein zentrales Hemmnis ist die mangelnde Interkonnektivität der eingesetzten Softwaresysteme. 
 Da einheitliche Standards und Schnittstellen oft fehlen, entstehen isolierte Datensilos. 
-Dies führt regelmäßig zum sogenannten „Excel-Fallback“ \citep{feth2023studie}: 
+Dies führt regelmäßig zum sogenannten „Excel-Fallback“ \cite{feth2023studie}: 
 Um den Informationsfluss zwischen den unterschiedlichen Systemen und verschiedenen Akteuren aufrechtzuerhalten, 
 werden Daten manuell in Tabellenkalkulationen übertragen. Dieser Prozess ist nicht nur fehleranfällig, 
 sondern verhindert auch eine revisionssichere Dokumentation und Echtzeit-Auswertungen.
 
-Zusätzlich verschärft das Problem des Vendor-Locks die Situation \citep{feth2023studie}.
+Zusätzlich verschärft das Problem des Vendor-Locks die Situation \cite{feth2023studie}.
 Unternehmen sind oft an geschlossene Ökosysteme einzelner Softwareanbieter gebunden, 
 was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert.
 Bestehende Anwendungen agieren häufig als Insellösungen, 
 die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, nicht gerecht werden.
 
-Erschwert wird der digitale Einsatz vor Ort durch die oft mangelhafte Infrastruktur \citep{BBSR}. 
+Erschwert wird der digitale Einsatz vor Ort durch die oft mangelhafte Infrastruktur \cite{BBSR}. 
 Auf Baustellen ist eine stabile Mobilfunkabdeckung oder Breitbandanbindung keine Selbstverständlichkeit. 
 Viele aktuelle Cloud-Lösungen setzen jedoch eine permanente Internetverbindung voraus und stoßen bei instabilem Netz an ihre Grenzen. 
 Ohne robuste Offline-First-Strategien führt dies zu Datenverlusten oder Unterbrechungen im digitalen Workflow, 
@@ -29,7 +30,7 @@ was die Akzeptanz digitaler Werkzeuge beim Personal vor Ort weiter sinken lässt
 Trotz der Verfügbarkeit diverser Softwarelösungen im BIM-Kontext, primär in den Bereichen des digitalen Bautagebuchs und der Mängelerfassung, weisen diese oftmals Defizite hinsichtlich ihrer Flexibilität und Adaptierbarkeit an spezifische 
 Projektanforderungen auf. Zur Lösung dieser Problematik ist eine modulare Architektur erforderlich, die es ermöglicht, spezialisierte Anwendungen flexibel als Add-ons zu integrieren, sodass diese nahtlos auf bestehende Daten zugreifen können. 
 Um dies zu ermöglichen, bedarf es einer standardisierten und transparenten Schnittstelle, um einen problemlosen Informationsaustausch zu gewährleisten. 
-Es existieren bereits Forschungen und etablierte Ansätze für graphbasierte Domänenmodelle sowie die Nutzung von GraphQL als Vermittlungsschicht, um die komplexen Strukturen des IFC-Standards abzubilden. Arbeiten wie \citep{wolf:2025:ifc2graphql} zeigen bereits,
+Es existieren bereits Forschungen und etablierte Ansätze für graphbasierte Domänenmodelle sowie die Nutzung von GraphQL als Vermittlungsschicht, um die komplexen Strukturen des IFC-Standards abzubilden. Arbeiten wie \cite{wolf:2025:ifc2graphql} zeigen bereits,
 dass die Überführung von IFC-Daten in ein GraphQL-Schema grundlegend machbar ist, jedoch eine exakte 1:1-Abbildung an ihre Grenzen hinsichtlich der Komplexität stößt. Trotzdem wird deutlich, dass eine solche Überführung Vorteile in Form von Effizienz
 und Entwicklerfreundlichkeit mit sich bringt.
 

@@ -1,12 +1,21 @@
+% !TEX root = ../Abschlussarbeit_DE.tex
 \section{Modulare Softwarearchitektur mittels Module Federation}
-%% wichtig erstellen spezialisierter Microfrontends Bezug zu Inbetriebnahmemanagement
+Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch viele Softwarelösungen als Allround-Lösungen konzipiert sind, 
+scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex und können so ihr Potenzial bei Weitem nicht ausschöpfen \cite[Kap.~3.1]{feth2023studie}. 
+In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller - ein Prozess, der meist mit erheblichen Zusatzkosten und langen Entwicklungszeiten 
+verbunden ist \cite[Kap.~4.1]{feth2023studie}. 
+Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen unkompliziert implementiert werden können. 
+Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige Webapplikationen entwickelt, 
+die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. 
 %% Einzelne Gewerke können einfach hinzugefügt werden oder erp software
+%% Vorteile gegenüber Monolithen (z.B. unabhängige Entwicklung und Deployment, skaliebarkeit, spezielle Lösungen)
+%% Wichtige Dinge wie Kommunikation erwähnen 
 \subsection{Aufbau von Microfrontends}
 %% Aufbau (einzelne Komponenten wie z.B. Header )
 %% Erklärung von Shell und Routing
 \subsection{Kommunikation zwischen Microfrontends}
 %% LocalStorage oder andere muss noch recherchiert ewrden
-%% Nutzen von GraphQL
+%% Nutzen von GraphQL mit listeners
 \subsection{Konfiguration einer Microfrontendarchitektur}
 %% Beispiel Vite
 %% Erwähnung Monorepo
