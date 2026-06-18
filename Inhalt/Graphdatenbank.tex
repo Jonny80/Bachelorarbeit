@@ -28,11 +28,11 @@ Dieses Schema lässt sich bereits als eine Art Graph verstehen. Die Objekte selb
 Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen, werden konkrete IFC-Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
 Die Attribute dieser Klassen werden in den Objekten analog zum IFC-Standard als Eigenschaften (\textit{Properties}) gespeichert.
 Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
-\todo{Hinzufügen dass die id nur ein temporärer und für die performance geeignetes attribut ist}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Example_Attributes.png} 
-    \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser}
+    \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser \\
+    \small{Das Attribut ID wurde entgegen dem IFC-Standard aus Effizienzgründen in Neo4j hinzugefügt.} }
     \label{fig:attr_example}
 \end{figure}
 Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken wie zum Beispiel Neo4j. Knoten und Kanten können mit sogenannten \textit{Labels} (Bezeichnungen) versehen werden. Dies ermöglicht es, diese als
@@ -50,15 +50,8 @@ In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den La
 Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
 Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \citep{wolf_20206_graphql}.
-\todo{Füge hinzu dass anders als bei gängigen Programmiersprachen die Attribute bei vererbungen hinzugefügt werden müssen,
-außerdem sollte IfcObjectDefinition geändert werden weil da nicht dazu kommt}
 Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
-interface IfcRoot {
-  globalId: ID!
-  name: String
-  description: String
-}
 
 interface IfcObjectDefinition implements IfcRoot {
   globalId: ID!
@@ -72,9 +65,19 @@ interface IfcObject implements IfcRoot & IfcObjectDefinition {
   description: String
   objectType: String
 }
+interface IfcProduct implements IfcRoot & IfcObjectDefinition & IfcObject {
+  globalId: ID!
+  name: String
+  description: String
+  objectType: String
+  objectPlacement: String
+}
 \end{lstlisting}
 Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQL eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC-konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQL serverseitig 
-eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten. Da jede Mutation einem strikt typisierten Schema entsprechen muss, verhindert dies ein unkontrolliertes Einbringen nicht-standardisierter Objekte.
+eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten.
+Da jede Mutation einem strikt typisierten Schema entsprechen muss, verhindert dies ein unkontrolliertes Einbringen nicht-standardisierter Objekte. Wie in der Darstellung \ref{lst:graphql_ifc} zu sehen ist, verhält sich GraphQL anders als
+populäre Programmiersprachen: Attribute werden nicht impliziert von vererbenden Klassen übernommen, sondern müssen erneut deklariert werden. So muss bei der IFC-Klasse \textit{IfcObject} die Attribute \textit{globalId, name} und \textit{description} erneut
+deklariert werden, obwohl diese bereits in der vererbenden Klasse \textit{IfcRoot} deklariert wurden.
 Ein weiterer Vorteil liegt in der Optimierung von Datenabfragen. Während klassische REST-APIs zu Over- oder Underfetching neigen, eliminiert GraphQL diese Phänomene vollständig. Die Clients definieren durch ihre Queries selbstständig, welche Daten
 sie benötigen. Diese Queries werden von Resolvern (siehe \ref{sec:graphql}) verarbeitet, indem sie die Anfragen in die Abfragesprache Cypher übersetzen, um effizient die Daten aus der Graphdatenbank abzurufen.
 \subsection{GraphQL als einheitliche API}
