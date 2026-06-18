@@ -1,6 +1,7 @@
+% !TEX root = ../Abschlussarbeit_DE.tex
 \section{Graphbasiertes Datenmodell und Schnittstellendesign}
 Der IFC-Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
-aufwändig über rechenintensive \texttt{JOIN}-Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \citep{alkhatib2021graph}. Somit können Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
+aufwändig über rechenintensive \texttt{JOIN}-Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \cite{alkhatib2021graph}. Somit können Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
 der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. 
 
 
@@ -25,7 +26,7 @@ DATA;
 Dieses Schema lässt sich bereits als eine Art Graph verstehen. Die Objekte selbst können als Knoten mit ihren Attributen als Daten und die Verweise der Objekte (z.B. \#10 verweist auf \#15) als Kanten, also deren Beziehungen, interpretiert werden.
 
 \todo{Eventuell in eigenes Kapitel schreiben}
-Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, nahezu verlustfrei \citep{giehl} und realitätsnah abbilden \citep{ismail}. Um dies zu erreichen, werden konkrete IFC-Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
+Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, nahezu verlustfrei \cite{giehl} und realitätsnah abbilden \cite{ismail}. Um dies zu erreichen, werden konkrete IFC-Klassen wie \textit{IfcBuildingStorey} oder \textit{IfcSpace} als Knoten dargestellt und Beziehungen wie \textit{IfcRelAggregates} als Kanten.
 Die Attribute dieser Klassen werden in den Objekten analog zum IFC-Standard als Eigenschaften (\textit{Properties}) gespeichert.
 Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
 \begin{figure}[H]
@@ -36,7 +37,7 @@ Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j
     \label{fig:attr_example}
 \end{figure}
 Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken wie zum Beispiel Neo4j. Knoten und Kanten können mit sogenannten \textit{Labels} (Bezeichnungen) versehen werden. Dies ermöglicht es, diese als
-ihre äquivalenten IFC-Klassen oder -Beziehungen zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \citep{giehl}.
+ihre äquivalenten IFC-Klassen oder -Beziehungen zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \cite{giehl}.
 Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j Browser} ein integriertes Werkzeug, welches die Verknüpfungen grafisch aufbereitet:
 \begin{figure}[H]
     \centering
@@ -49,7 +50,9 @@ In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den La
 \subsection{GraphQL als Vermittlungsinstanz}
 Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
 Datenabruf bereitstellt. 
-Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \citep{wolf_20206_graphql}.
+Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \cite{wolf_20206_graphql}.
+\todo{Füge hinzu dass anders als bei gängigen Programmiersprachen die Attribute bei vererbungen hinzugefügt werden müssen,
+außerdem sollte IfcObjectDefinition geändert werden weil da nicht dazu kommt}
 Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 

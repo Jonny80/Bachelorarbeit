@@ -1,4 +1,4 @@
-% !TEX root = ../Grunddatei.tex
+% !TEX root = ../Abschlussarbeit_DE.tex
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -66,8 +66,13 @@
 % Optional: Global alle Listen kompakter machen
 \setlist[itemize]{noitemsep, topsep=0pt}
 
-%wichtig für korrekte Zitierweise
-\usepackage[round]{natbib}
+\usepackage[
+  backend=biber,       % Nutze Biber als Sortier-Engine (wichtig!)
+  style=authoryear,    % Zitierstil (z. B. Autor-Jahr-Stil: (Feth 2023))
+  % style=numeric,     % Alternativ: Numerischer Stil: [1]
+]{biblatex}
+\addbibresource{Bibliographie.bib}
+\let\cite\parencite    % Ermöglicht geklammerte Zitate mit \cite wie bei natbib
 \usepackage[ngerman]{todonotes}
 
 %Abkürzungsbibliothek
