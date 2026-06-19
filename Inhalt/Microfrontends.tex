@@ -12,21 +12,30 @@ einzelne Gewerke wie \ac{MSR} oder \ac{TGA} fungieren. Wie bereits in Kapitel \r
 dass bei Änderungen oder Updates nicht das Gesamtsystem beeinträchtigt wird und so ein kontinuierlicher Betrieb auf der Baustelle sichergestellt werden kann.
 Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke durch beispielsweise Prüfprozesse oder Mängelbehebungen Vorteile. So ist es möglich einzelne
 Microfrontends unabhängig voneinander zu skalieren.
-\subsection{Aufbau von Microfrontends}
-\begin{figure}[htbp]
+\subsection{Konzeptioneller Aufbau einer Microfrontend-Architektur}
+Der Aufbau einer Microfrontend-Architektur zeichnet sich durch eine strikte Trennung einzelner Funktionalitäten ab. Kernfunktionalitäten wie die Authentifizierung oder das Routing, werden meist
+im Host abgebildet, welcher auch als Einstiegspunkt der Webapplikationen dient. Da die einzelnen Remotes als Komponenten geladen werden, können mehrere dieser auch simultan auf einer Oberfläche dargestellt werden.
+In Abbildung \ref{fig:micro_frontends} wird dieser Aufbau exemplarisch dargestellt:
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Microfrontends_Aufbau.jpg}
+    \includegraphics[width=1\textwidth]{Mcirofrontends_Example.png}
     \caption{Exemplarischer Aufbau von Microfrontends}
     \label{fig:micro_frontends}
 \end{figure}
+Hier bildet die \textcolor[HTML]{C1FCD3}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{FFE1E4}{Dashboard} (blau)
+oder ein \textcolor[HTML]{FFF0B3}{Management}. \newline
+Das Routing
+%% Probleme wie UI/US Design
+%% Dependency management
+%% Isolation
 %% Aufbau (einzelne Komponenten wie z.B. Header )
-%% Erklärung von Shell und Routing
+%% Erklärung von Shell und Routing (shell orchstriert das routing)
 \subsection{Kommunikation zwischen Microfrontends}
-%% LocalStorage oder andere muss noch recherchiert ewrden
+%% LocalStorage, event liseners eigenes microfrontend oder andere muss noch recherchiert ewrden, siehe bookmarks
 %% Nutzen von GraphQL mit listeners
 \subsection{Konfiguration von Module Federation}
 %% Beispiel Vite
-%% Erwähnung Monorepo
+%% Erwähnung Monorepo (evtl ordnerstruktur zeigen)
 %% relativ straight forward wie gemacht wird
 %% Shell Scripte
 %% Konfigdatei für ports etc ver microfrontends
