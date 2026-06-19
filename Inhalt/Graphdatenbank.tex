@@ -77,7 +77,7 @@ interface IfcProduct implements IfcRoot & IfcObjectDefinition & IfcObject {
 }
 \end{lstlisting}
 Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQL eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC-konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQL serverseitig 
-eingehende Anfragen gegen die Schemata validiert \citep{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten.
+eingehende Anfragen gegen die Schemata validiert \cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten.
 Da jede Mutation einem strikt typisierten Schema entsprechen muss, verhindert dies ein unkontrolliertes Einbringen nicht-standardisierter Objekte. Wie in der Darstellung \ref{lst:graphql_ifc} zu sehen ist, verhält sich GraphQL anders als
 populäre Programmiersprachen: Attribute werden nicht impliziert von vererbenden Klassen übernommen, sondern müssen erneut deklariert werden. So muss bei der IFC-Klasse \textit{IfcObject} die Attribute \textit{globalId, name} und \textit{description} erneut
 deklariert werden, obwohl diese bereits in der vererbenden Klasse \textit{IfcRoot} deklariert wurden.
