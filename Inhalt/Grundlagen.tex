@@ -1,14 +1,14 @@
 \section{Grundlagen}
 \subsection{IFC-Standard}
-Der IFC-Standard (Industry Foundation Classes) ist eine offene, internationale Spezifikation zur Beschreibung von Bauelementen und deren Beziehungen 
-zueinander. Er wird seit 1994 von der Organisation buildingSMART im \gls{Express}-Schema entwickelt, um die Digitalisierung auf Baustellen zu 
+Der IFC-Standard (Industry Foundation Classes) ist eine offene, internationale Spezifikation zur Beschreibung von Bauelementen und deren Beziehungen
+zueinander. Er wird seit 1994 von der Organisation buildingSMART im \gls{Express}-Schema entwickelt, um die Digitalisierung auf Baustellen zu
 vereinheitlichen. Er wird von den meisten \ac{BIM}-Softwarelösungen verwendet, welche ihre Modellierungen als .ifc-Datei exportieren können.
-Der IFC-Standard besteht aus Objekten, Attributen und Beziehungen. Die Objekte sind hierarchisch aufgebaut. Jedes Objekt 
-startet mit der Klasse \textit{IfcRoot} und erbt weitere Attribute von allgemeineren Basisklassen.
+Der IFC-Standard ist stark hierarchisch aufgebaut und besteht aus Objekten, Attributen und Beziehungen. So stammen Objekte, die physische Gegenstücke abbilden,
+von der Basisklasse \textit{IfcRoot} ab und erben über spezialisiertere Zwischenklassen weitere spezifische Attribute.
 Abbildung \ref{fig:wall_hier} zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Hierarchie.png} 
+    \includegraphics[width=1\textwidth]{Hierarchie.png}
     \caption{Hierarchischer Aufbau der IFC-Klassen.}
     \label{fig:wall_hier}
 \end{figure}
@@ -17,7 +17,7 @@ Die Objekte werden mittels Beziehungen in Verbindung gebracht. Zum Beispiel hän
 an einem Bauplatz (\textit{IfcSite}). Dies ist schematisch in Abbildung \ref{fig:loc_structure} dargestellt:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{LocationStructure.png} 
+    \includegraphics[width=1\textwidth]{LocationStructure.png}
     \caption{Struktureller Aufbau der IFC-Klassen.}
     \label{fig:loc_structure}
 \end{figure}
@@ -25,10 +25,10 @@ an einem Bauplatz (\textit{IfcSite}). Dies ist schematisch in Abbildung \ref{fig
 \subsection{Graphdatenbanken}
 Graphdatenbanken organisieren ihre Daten, wie der Name schon vermuten lässt, in Graphen. Das bedeutet, dass Objekte als Knoten dargestellt und durch Kanten verbunden werden. Der große Vorteil hierbei ist die native Darstellung von Beziehungen zwischen den Objekten.
 Dies wird insbesondere wichtig bei Datenmengen, bei welchen die Beziehungen zueinander einen elementaren Bestandteil der Datenerhebung darstellen. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labeled Property Graphs. Hierbei können nicht nur
-Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden. 
+Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{Graph_Database.png} 
+    \includegraphics[width=0.5\textwidth]{Graph_Database.png}
     \caption{Labeled Property Graph}
     \label{fig:property_graph}
 \end{figure}
@@ -39,9 +39,9 @@ steht.
 Neo4j ist eine \gls{acid}-konforme Graphdatenbank auf der Grundlage von Labeled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
 Abfragesprache Cypher. Sie ist eine SQL-ähnliche deklarative Sprache, das bedeutet, dass im Fokus die Frage steht, was gesucht wird. Dabei folgt sie folgendem Grundaufbau:
 \begin{itemize}
-  \item Knoten werden in Klammern dargestellt \texttt{(Node)}
-  \item Beziehungen werden als Pfeile zwischen den Knoten dargestellt \texttt{-[:FOLGT]->}
-  \item Eigenschaften selbst sind Schlüssel-Wert-Paare: \texttt{\{name: 'Max'\}}
+    \item Knoten werden in Klammern dargestellt \texttt{(Node)}
+    \item Beziehungen werden als Pfeile zwischen den Knoten dargestellt \texttt{-[:FOLGT]->}
+    \item Eigenschaften selbst sind Schlüssel-Wert-Paare: \texttt{\{name: 'Max'\}}
 \end{itemize}
 Das folgende Listing zeigt beispielhaft eine Abfrage von offenen Mängeln an einer technischen Komponente:
 \begin{lstlisting}[language=cypher, caption={Abfrage von offenen Mängeln an einer technischen Komponente}]
@@ -53,12 +53,12 @@ RETURN c, i
 
 \subsubsection{GraphQL} \label{sec:graphql}
 Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizienz der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um nur die benötigten
-Daten zu erhalten und so sogenanntes Overfetching zu verhindern. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
+Daten zu erhalten und so sogenanntes Over-oder Underfetching stark zu reduzieren. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
 \begin{itemize}
-  \item Schemata
-  \item Resolver
-  \item Mutationen
-  \item Abfragen
+    \item Schemata
+    \item Resolver
+    \item Mutationen
+    \item Abfragen
 \end{itemize}
 Das Herzstück von GraphQL sind die \texttt{Schemata}. Sie definieren die Struktur der Daten, welche abgefragt werden können, und werden in der stark typisierten Schemadefinitionssprache (SDL) geschrieben.
 
@@ -70,7 +70,7 @@ Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese V
 \cite{ibm_graphql_2024}
 \subsection{React}
 React ist eine von Meta entwickelte Javascript-Bibliothek, um Webseiten und \glspl{SPA} zu entwickeln. Dabei basiert React auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere, wiederverwendbare Bauteile unterteilt wird. Dafür
-führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner, 
+führte React die Syntaxerweiterung \texttt{JSX} ein, die Javascript, HTML und CSS in einer Datei vereint. React wurde seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek und hat sich als maßgebliche Methode für die Entwicklung moderner,
 interaktiver Benutzeroberflächen etabliert.
 \subsection{Microfrontends} \label{sec:microfrontends}
 Analog zum Konzept der serverseitigen Microservices zerteilen Microfrontends das Frontend in mehrere, unabhängige Komponenten. Die grundlegende Idee dahinter ist es, ein Problem in Teilprobleme zu zerteilen und getrennt zu bearbeiten. Neben diesem Vorteil bietet
@@ -78,8 +78,8 @@ dieser Ansatz auch eine bessere Skalierbarkeit, Robustheit und Flexibilität. Vo
 Architektur können auch die Technologien der Microfrontends angepasst werden. Somit ist ein Entwickler nicht auf eine Technologie beschränkt, sondern kann die für den jeweiligen Anwendungsfall am besten geeignete Technologie wählen.
 Neben diesen Vorteilen bringen Microfrontends auch Nachteile mit sich. Ein großer Nachteil ist die erschwerte Kommunikation zwischen den Komponenten, potenzielle Synchronisationsprobleme sowie ein erhöhter Koordinationsaufwand.
 \subsubsection{Module Federation}
-Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, welches 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen 
-in Microfrontends zu unterteilen. Dabei wird eine Anwendung als Host und die restlichen Anwendungen als Remotes definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der Remotes zugreifen, welche diese aktiv teilen (siehe \ref{fig:mf_vergleich_konfig}). 
+Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, welches 2020 mit dem Release von \gls{webpack} 5 als Feature veröffentlicht wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen
+in Microfrontends zu unterteilen. Dabei wird eine Anwendung als Host und die restlichen Anwendungen als Remotes definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der Remotes zugreifen, welche diese aktiv teilen (siehe \ref{fig:mf_vergleich_konfig}).
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
@@ -93,7 +93,7 @@ in Microfrontends zu unterteilen. Dabei wird eine Anwendung als Host und die res
 }
         \end{lstlisting}
     \end{minipage}
-    \hfill 
+    \hfill
     \begin{minipage}{0.48\textwidth}
         \begin{lstlisting}[language=json, caption={Remote}, label={lst:remote}]
 {
@@ -107,7 +107,7 @@ in Microfrontends zu unterteilen. Dabei wird eine Anwendung als Host und die res
     \end{minipage}
     \caption{Webpack-Konfiguration für Host und Remote (Quelle: \cite{heise_mf})}
     \label{fig:mf_vergleich_konfig}
-\end{figure} 
+\end{figure}
 
 
 Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten der einzelnen Anwendungen untereinander geteilt werden können \cite{heise_mf}, womit die Bundlegrößen erheblich verkleinert und die Effizienz gesteigert wird.
@@ -134,4 +134,4 @@ Eine der Besonderheiten von Module Federation hierbei ist, dass Abhängigkeiten 
     \end{minipage}
     \caption{Module Federation erlaubt das Teilen von Bibliotheken zwischen einzelnen Anwendungen (Quelle: \cite{heise_mf})}
     \label{fig:mf_vergleich_depend}
-\end{figure} 
+\end{figure}
