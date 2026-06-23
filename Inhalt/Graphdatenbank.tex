@@ -1,13 +1,13 @@
-% !TEX root = ../Abschlussarbeit_DE.tex
+% !TEX root = ../Abschlussarbeit_Jan_Höndl.tex
 \section{Graphbasiertes Datenmodell und Schnittstellendesign}
 Der IFC-Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei welchem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
 aufwändig über rechenintensive \texttt{JOIN}-Operatoren modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \cite{alkhatib2021graph}. Somit können Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden. Zudem kann aufgrund
-der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden. 
+der graphbasierten Struktur der IFC-Standard realitätsnah und intuitiv dargestellt werden.
 
 
 \subsection{Graphbasierte Domänenmodellierung für IFC-Daten}
-Das Ziel der Domänenmodellierung ist es, mithilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung der bereits bestehenden IFC-Dateien – einen sogenannten \textit{digitalen Zwilling} – zu erschaffen. 
-IFC-Dateien nutzen das \gls{STEP}-Dateiformat, um ihren Inhalt zu beschreiben. 
+Das Ziel der Domänenmodellierung ist es, mithilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung der bereits bestehenden IFC-Dateien – einen sogenannten \textit{digitalen Zwilling} – zu erschaffen.
+IFC-Dateien nutzen das \gls{STEP}-Dateiformat, um ihren Inhalt zu beschreiben.
 \begin{lstlisting}[language=IFC, caption={Beispielhafter IFC-Datenauszug im STEP-Dateiformat (ISO 10303-21).}, label={lst:ifc_step_example}]
 ISO-10303-21;
 HEADER;
@@ -30,29 +30,29 @@ Durch ein graphbasiertes Domänenmodell lässt sich der IFC-Standard einfach, na
 Die Attribute dieser Klassen werden in den Objekten analog zum IFC-Standard als Eigenschaften (\textit{Properties}) gespeichert.
 Dies wird beispielhaft in der Web-Oberfläche der genutzten Graphdatenbank Neo4j veranschaulicht:
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Example_Attributes.png} 
-    \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser \\
+  \centering
+  \includegraphics[width=1\textwidth]{Example_Attributes.png}
+  \caption{Beispiel für die Speicherung von Attributen in Knoten im Neo4j Browser \\
     \small{Das Attribut ID wurde entgegen dem IFC-Standard aus Effizienzgründen in Neo4j hinzugefügt.} }
-    \label{fig:attr_example}
+  \label{fig:attr_example}
 \end{figure}
 Hier zeigt sich der Vorteil von auf Labeled Property Graphs basierenden Graphdatenbanken wie zum Beispiel Neo4j. Knoten und Kanten können mit sogenannten \textit{Labels} (Bezeichnungen) versehen werden. Dies ermöglicht es, diese als
 ihre äquivalenten IFC-Klassen oder -Beziehungen zu kennzeichnen. Mit dieser Methode lässt sich ein objektorientiertes Domänenmodell erstellen, ähnlich der objektorientierten Softwarearchitektur \cite{giehl}.
 Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j Browser} ein integriertes Werkzeug, welches die Verknüpfungen grafisch aufbereitet:
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{TestAufbauNeo4j.png} 
-    \caption{Exemplarischer Aufbau und Visualisierung im Neo4j Browser}
-    \label{fig:graphdb_test}
+  \centering
+  \includegraphics[width=1\textwidth]{TestAufbauNeo4j.png}
+  \caption{Exemplarischer Aufbau und Visualisierung im Neo4j Browser}
+  \label{fig:graphdb_test}
 \end{figure}
-Wie in Abbildung \ref{fig:graphdb_test} dargestellt, werden die Knoten anhand ihrer Labels farbig kodiert. 
+Wie in Abbildung \ref{fig:graphdb_test} dargestellt, werden die Knoten anhand ihrer Labels farbig kodiert.
 In der exemplarischen Graphdatenbank-Struktur werden die Stockwerke durch den Labeled-Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
 \subsection{GraphQL als Vermittlungsinstanz}
 Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen den Clients und der Graphdatenbank implementiert. Diese Middleware hilft bei der Lösung zentraler Herausforderungen, indem sie Lösungen zu Typsicherheit und detailliertem
-Datenabruf bereitstellt. 
+Datenabruf bereitstellt.
 Während Knoten in Graphdatenbanken beliebig definiert werden können und somit eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata definiert werden, um genau dies zu verhindern \cite{wolf_20206_graphql}.
 \todo{Füge hinzu dass anders als bei gängigen Programmiersprachen die Attribute bei vererbungen hinzugefügt werden müssen,
-außerdem sollte IfcObjectDefinition geändert werden weil da nicht dazu kommt}
+  außerdem sollte IfcObjectDefinition geändert werden weil da nicht dazu kommt}
 Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
 
@@ -76,7 +76,7 @@ interface IfcProduct implements IfcRoot & IfcObjectDefinition & IfcObject {
   objectPlacement: String
 }
 \end{lstlisting}
-Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQL eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC-konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQL serverseitig 
+Durch das Definieren dieser Schemata kann mit der Nutzung von GraphQL eine strikte Typvalidierung durchgesetzt werden. Dies forciert IFC-konforme Datenmodelle innerhalb der Graphdatenbank, indem GraphQL serverseitig
 eingehende Anfragen gegen die Schemata validiert \cite{wolf:2025:ifc2graphql}. Gleichzeitig können Änderungen der Graphdatenbank mittels Mutationen gesteuert werden, sodass diese als Validierungsinstanz fungieren, um die IFC-Konformität zu gewährleisten.
 Da jede Mutation einem strikt typisierten Schema entsprechen muss, verhindert dies ein unkontrolliertes Einbringen nicht-standardisierter Objekte. Wie in der Darstellung \ref{lst:graphql_ifc} zu sehen ist, verhält sich GraphQL anders als
 populäre Programmiersprachen: Attribute werden nicht impliziert von vererbenden Klassen übernommen, sondern müssen erneut deklariert werden. So muss bei der IFC-Klasse \textit{IfcObject} die Attribute \textit{globalId, name} und \textit{description} erneut
@@ -88,17 +88,28 @@ In einer Add-on-fähigen Softwarearchitektur, in der ggf. unterschiedliche Entwi
 Entwickler benötigte Schnittstellen flexibel und eigenständig über die bestehenden Schemata abbilden. Zudem können Clients mittels der sogenannten \textit{Schema Introspection} die vorhandenen Schemata abfragen. Durch diese Transparenz entfallen sonst notwendige
 Dokumentationen, wodurch die Einstiegshürden für neue Entwickler drastisch gesenkt werden und das Erstellen neuer Add-Ons auf Basis des Domänenmodells vereinfacht wird.
 
-Neben diesen Vorteilen bietet das Verwenden von GraphQL als Middleware eine wesentlich zugänglichere Abstraktionsebene als gängige Abfragesprachen für Graphdatenbanken wie Cypher oder SPARQL. 
+Neben diesen Vorteilen bietet das Verwenden von GraphQL als Middleware eine wesentlich zugänglichere Abstraktionsebene als gängige Abfragesprachen für Graphdatenbanken wie Cypher oder SPARQL.
 \subsection{Implementierung am Beispiel von MSR}
-Die praktische Umsetzung des graphbasierten Datenmodells wird im Folgenden am Beispiel der Mess-, Steuer- und Regelungstechnik (MSR) – auch als Gebäudeautomation bezeichnet – verdeutlicht. Der IFC-Standard bietet hierfür in Version 4.3 spezifische Klassen wie \texttt{IfcSensor}, \texttt{IfcActuator}, \texttt{IfcController} und \texttt{IfcUnitaryControlElement}, die über Vererbungshierarchien und relationale Verknüpfungen strukturiert sind. Ebenso können Bau- und Betriebsprozesse über \texttt{IfcProcess} (wie \texttt{IfcTask}) abgebildet werden, um zeitliche oder logische Abläufe in den Graphen zu integrieren.
-
-\subsubsection{Schema-Übertragung und Feld-Deklaration}
-Die Definition der GraphQL-Schemata orientiert sich unmittelbar an den Spezifikationsseiten der \textit{buildingSMART Organization}. Jede IFC-Klasse wird in ein entsprechendes GraphQL-Äquivalent übertragen. Eine Besonderheit bei der Modellierung in GraphQL im Vergleich zu klassischen objektorientierten Programmiersprachen liegt in der Handhabung von Schnittstellen (Interfaces). Implementiert ein Typ ein oder mehrere Interfaces, so werden die Attribute nicht implizit vererbt. Stattdessen müssen alle Eigenschaften der implementierten Interfaces im konkreten Typ erneut explizit deklariert werden. 
-
-Listing~\ref{lst:graphql_msr_example} zeigt die Definition des Typs \texttt{IfcSensor} im GraphQL-Schema. Obwohl \texttt{IfcSensor} von einer Kette von Interfaces (bis hin zu \texttt{IfcRoot}) erbt, müssen Attribute wie \texttt{globalId} oder \texttt{name} erneut deklariert werden.
-
-\begin{lstlisting}[language=GraphQL, caption={GraphQL-Definition der IFC-Klasse \texttt{IfcSensor}}, label={lst:graphql_msr_example}]
-type IfcSensor implements IfcRoot & IfcObjectDefinition & IfcObject & IfcProduct & IfcElement & IfcDistributionElement & IfcDistributionControlElement @node {
+Eine prototypische Umsetzung wird folgend anhand eines Beispiels von Mess,-Steuer-und Regelungstechnik (MSR) bezogenen IFC-Klassen verdeutlicht. Dafür werden die Klassen \textit{IfcSensor}, \textit{IfcActuator}, \textit{IfcController}
+und \textit{IfcAlarm} in der aktuellen Version 4.3 des IFC-Standards genutzt.
+\subsubsection{Übertragung der IFC-Klassen in GraphQL-Schemata}
+Die Definition der GraphQL-Schemata orientiert sich unmittelbar an den IFC-Spezifikationen, welche von \textit{buildingSMART} bereitgestellt werden. Diese gibt sowohl die Attribute und möglichen Beziehungen
+als auch die Vererbungshierarchie der IFC-Klassen vor.
+Folgend wird die Vererbungshierarchie der Klasse \textit{IfcSensor} aus der offiziellen Online-Dokumentation auf der Homepage von buildingSMART dargestellt:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{Vererbung_IfcSensor.png}
+  \caption{Hierarchie der IFC-Klasse IfcSensor \cite{IfcSensor}}
+  \label{fig:ifc_sensor_hierarchy}
+\end{figure}
+Wie bereits in \ref{lst:graphql_ifc} ersichtlich, kann diese Vererbungshierarchie in den GraphQL-Schemata abgebildet werden.
+Für eine pragmatische Umsetzung wurde jedoch auf die Definition nicht essentieller Beziehungen in den GraphQL-Schemata verzichtet. Ein Beispiel hierbei liefert die abstrakte Klasse
+\textit{IfcObjectDefinition} \cite{IfcObjectDefinition}, welche sieben optionale Beziehungen definiert. Die Klasse \textit{IfcSensor} bläht sich somit von acht auf 37 Definitionen auf \cite{IfcSensor}.
+Dies wird in dem folgenden Schema ersichtlich, welches die Implementierung der IFC-Klassen \textit{IfcSensor} verdeutlicht:
+\begin{lstlisting}[caption={GraphQL-Schema für die Klasse IfcSensor}, label={lst:graphql_ifcSensor}]
+type IfcSensor implements IfcRoot & IfcObjectDefinition &
+IfcObject & IfcProduct & IfcElement & IfcDistributionElement
+& IfcDistributionControlElement @node {
   globalId: ID!
   name: String
   description: String
@@ -106,66 +117,37 @@ type IfcSensor implements IfcRoot & IfcObjectDefinition & IfcObject & IfcProduct
   objectPlacement: String
   tag: String
   predefinedType: String
-  isContainedIn: [IfcSpatialStructureElement!]! 
+  ContainedInStructure: [IfcSpatialStructureElement!]!
     @relationship(
-      type: "CONTAINED_IN_SPATIAL_STRUCTURE", 
-      direction: IN, 
+      type: "CONTAINED_IN_SPATIAL_STRUCTURE"
+      direction: IN
       properties: "IfcRelContainedInSpatialStructure"
     )
 }
 \end{lstlisting}
-
-\subsubsection{Modellierung von Beziehungen und inversen Attributen}
-Im offiziellen IFC-Standard werden Beziehungen häufig über sogenannte \textit{inverse Attribute} beschrieben, die in der buildingSMART-Dokumentation in \textit{kursiver} Schrift dargestellt sind (z.\,B. \textit{ContainsElements} bei räumlichen Elementen oder \textit{ContainedInStructure} bei physischen Bauteilen). Diese inversen Attribute dienen der bidirektionalen Navigation im Schema. 
-
-In einer relationalen Datenbank müssten diese Beziehungen über Fremdschlüsselspalten oder separate Verknüpfungstabellen gepflegt werden. Im graphbasierten Ansatz über Neo4j entfällt diese Notwendigkeit. Beziehungen existieren als physische, gerichtete Kanten im Graphen und können unabhängig von ihrer ursprünglichen Definitionsrichtung in beide Richtungen traversiert werden. 
-
-Die Angabe dieser Beziehungen im GraphQL-Schema erfolgt deklarativ mithilfe der \texttt{@relationship}-Direktive der \texttt{@neo4j/graphql}-Bibliothek. Wie in Listing~\ref{lst:graphql_msr_example} zu sehen ist, verweist das Feld \texttt{isContainedIn} auf den übergeordneten Raum. Über die Parameter \texttt{type} (Name der Kante im Graphen, hier \texttt{CONTAINED\_IN\_SPATIAL\_STRUCTURE}), \texttt{direction} (Richtung der Kante, hier \texttt{IN}, da die Kante gerichtet vom Raum zum Element verläuft) und optional \texttt{properties} (Spezifikation von Beziehungseigenschaften wie \texttt{IfcRelContainedInSpatialStructure}) wird die genaue Graph-Topologie festgelegt.
-
-\subsubsection{Mutations und Resolver zur MSR-Manipulation}
-Um Daten in die Datenbank einzupflegen oder abzufragen, werden entsprechende GraphQL-Schnittstellen (Mutations und Queries) bereitgestellt. Die Generierung der Resolver erfolgt dabei zum Großteil automatisiert durch die Middleware.
-
-\paragraph{Erstellung von MSR-Komponenten (Mutation):} 
-Es können entweder eigenständige Mutations für einzelne Komponenten ausgeführt oder komplexe, verschachtelte Strukturen in einer einzigen Anfrage erzeugt werden. Listing~\ref{lst:msr_mutation} zeigt die Mutation zur separaten Erstellung eines Sensors.
-
-\begin{lstlisting}[language=GraphQL, caption={Mutation zur Erstellung eines \texttt{IfcSensor}-Knotens}, label={lst:msr_mutation}]
-mutation CreateSensor($input: [IfcSensorCreateInput!]!) {
-  createIfcSensors(input: $input) {
-    ifcSensors {
-      globalId
-      name
-      predefinedType
-    }
-  }
-}
+Nicht optionale Attribute wie \textit{globalId} werden mit dem Suffix \textit{!} versehen.
+Als essenziell werden in diesem Kontext Beziehungen eingestuft, die für die strukturelle Integrität innerhalb der Graphdatenbank erforderlich sind.
+Als Beispiel hier dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
+Die strukturelle Notwendigkeit dieser Beziehung wird in Abbildung~\ref{fig:graph_isolation} visuell verdeutlicht.
+\begin{figure}[H]
+  \centering
+  \caption{Vergleich der Graphenstruktur: Ohne die Relation \textit{IfcSpatialStructureElement} existiert der Sensor als isolierter Knoten ohne topologische Anbindung.}
+  \includegraphics[width=1\textwidth]{Essential_rel.png}
+  \label{fig:graph_isolation}
+\end{figure}
+Die Typdefinition für Beziehungen, hier \textit{ContainedInStructure}, erfolgt im GraphQL-Schema mittels der \textit{@relationship} Direktive. Hiermit können Eigenschaften der Beziehungen beschrieben werden, um sie
+in unterschiedlichen Schema-Definitionen wiederzuverwenden. Der folgende Codeausschnitt verdeutlicht das Beispiel der Typdefinition der Beziehung \textit{ContainedInStructure}, wobei \textit{IfcSpatialStructureElement} eine
+Superklasse der IFC-Klasse \textit{IfcSpace} ist:
+\begin{lstlisting}[caption={GraphQL-Schema für die Beziehung ContainedInStructure}, label={lst:graphql_ContainedInStructure}]
+ContainedInStructure: [IfcSpatialStructureElement!]!
+  @relationship(
+    type: "CONTAINED_IN_SPATIAL_STRUCTURE",
+    direction: IN,
+    properties: "IfcRelContainedInSpatialStructure"
+  )
 \end{lstlisting}
-
-\paragraph{Abfrage von MSR-Daten (Query):}
-Da Felder wie \texttt{containsElements} auf einem allgemeinen GraphQL-Interface (\texttt{IfcElement}) basieren, müssen bei der Abfrage von MSR-spezifischen Attributen (wie dem \texttt{predefinedType} eines Sensors oder Stellglieds) sogenannte \textit{Inline-Fragments} (\texttt{... on ConcreteType}) verwendet werden (siehe Listing~\ref{lst:msr_query}).
-
-\begin{lstlisting}[language=GraphQL, caption={Abfrage von Räumen und den darin enthaltenen MSR-Komponenten mittels Inline-Fragments}, label={lst:msr_query}]
-query FetchSpacesWithMSRElements {
-  ifcSpaces {
-    globalId
-    name
-    containsElements {
-      __typename
-      globalId
-      name
-      ... on IfcSensor {
-        predefinedType
-      }
-      ... on IfcActuator {
-        predefinedType
-      }
-    }
-  }
-}
-\end{lstlisting}
-
-Für komplexere Abfragen, wie das Filtern von Sensoren nach deren räumlicher Zuordnung (z.\,B. alle Sensoren auf einem bestimmten Stockwerk), stehen verschiedene Ansätze zur Verfügung. Hierzu zählen deklarative clientseitige Beziehungsfilter, die automatisiert von der Middleware in optimiertes Cypher übersetzt werden, oder serverseitige Custom Resolver, welche mittels der \texttt{@cypher}-Direktive komplexe Graph-Traversierungen kapseln. Durch diese Abstraktion wird das N+1-Abfrageproblem verhindert, da die Middleware den Abstract Syntax Tree (AST) analysiert und die Anfragen in ein einziges konsolidiertes Cypher-Statement übersetzt.
+\subsubsection{Mutations und Resolver}
 
 \subsubsection{Künstliche Intelligenz als Hilfsmittel}
-Da der IFC-Standard einen enormen Umfang mit Hunderten von Klassen, Unterklassen und komplexen Verknüpfungen besitzt, stellt das manuelle Erstellen der GraphQL-Schemata und der zugehörigen Mutations eine sehr zeitaufwändige und fehleranfällige Aufgabe dar. 
-
-Im Rahmen dieser Arbeit wurde daher generative künstliche Intelligenz (KI) gezielt als Hilfsmittel eingesetzt. Large Language Models (LLMs) wurden dazu genutzt, die hierarchischen Klassendefinitionen der buildingSMART-Spezifikation automatisiert in typisierte GraphQL-Schemata zu übersetzen. Dies beschleunigte nicht nur die Implementierungsphase signifikant, sondern stellte auch eine syntaktisch korrekte Übertragung der Vererbungshierarchien sowie eine präzise Umsetzung der Richtungsangaben bei den Beziehungsdirektiven sicher.
+Mit über 1000 unterschiedlichen Klassen in Version 4.3 verfügt die IFC-Spezifikation über einen immensen Umfang. Trotz der Hilfe automatisierter Resolver und Mutations seitens GraphQL, stellt das
+manuelle Erstellen der GraphQL-Schemata eine immens große Herausforderung dar.
