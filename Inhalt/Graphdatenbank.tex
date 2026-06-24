@@ -102,7 +102,7 @@ Folgend wird die Vererbungshierarchie der Klasse \textit{IfcSensor} aus der offi
   \caption{Hierarchie der IFC-Klasse IfcSensor \cite{IfcSensor}}
   \label{fig:ifc_sensor_hierarchy}
 \end{figure}
-Wie bereits in \ref{lst:graphql_ifc} ersichtlich, kann diese Vererbungshierarchie in den GraphQL-Schemata abgebildet werden.
+Wie bereits in Listing \ref{lst:graphql_ifc} ersichtlich, kann diese Vererbungshierarchie in den GraphQL-Schemata abgebildet werden.
 Für eine pragmatische Umsetzung wurde jedoch auf die Definition nicht essentieller Beziehungen in den GraphQL-Schemata verzichtet. Ein Beispiel hierbei liefert die abstrakte Klasse
 \textit{IfcObjectDefinition} \cite{IfcObjectDefinition}, welche sieben optionale Beziehungen definiert. Die Klasse \textit{IfcSensor} bläht sich somit von acht auf 37 Definitionen auf \cite{IfcSensor}.
 Dies wird in dem folgenden Schema ersichtlich, welches die Implementierung der IFC-Klassen \textit{IfcSensor} verdeutlicht:
@@ -128,7 +128,7 @@ IfcObject & IfcProduct & IfcElement & IfcDistributionElement
 Nicht optionale Attribute wie \textit{globalId} werden mit dem Suffix \textit{!} versehen.
 Als essenziell werden in diesem Kontext Beziehungen eingestuft, die für die strukturelle Integrität innerhalb der Graphdatenbank erforderlich sind.
 Als Beispiel hier dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
-Die strukturelle Notwendigkeit dieser Beziehung wird in Abbildung~\ref{fig:graph_isolation} visuell verdeutlicht.
+Die strukturelle Notwendigkeit dieser Beziehung wird in Abbildung \ref{fig:graph_isolation} visuell verdeutlicht.
 \begin{figure}[H]
   \centering
   \caption{Vergleich der Graphenstruktur: Ohne die Relation \textit{IfcSpatialStructureElement} existiert der Sensor als isolierter Knoten ohne topologische Anbindung.}
@@ -147,8 +147,51 @@ ContainedInStructure: [IfcSpatialStructureElement!]!
   )
 \end{lstlisting}
 \subsubsection{Mutations und Resolver}
+Wie bereits in Kapitel \ref{sec:graphql} beschrieben, nutzt GraphQL sogenannte Resolver für die Datenabfrage und Mutations für die Datenmanipulation. Wie in Abbildung~\ref{lst:graphql_ifcSensor} erkennbar ist, wird
+für den Typ \textit{IfcSensor} die \textit{@node} Direktive verwendet. Zum einen signalisiert dies, dass es sich um einen Knoten in der Graphdatenbank handel, aber zum anderen analysiert
+die native GraphQL-Bibliothek von Neo4j, das Schema und generiert automatisiert Mutationen für Lese-Schreib und Aktualisierungsoperationen, sowie Resolver mit standardisierten Filterungs- und Sortierungsoperationen \cite{neo4j_graphql_node}.
+Obwohl sich diese Automation nur auf einfache CRUD-Operationen beschränkt, verhilft dies trotzdem zu einem erheblichen Zeitersparnis. Komplexere Abfragen müssen hingegen manuell definiert werden. Dafür stehen
+zwei Methoden zur Verfügung:
+\begin{itemize}
+  \item Bei der \textbf{clientseitigen Methode} formuliert die GraphQL-Bibliothek mittels der GraphQL Abfragesprache Cypher-Abfragen, um mit der Graphdatenbank zu kommunizieren, wie dieses Beispiel
+        veranschaulicht:
+        \begin{lstlisting}[caption={Clientseitige Abfrage für die Klasse \textit{IfcSensor}, label={lst:graphql_clientQuery}}]
+query GetSensorsInErdgeschoss {
+  ifcSensors(where: {
+    ContainedInStructure: {
+      name: "Erdgeschoss"
+    }
+  }) {
+    globalId
+    name
+    predefinedType
+  }
+}
+\end{lstlisting}
+  \item Mit der \textbf{serverseitigen Methode} können direkt Abfragen in Cypher formuliert werden, wie dieses Beispiel veranschaulicht:
+        \begin{lstlisting}[caption={Serverseitige Abfrage für die Klasse \textit{IfcSensor}}, label={lst:graphql_serverQuery}]
+type Query {
+  sensorsInStructure(structureName: String!): [IfcSensor!]!
+    @cypher(
+      statement: """
+      MATCH (s:IfcSensor)-[:CONTAINED_IN_SPATIAL_STRUCTURE]->(f:IfcSpatialStructureElement)
+      WHERE f.name = $structureName
+      RETURN s
+      """,
+      columnName: "s"
+    )
+}
+\end{lstlisting}
+\end{itemize}
+
 
 \subsubsection{Künstliche Intelligenz als Hilfsmittel}
 Mit über 1000 unterschiedlichen Klassen in Version 4.3 verfügt die IFC-Spezifikation über einen enormen Umfang. Trotz der Hilfe automatisierter Resolver und Mutations seitens GraphQL, stellt das
-manuelle Erstellen der GraphQL-Schemata daher eine große Herausforderung dar. Um diesen Anforderungen entgegenzukommen, wurde im Rahmen dieser Arbeit Künstliche Intelligenz in Form von
+manuelle Erstellen der GraphQL-Schemata daher eine große Herausforderung dar. Um diesen Anforderungen entgegenzukommen, wurde im Rahmen dieser Arbeit Künstliche Intelligenz (KI) in Form von
 Large Language Models (LLM) zur Generierung der GraphQL-Schemata und spezifischer Resolver und Mutations genutzt. Als Werkzeug wurde hierbei das Modell \textit{Gemini 3.5 (Medium)} von Google verwendet.
+Wichtig zu erwähnen ist, dass bei dem Nutzen der KI oft eine spezifische Anweisung mit direktem Verweis auf die Dokumentation notwendig war, um das Nutzen der aktuellen IFC-Version zu forcieren und
+unerwünschte Optimierungen zu vermeiden. Ohne diese gezielten Anweisungen neigte die KI dazu, veraltete IFC-Versionen zu nutzen, Attribute auszulassen oder Spezifikationen abweichend von den offiziellen
+Vorgaben zu definieren. Daher war eine manuelle Überprüfung der generierten Schemata unumgänglich, um die Korrektheit der Schemata zu gewährleisten. \newline
+Trotz dieser Einschränkungen bot die KI eine enorme Unterstützung, womit der Entwicklungsaufwand erheblich reduziert werden konnte.
+Zudem muss einschränkend festgehalten werden, dass im Rahmen dieser Arbeit ausschließlich das genannte Modell genutzt wurde. Ein direkter Vergleich mit anderen Modellen fand daher nicht statt,
+weshalb nicht ausgeschlossen werden kann, dass alternative Modelle für diesen spezifischen Anwendungsfall eine höhere Präzision oder eine geringere Fehlerquote aufweisen.
