@@ -32,7 +32,7 @@
 \setcounter{secnumdepth}{-1} % Schaltet Kapitelnummern AUS (z.B. für Abstract, Verzeichnisse)
 
 \include{Inhalt/Abstract}
-\tableofcontents 
+\tableofcontents
 \clearpage
 
 \include{Inhalt/Abkürzungsverzeichnis}
@@ -46,13 +46,16 @@
 \setcounter{secnumdepth}{3}  % Schaltet Kapitelnummern wieder EIN (1. Kapitel, 1.1 etc.)
 
 \include{Metadaten/Inhalt}   % Dein eigentlicher Text
+\newpage
 
 % --- 4. NACHSPANN ---
 \include{Metadaten/Erklaerung}
 \newpage
 \clearpage
-\input{Inhalt/Anhang}
 
 \printbibliography
+\newpage
+\clearpage
+\input{Inhalt/Anhang}
 
 \end{document}
