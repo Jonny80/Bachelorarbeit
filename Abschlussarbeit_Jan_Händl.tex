@@ -23,10 +23,8 @@
 
 \begin{document}
 
-% --- 1. DECKBLATT ---
 \include{Metadaten/Deckblatt}
 
-% --- 2. VORSPANN (Römisch & KEINE Kapitelnummern) ---
 \clearpage
 \pagenumbering{Roman}      % Startet I, II, III...
 \setcounter{secnumdepth}{-1} % Schaltet Kapitelnummern AUS (z.B. für Abstract, Verzeichnisse)
@@ -41,21 +39,17 @@
 \include{Inhalt/Abbildungsverzeichnis}
 \clearpage
 
-% --- 3. HAUPTTEIL (Arabisch & MIT Kapitelnummern) ---
-\pagenumbering{arabic}     % Startet wieder bei 1
-\setcounter{secnumdepth}{3}  % Schaltet Kapitelnummern wieder EIN (1. Kapitel, 1.1 etc.)
+\pagenumbering{arabic}     
+\setcounter{secnumdepth}{3}  
 
-\include{Metadaten/Inhalt}   % Dein eigentlicher Text
+\include{Metadaten/Inhalt}
 \newpage
-
-% --- 4. NACHSPANN ---
-\include{Metadaten/Erklaerung}
-\newpage
-\clearpage
-
 \printbibliography
 \newpage
 \clearpage
 \input{Inhalt/Anhang}
+\newpage
+\clearpage
+\include{Metadaten/Erklaerung}
 
 \end{document}

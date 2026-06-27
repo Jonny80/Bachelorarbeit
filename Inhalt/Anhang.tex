@@ -1,7 +1,9 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
-\section*{Anhang}
-\addcontentsline{toc}{section}{Anhang}
-\section{Hilfsmittel}
+\appendix
+\section{Anhang}
+
+\subsection{Hilfsmittel}
+\label{subsec:hilfsmittel}
 Folgend werden die genutzten Hilfsmittel aufgelistet.
 \begin{table}[H]
     \centering
@@ -27,6 +29,9 @@ Folgend werden die genutzten Hilfsmittel aufgelistet.
         \bottomrule
     \end{tabularx}
 \end{table}
+
+\subsection{Verwendete KI-Prompts}
+\label{subsec:ki_prompts}
 Folgend sind die maßgeblichen KI-Prompts für die Arbeit aufgelistet.
 \begin{table}[H]
     \centering
@@ -42,3 +47,40 @@ Folgend sind die maßgeblichen KI-Prompts für die Arbeit aufgelistet.
         \bottomrule
     \end{tabular}
 \end{table}
+
+\subsection{GraphQL-Schemadefinitionen}
+\label{subsec:graphql_schemata}
+In diesem Abschnitt werden ergänzende GraphQL-Schemadefinitionen dargestellt, die zur Definition des Datenmodells und der Schnittstellen verwendet wurden.
+\begin{lstlisting}[language=GraphQL, caption={Exemplarisches GraphQL-Schema für IoT-Sensoren}, label={lst:graphql_sensor_schema}]
+type Sensor {
+  id: ID!
+  name: String!
+  type: String!
+  reading: Float
+  status: String!
+  location: Room @relationship(type: "LOCATED_IN", direction: OUT)
+}
+
+type Room {
+  id: ID!
+  number: String!
+  sensors: [Sensor!]! @relationship(type: "LOCATED_IN", direction: IN)
+}
+\end{lstlisting}
+
+\subsection{Cypher-Datenbankabfragen}
+\label{subsec:cypher_abfragen}
+Folgend wird ein exemplarisches Cypher-Statement aufgeführt, welches zur Abfrage von Sensorbeziehungen in der Neo4j-Graphdatenbank verwendet wird.
+\begin{lstlisting}[language=cypher, caption={Exemplarische Cypher-Abfrage für aktive Sensoren in einem Raum}, label={lst:cypher_active_sensors}]
+MATCH (r:Room {number: "1.04"})<-[:LOCATED_IN]-(s:Sensor)
+WHERE s.status = "ACTIVE"
+RETURN r, s;
+\end{lstlisting}
+
+\subsection{Ergänzende Diagramme und Daten}
+\label{subsec:ergaenzende_diagramme}
+Hier können weitere unterstützende Diagramme wie UML-Klassendiagramme, Flussdiagramme oder zusätzliche Messdaten eingefügt werden, die den Rahmen des Hauptteils sprengen würden.
+Beispielsweise zeigt ein Systemarchitektur-Diagramm die Interaktion zwischen den Microfrontends und dem API-Gateway über GraphQL.
+\begin{center}
+    \textit{[Hier kann ein zusätzliches Architekturdiagramm oder Flussdiagramm eingefügt werden]}
+\end{center}
