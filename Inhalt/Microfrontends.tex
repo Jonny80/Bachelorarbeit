@@ -25,13 +25,24 @@ In Abbildung \ref{fig:micro_frontends} wird dieser Aufbau exemplarisch dargestel
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
 oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden.
 \newline
-Das Routing
+%% Routing
 %% Dependency management
 %% Isolation
+%% Probleme wie UI/US Design
 %% Erklärung von Shell und Routing (shell orchstriert das routing)
 \subsection{Organisation der Applikationen}
-%% Erklärung monorepos
-%% Probleme wie UI/US Design
+Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
+Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.B. Git, verwaltet werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
+verwaltet werden \cite{wieruch2024monorepo}. Das wichtigste Argument für diesen Ansatz war, dass geteilte UI-Bibliotheken und Konfigurationsdateien nicht mehr zwischen den einzelnen Codebasen synchronisiert werden müssen.
+In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Monorepo_Example.png}
+    \caption{Exemplarischer Aufbau eines Monorepos}
+    \label{fig:monorepo}
+\end{figure}
+Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startscripts zu schreiben, um mehrere Anwendungen, wie beispielsweise die Host-App mit zwei Remote-Apps,
+parallel auszuführen.
 
 \subsection{Konfiguration von Module Federation}
 %% Beispiel Vite
