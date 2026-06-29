@@ -15,6 +15,9 @@ Microfrontends unabhängig voneinander zu skalieren.
 \subsection{Konzeptioneller Aufbau einer Microfrontend-Architektur}
 Der Aufbau einer Microfrontend-Architektur zeichnet sich durch eine strikte Trennung einzelner Funktionalitäten ab. Kernfunktionalitäten wie die Authentifizierung oder das Routing, werden meist
 im Host abgebildet, welcher auch als Einstiegspunkt der Webapplikationen dient. Da die einzelnen Remotes als Komponenten geladen werden, können mehrere dieser auch simultan auf einer Oberfläche dargestellt werden.
+Hierbei wird grundlegend zwischen einem horizontalen und einem vertikalen Ansatz unterschieden. Bei dem vertikalen Ansatz wird nur ein Microfrontend pro Seite geladen, während bei einem horizontalen Ansatz mehrere
+Microfrontends simultan auf einer Oberfläche dargestellt werden können vgl. Abbildung \ref{fig:micro_frontends}.
+\cite{taibi2022micro}
 In Abbildung \ref{fig:micro_frontends} wird dieser Aufbau exemplarisch dargestellt:
 \begin{figure}[H]
     \centering
@@ -25,11 +28,13 @@ In Abbildung \ref{fig:micro_frontends} wird dieser Aufbau exemplarisch dargestel
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
 oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden.
 \newline
+\subsection{Routing}
 %% Routing
-%% Dependency management
-%% Isolation
-%% Probleme wie UI/US Design
 %% Erklärung von Shell und Routing (shell orchstriert das routing)
+\subsection{Kommunikation zwischen Microfrontends}
+In manchen Fällen ist eine direkte Kommunikation zwischen den Microfrontends notwendig.
+%% LocalStorage, event liseners eigenes microfrontend oder andere muss noch recherchiert ewrden, siehe bookmarks
+%% Nutzen von GraphQL mit listeners
 \subsection{Organisation der Applikationen}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
 Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.B. Git, verwaltet werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
@@ -42,19 +47,16 @@ In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des ve
     \label{fig:monorepo}
 \end{figure}
 Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startscripts zu schreiben, um mehrere Anwendungen, wie beispielsweise die Host-App mit zwei Remote-Apps,
-parallel auszuführen.
+parallel auszuführen. Auch die Paketverwaltung wird optimiert - da \gls{npm}-Pakete zentral installiert werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
+%% Probleme wie UI/US Design
 
 \subsection{Konfiguration von Module Federation}
 %% Beispiel Vite
 %% Erklärung Typescript
-%% Erwähnung Monorepo (evtl ordnerstruktur zeigen)
 %% relativ straight forward wie gemacht wird
 %% Shell Scripte
 %% Konfigdatei für ports etc ver microfrontends
-\subsection{Kommunikation zwischen Microfrontends}
-In manchen Fällen ist eine direkte Kommunikation zwischen den Microfrontends notwendig.
-%% LocalStorage, event liseners eigenes microfrontend oder andere muss noch recherchiert ewrden, siehe bookmarks
-%% Nutzen von GraphQL mit listeners
+
 \subsection{Multi-Tenant Fähigkeit}
 %% konzentration auf App nicht auf die Datenbankstruktur
 %% evtl GraphQL mit exten type und dann auth hinzufügen
