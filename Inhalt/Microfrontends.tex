@@ -36,10 +36,10 @@ welcher Routing-Ansatz genutzt werden soll (vgl. Abbildung \ref{lst:microfronten
 \subsection{Kommunikation zwischen Microfrontends}
 In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, stellt dies eine größere Herausforderung für Microfrontends, als für monolithische Anwendungen dar.
 Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze: \newline
-Bei der \textbf{Eventgesteuerten} Kommunikation wird das \gls{Interface} \gls{eventemitter} verwendet. Dieser basiert auf dem Oberver-Pattern und erlaubt
+Bei der \textbf{Eventgesteuerten} Kommunikation wird das \gls{Interface} \gls{eventemitter} verwendet. Dieser basiert auf dem Observer-Pattern und erlaubt
 über einen Publish/Subscribe Mechanismus Daten innerhalb des Browsers auszutauschen. Dabei kann ein Microfrontend ein Event auslösen, auf welches
 abonnierte Microfrontends reagieren können um ggf. ihre Daten zu aktualisieren. \newline
-Die \textbf{API-basierte} Kommunikation berlagert die Synchronisationslogik auf den Server. Hier kommunizieren die Microfrontends ausschließlich
+Die \textbf{API-basierte} Kommunikation verlagert die Synchronisationslogik auf den Server. Hier kommunizieren die Microfrontends ausschließlich
 über API Aufrufe mit dem Server. Datenänderungen werden bei dieser Methode zuerst mit dem Server synchronisiert, bis andere Microfrontends
 diese abfragen können. \newline
 Der Ansatz über \textbf{geteilte Bibliotheken oder Services} nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch.
@@ -47,7 +47,8 @@ Anders als der Name vermuten lässt, müssen Microfrontends nicht als Oberfläch
 z.B. um als \gls{middleware} für den übergeordneten Datenaustausch zwischen Microfrontends zu dienen.
 Das \textbf{Framework-unabhängige State-Management} nutzt technologieübergreifende Mechaniken wie native, browserbasierte Speicher um Daten auszutauschen.
 Hierbei werden z.B. Änderungen in den \gls{local_storage} gespeichert, worauf andere Microfrontends zugreifen können.\newline
-
+Welcher dieser Ansätze gewählt oder ob eine Kombination aus mehreren Methoden implementiert wird,
+hängt letztlich stark von den spezifischen Anforderungen der jeweiligen Softwarelösung ab.
 
 \subsection{Organisation der Applikationen}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
@@ -71,6 +72,8 @@ Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repo
 parallel auszuführen. Auch die Paketverwaltung wird optimiert - da \gls{npm}-Pakete zentral installiert werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
 
 \subsection{Konfiguration von Module Federation in React}
+In dem folgenden Absatz wird die Herangehensweise einer Konfiguration der Microfrontends unter Verwendung von react und vite beschrieben. Dies das Projekt selber soll in einem Monorepo (hier turborepo) realisiert werden.
+
 %% Ablauf laden der Komponenten mit Verweis auf Module federation - dependency share etc verweis auf routing
 %% Beispiel Vite erklärung vite plugin - einfacher einzustellen
 %% Erklärung Typescript

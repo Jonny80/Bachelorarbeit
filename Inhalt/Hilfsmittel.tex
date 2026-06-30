@@ -1,0 +1,47 @@
+\appendix
+\section{Hilfsmittel}
+Folgend werden die genutzten Hilfsmittel aufgelistet.
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Mehr Zeilenabstand
+    \setlength{\tabcolsep}{12pt}      % Mehr Spaltenabstand
+    \caption{Hilfsmittel}
+    \label{tab:hilfsmittel}
+    \begin{tabularx}{\textwidth}{LLL}
+        \toprule
+        \textbf{Hilfsmittel}                                        & \textbf{Werkzeuge}                                                   & \textbf{Verwendung}                                      \\
+        \midrule
+        Zeichentool für Skizzen und Diagramme                       & Mermaid, Excalidraw, Screenshots                                     & Abb. 2.1, 2.2, 2.3, 2.4, 3.4, 4.1                        \\ \hline
+        Rechtschreib- und Grammatikprüfung                          & Gemini 3.5, LTeX+ grammar/spell checking using LanguageTool  v15.7.1 & Komplette Arbeit                                         \\ \hline
+        Schreibprogramm                                             & Visual Studio Code, LaTeX Workshop                                   & Komplette Arbeit                                         \\ \hline
+        Version Control System                                      & Git                                                                  & Komplette Arbeit                                         \\ \hline
+        Literaturrecherche                                          & Google Scholar, Researchgate, NotebookLM                             & Komplette Arbeit                                         \\ \hline
+        Integrated Development Environment                          & Visual Studio Code                                                   & Programmierteil (siehe USB-Stick)                        \\ \hline
+        Deployment Neo4j Datenbank                                  & Docker Compose                                                       & Programmierteil (siehe USB-Stick)                        \\ \hline
+        Visualisierung Neo4j Graph                                  & Neo4j Browser                                                        & Abb. 3.1, 3.2, 3.4                                       \\ \hline
+        Generierung Code und GraphQL Schema, Resolver und Mutations & Gemini 3.1, Gemini 3.5                                               & Programmierteil (siehe USB-Stick), Listing. 6, 8, 10, 11 \\ \hline
+        Konfiguration Latex Projekt                                 & Gemini 3.1, Gemini 3.5                                               & Komplette Arbeit                                         \\ \hline
+        Formulieren der Glossar Einträge                            & Gemini 3.1, Gemini 3.5                                               & Glossar                                                  \\
+
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Verwendete KI-Prompts}
+\label{subsec:ki_prompts}
+Folgend sind die maßgeblichen KI-Prompts für die Arbeit aufgelistet.
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Mehr Zeilenabstand
+    \setlength{\tabcolsep}{12pt}      % Mehr Spaltenabstand
+    \caption{Verwendete KI-Prompts}
+    \label{tab:ki_prompts}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Prompt}                                                        & \textbf{Ergebnis}             & \textbf{KI Modell}     \\
+        \midrule
+        Formuliere den Text um                                                 & Vorschläge für Formulierungen & Gemini 3.5, Gemini 3.1 \\
+        Schreibe einen Glossareintrag in Latex zu diesem Ausdruck < Ausdruck > & Latex Glossar Eintrag         & Gemini 3.5, Gemini 3.1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
