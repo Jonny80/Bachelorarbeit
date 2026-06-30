@@ -4,8 +4,8 @@ Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch 
 scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex und können so ihr Potenzial bei Weitem nicht ausschöpfen \cite[Kap.~3.1]{feth2023studie}.
 In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller - ein Prozess, der meist mit erheblichen Zusatzkosten und langen Entwicklungszeiten
 verbunden ist \cite[Kap.~4.1]{feth2023studie}.
-Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen unkompliziert implementiert werden können.
-Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige Webapplikationen entwickelt,
+Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen als Erweiterungen implementiert werden können.
+Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige \glspl{Webapplikation} entwickelt,
 die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, die sogenannte Shell, als Container, in welche die einzelnen
 Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
 einzelne Gewerke wie \ac{MSR} oder \ac{TGA} fungieren. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, bietet dieser Ansatz mehrere Vorteile. Somit kann gewährleistet werden,
@@ -13,32 +13,53 @@ dass bei Änderungen oder Updates nicht das Gesamtsystem beeinträchtigt wird un
 Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke durch beispielsweise Prüfprozesse oder Mängelbehebungen Vorteile. So ist es möglich einzelne
 Microfrontends unabhängig voneinander zu skalieren.
 \subsection{Konzeptioneller Aufbau einer Microfrontend-Architektur}
-Der Aufbau einer Microfrontend-Architektur zeichnet sich durch eine strikte Trennung einzelner Funktionalitäten ab. Kernfunktionalitäten wie die Authentifizierung oder das Routing, werden meist
+Der Aufbau einer Microfrontend-Architektur zeichnet sich durch eine strikte Trennung einzelner Funktionalitäten aus. Kernfunktionalitäten wie die Authentifizierung oder das Routing werden meist
 im Host abgebildet, welcher auch als Einstiegspunkt der Webapplikationen dient. Da die einzelnen Remotes als Komponenten geladen werden, können mehrere dieser auch simultan auf einer Oberfläche dargestellt werden.
 Hierbei wird grundlegend zwischen einem horizontalen und einem vertikalen Ansatz unterschieden. Bei dem vertikalen Ansatz wird nur ein Microfrontend pro Seite geladen, während bei einem horizontalen Ansatz mehrere
-Microfrontends simultan auf einer Oberfläche dargestellt werden können vgl. Abbildung \ref{fig:micro_frontends}.
-\cite{taibi2022micro}
-In Abbildung \ref{fig:micro_frontends} wird dieser Aufbau exemplarisch dargestellt:
+Microfrontends simultan auf einer Oberfläche dargestellt werden können \cite[Kap.~3.1]{taibi2022micro}.
+In Abbildung \ref{fig:micro_frontends} wird ein horizontaler Aufbau exemplarisch dargestellt:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Mcirofrontends_Example.png}
-    \caption{Exemplarischer Aufbau von Microfrontends}
+    \caption{Exemplarischer horizontalen Aufbau von Microfrontends}
     \label{fig:micro_frontends}
 \end{figure}
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
-oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden.
-\newline
+oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden. Die Hostapplikation fungiert hier nicht nur im
+technischen, sondern auch im visuellen Kontext als Rahmen, indem sie den Header und die Sidebar bereitstellt. Innerhalb dieser zwei statisch Komponenten werden die einzelnen Funktionalitäten, in Form der Remotes,
+dynamisch geladen.
 \subsection{Routing}
-%% Routing
-%% Erklärung von Shell und Routing (shell orchstriert das routing)
+Eine der zentralen Säulen einer Webapplikation ist das Routing, also das Zuordnen einer URL zu einem Zustand der Benutzeroberfläche. Hierbei ist zwischen der URL-basiertem und dem zustandsbasierten Routing zu unterscheiden.
+Während bei URL-basiertem Routing die Änderung der Ansicht mit einer Anpassung der URL einhergeht, wird bei einem zustandsbasierten Routing die aktuelle Ansicht als Variable innerhalb des Clients definiert. Durch den Einsatz
+von \textit{Module Federation} werden die Einzelnen \textit{Remotes} als eigenständige Komponenten herausgeführt. Dadurch bleibt die Flexibilität, wie bei einer monolithischen Webapplikation, bestehen. Es kann frei gewählt werden,
+welcher Routing-Ansatz genutzt werden soll (vgl. Abbildung \ref{lst:microfrontends_routing}).
 \subsection{Kommunikation zwischen Microfrontends}
-In manchen Fällen ist eine direkte Kommunikation zwischen den Microfrontends notwendig.
-%% LocalStorage, event liseners eigenes microfrontend oder andere muss noch recherchiert ewrden, siehe bookmarks
-%% Nutzen von GraphQL mit listeners
+In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, stellt dies eine größere Herausforderung für Microfrontends, als für monolithische Anwendungen dar.
+Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze: \newline
+Bei der \textbf{Eventgesteuerten} Kommunikation wird das \gls{Interface} \gls{eventemitter} verwendet. Dieser basiert auf dem Oberver-Pattern und erlaubt
+über einen Publish/Subscribe Mechanismus Daten innerhalb des Browsers auszutauschen. Dabei kann ein Microfrontend ein Event auslösen, auf welches
+abonnierte Microfrontends reagieren können um ggf. ihre Daten zu aktualisieren. \newline
+Die \textbf{API-basierte} Kommunikation berlagert die Synchronisationslogik auf den Server. Hier kommunizieren die Microfrontends ausschließlich
+über API Aufrufe mit dem Server. Datenänderungen werden bei dieser Methode zuerst mit dem Server synchronisiert, bis andere Microfrontends
+diese abfragen können. \newline
+Der Ansatz über \textbf{geteilte Bibliotheken oder Services} nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch.
+Anders als der Name vermuten lässt, müssen Microfrontends nicht als Oberflächen herausgeführt werden. Sie können auch als Logikschicht fungieren
+z.B. um als \gls{middleware} für den übergeordneten Datenaustausch zwischen Microfrontends zu dienen.
+Das \textbf{Framework-unabhängige State-Management} nutzt technologieübergreifende Mechaniken wie native, browserbasierte Speicher um Daten auszutauschen.
+Hierbei werden z.B. Änderungen in den \gls{local_storage} gespeichert, worauf andere Microfrontends zugreifen können.\newline
+
+
 \subsection{Organisation der Applikationen}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
 Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.B. Git, verwaltet werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
-verwaltet werden \cite{wieruch2024monorepo}. Das wichtigste Argument für diesen Ansatz war, dass geteilte UI-Bibliotheken und Konfigurationsdateien nicht mehr zwischen den einzelnen Codebasen synchronisiert werden müssen.
+verwaltet werden \cite{wieruch2024monorepo}. Hierbei können die einzelnen Remotes und der Host die UI-Bibliothek direkt importieren \cite{turborepo_internal_packages}. Die Namenskonvention des Importpfades ist dabei,
+spezifisch für das Node-Ökosystem, folgend definiert (siehe Listing \ref{lst:microfrontends_ui}):
+\textit{workspace} sagt dem Paketmanager, dass es sich um ein lokal verlinktes Paket handelt, während das \textit{@} Präfix einen sogenannten \textit{Scope} definiert \cite{npm_doku}. Dies gruppiert zusammenhängende
+Paketnamen und schützt vor Namenskonflikten, um ein Herunterladen gleichnamiger Pakete aus öffentlichen Quellen zu verhindern.
+\begin{lstlisting}[language=Javascript, caption={Einbindung der UI-Bibliothek}, label={lst:microfrontends_ui}]
+import { Button } from "@workspace/ui/components/button";
+\end{lstlisting}
+
 In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht:
 \begin{figure}[H]
     \centering
@@ -48,17 +69,14 @@ In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des ve
 \end{figure}
 Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startscripts zu schreiben, um mehrere Anwendungen, wie beispielsweise die Host-App mit zwei Remote-Apps,
 parallel auszuführen. Auch die Paketverwaltung wird optimiert - da \gls{npm}-Pakete zentral installiert werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
-%% Probleme wie UI/US Design
 
-\subsection{Konfiguration von Module Federation}
-%% Beispiel Vite
+\subsection{Konfiguration von Module Federation in React}
+%% Ablauf laden der Komponenten mit Verweis auf Module federation - dependency share etc verweis auf routing
+%% Beispiel Vite erklärung vite plugin - einfacher einzustellen
 %% Erklärung Typescript
 %% relativ straight forward wie gemacht wird
 %% Shell Scripte
 %% Konfigdatei für ports etc ver microfrontends
+%% Nutzen der UI Libary
 
-\subsection{Multi-Tenant Fähigkeit}
-%% konzentration auf App nicht auf die Datenbankstruktur
-%% evtl GraphQL mit exten type und dann auth hinzufügen
-%% evtl erwähnung vorgefertigter Apps 
-%% evtl GraphQL
+
