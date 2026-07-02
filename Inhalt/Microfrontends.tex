@@ -1,101 +1,142 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
 \section{Modulare Softwarearchitektur mittels Module Federation}
-Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch viele Softwarelösungen als Allround-Lösungen konzipiert sind,
+Jede Großbaustelle hat ihre eigenen individuellen Herausforderungen. Da jedoch viele Softwarelösungen als Universallösungen konzipiert sind,
 scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex und können so ihr Potenzial bei Weitem nicht ausschöpfen \cite[Kap.~3.1]{feth2023studie}.
-In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller - ein Prozess, der meist mit erheblichen Zusatzkosten und langen Entwicklungszeiten
-verbunden ist \cite[Kap.~4.1]{feth2023studie}.
+In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller, was meist einen Prozess beinhaltet, der mit erheblichen Zusatzkosten und langen Entwicklungszeiten verbunden ist \cite[Kap.~4.1]{feth2023studie}.
 Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen als Erweiterungen implementiert werden können.
 Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige \glspl{Webapplikation} entwickelt,
-die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, die sogenannte Shell, als Container, in welche die einzelnen
-Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
+die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, die sogenannte Shell, als Container, in die die Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
 einzelne Gewerke wie \ac{MSR} oder \ac{TGA} fungieren. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, bietet dieser Ansatz mehrere Vorteile. Somit kann gewährleistet werden,
 dass bei Änderungen oder Updates nicht das Gesamtsystem beeinträchtigt wird und so ein kontinuierlicher Betrieb auf der Baustelle sichergestellt werden kann.
-Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke durch beispielsweise Prüfprozesse oder Mängelbehebungen Vorteile. So ist es möglich einzelne
+Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke beispielsweise durch Prüfprozesse oder Mängelbehebungen Vorteile. So ist es möglich, die Backend-Dienste einzelner
 Microfrontends unabhängig voneinander zu skalieren.
 \subsection{Konzeptioneller Aufbau einer Microfrontend-Architektur}
 Der Aufbau einer Microfrontend-Architektur zeichnet sich durch eine strikte Trennung einzelner Funktionalitäten aus. Kernfunktionalitäten wie die Authentifizierung oder das Routing werden meist
-im Host abgebildet, welcher auch als Einstiegspunkt der Webapplikationen dient. Da die einzelnen Remotes als Komponenten geladen werden, können mehrere dieser auch simultan auf einer Oberfläche dargestellt werden.
+im \textit{Host} abgebildet, welcher auch als Einstiegspunkt der Webapplikationen dient. Da die einzelnen \textit{Remotes} als Komponenten geladen werden, können mehrere davon auch simultan auf einer Oberfläche dargestellt werden.
 Hierbei wird grundlegend zwischen einem horizontalen und einem vertikalen Ansatz unterschieden. Bei dem vertikalen Ansatz wird nur ein Microfrontend pro Seite geladen, während bei einem horizontalen Ansatz mehrere
 Microfrontends simultan auf einer Oberfläche dargestellt werden können \cite[Kap.~3.1]{taibi2022micro}.
 In Abbildung \ref{fig:micro_frontends} wird ein horizontaler Aufbau exemplarisch dargestellt:
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{Mcirofrontends_Example.png}
-  \caption{Exemplarischer horizontalen Aufbau von Microfrontends}
+  \includegraphics[width=1\textwidth]{microfrontends_example.png}
+  \caption{Exemplarischer horizontaler Aufbau von Microfrontends}
   \label{fig:micro_frontends}
 \end{figure}
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
 oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden. Die Hostapplikation fungiert hier nicht nur im
-technischen, sondern auch im visuellen Kontext als Rahmen, indem sie den Header und die Sidebar bereitstellt. Innerhalb dieser zwei statisch Komponenten werden die einzelnen Funktionalitäten, in Form der Remotes,
+technischen, sondern auch im visuellen Kontext als Rahmen, indem sie den Header und die Sidebar bereitstellt. Innerhalb dieser zwei statischen Komponenten werden die einzelnen Funktionalitäten in Form der \textit{Remotes}
 dynamisch geladen.
 \subsection{Routing}
-Eine der zentralen Säulen einer Webapplikation ist das Routing, also das Zuordnen einer URL zu einem Zustand der Benutzeroberfläche. Hierbei ist zwischen der URL-basiertem und dem zustandsbasierten Routing zu unterscheiden.
-Während bei URL-basiertem Routing die Änderung der Ansicht mit einer Anpassung der URL einhergeht, wird bei einem zustandsbasierten Routing die aktuelle Ansicht als Variable innerhalb des Clients definiert. Durch den Einsatz
-von \textit{Module Federation} werden die Einzelnen \textit{Remotes} als eigenständige Komponenten herausgeführt. Dadurch bleibt die Flexibilität, wie bei einer monolithischen Webapplikation, bestehen. Es kann frei gewählt werden,
-welcher Routing-Ansatz genutzt werden soll (vgl. Abbildung \ref{lst:microfrontends_routing}).
+Eine der zentralen Säulen einer Webapplikation ist das Routing, also die Zuordnung einer URL zu einem Zustand der Benutzeroberfläche. Hierbei ist zwischen dem URL-basierten und dem zustandsbasierten Routing zu unterscheiden.
+Während bei dem URL-basierten Routing die Änderung der Ansicht mit einer Anpassung der URL einhergeht, wird bei einem zustandsbasierten Routing die aktuelle Ansicht als Variable innerhalb des Clients definiert. Durch den Einsatz
+von \textit{Module Federation} werden die einzelnen \textit{Remotes} als eigenständige Komponenten herausgeführt. Dadurch bleibt die Flexibilität wie bei einer monolithischen Webapplikation bestehen. Es kann frei gewählt werden,
+welcher Routing-Ansatz genutzt werden soll (vgl. Listing \ref{lst:microfrontends_routing}).
 \subsection{Kommunikation zwischen Microfrontends}
-In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, stellt dies eine größere Herausforderung für Microfrontends, als für monolithische Anwendungen dar.
-Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze: \newline
+In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, stellt dies eine größere Herausforderung für Microfrontends als für monolithische Anwendungen dar.
+Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze:
 \begin{itemize}
-  \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface} \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das abonnierte Microfrontends reagieren können, um gegebenenfalls ihre Daten zu aktualisieren.
+  \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface}s \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das andere Microfrontends reagieren können, die dieses Event abonniert haben, um gegebenenfalls ihre Daten zu aktualisieren.
   \item \textbf{API-basierte Kommunikation}: Verlagert die Synchronisationslogik auf den Server. Die Microfrontends kommunizieren ausschließlich über API-Aufrufe mit dem Server. Datenänderungen werden zuerst mit dem Server synchronisiert, bevor andere Microfrontends diese abfragen können.
   \item \textbf{Geteilte Bibliotheken oder Services}: Nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch. Da Microfrontends nicht zwingend eine Benutzeroberfläche besitzen müssen, können sie auch als Logikschicht fungieren (z.~B. als \gls{middleware} für den übergeordneten Datenaustausch).
-  \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native, browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
+  \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
 \end{itemize}
-Welcher dieser Ansätze gewählt oder ob eine Kombination aus mehreren Methoden implementiert wird,
+Welcher dieser Ansätze gewählt wird oder ob eine Kombination aus mehreren Methoden implementiert wird,
 hängt letztlich stark von den spezifischen Anforderungen der jeweiligen Softwarelösung ab.
-Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \textit{building\_management/apps/communication/src/App.tsx} auf dem beigelegten USB-Stick \cite{eigener_code_usb}.
+Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \texttt{building\_management/apps/communication/src/App.tsx} auf dem beigelegten USB-Stick \cite{eigener_code_usb}.
 
 \subsection{Organisation der Applikationen} \label{monorepo_orga}
-Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
-Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.B. Git, verwaltet werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
-verwaltet werden \cite{wieruch2024monorepo}. Hierbei können die einzelnen Remotes und der Host die UI-Bibliothek direkt importieren \cite{turborepo_internal_packages}. Die Namenskonvention des Importpfades ist dabei,
+Um die einzelnen Codebasen der Microfrontends übersichtlich zu organisieren und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
+Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.~B. Git, zusammengeführt werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
+verwaltet werden \cite{wieruch2024monorepo}. Hierbei können die einzelnen \textit{Remotes} und der \textit{Host} die UI-Bibliothek direkt importieren \cite{turborepo_internal_packages}. Die Namenskonvention des Importpfades ist dabei,
 spezifisch für das Node-Ökosystem, folgend definiert (siehe Listing \ref{lst:microfrontends_ui}):
-\textit{workspace} sagt dem Paketmanager, dass es sich um ein lokal verlinktes Paket handelt, während das \textit{@} Präfix einen sogenannten \textit{Scope} definiert \cite{npm_doku}. Dies gruppiert zusammenhängende
-Paketnamen und schützt vor Namenskonflikten, um ein Herunterladen gleichnamiger Pakete aus öffentlichen Quellen zu verhindern.
+Der Scope \textit{@workspace} dient zur Gruppierung der projekteigenen Pakete, während der Paketmanager durch die Monorepo-Konfiguration erkennt, dass es sich um ein lokal verlinktes Paket handelt \cite{npm_doku}. Zudem schützt dies vor potenziellen Namenskonflikten, indem es das Herunterladen gleichnamiger Pakete aus öffentlichen Quellen verhindert.
 \begin{lstlisting}[language=Javascript, caption={Einbindung der UI-Bibliothek}, label={lst:microfrontends_ui}]
 import { Button } from "@workspace/ui/components/button";
 \end{lstlisting}
 
-In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht:
+In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht.
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{Monorepo_Example.png}
   \caption{Exemplarischer Aufbau eines Monorepos}
   \label{fig:monorepo}
 \end{figure}
-Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startscripts zu schreiben, um mehrere Anwendungen, wie beispielsweise die Host-App mit zwei Remote-Apps,
-parallel auszuführen. Auch die Paketverwaltung wird optimiert - da \gls{npm}-Pakete zentral installiert werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
+Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startskripte zu schreiben, um mehrere Anwendungen, wie beispielsweise die \textit{Host}-App mit zwei \textit{Remote}-Apps,
+parallel auszuführen. Auch die Paketverwaltung wird optimiert, da \gls{npm}-Pakete zentral verlinkt werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
 
 \subsection{Konfiguration von Module Federation in React}
-In dem folgenden Kapitel wird die Herangehensweise einer Konfiguration der Microfrontends unter Verwendung von React und Vite beschrieben. Das Projekt selber wird in einem Monorepo (hier turborepo) realisiert.
-Hierbei notwendig ist die Entwicklungsumgebung \textit{NodeJS} (Version >= 22.23.1, siehe \url{https://nodejs.org/}) und der dabei enthaltene Paketmanager \textit{npm}. Dieser wird genutzt um Pakete wie Turborepo oder Vite zu verwalten.
-Die Implementierung wird in mehrere Schritte unterteilt. Zuerst wird kurz gezeigt wie das Turborepo aufgesetzt wird, um eine organisatorische Grundlage für die folgenden Schritte zu schaffen. Anschließend werden
-zwei React Projekte mit Vite als Build-Tool erstellt. Einer als Host und einer als Remote App. Dem folgend wird gezeigt wie mithilfe des Plugins \textit{@module-federation/vite} die Microfrontends konfiguriert werden.
-Der letzte Schritt zeigt exemplarisch die Einbindung der Remote-App in der Host-App.
+In dem folgenden Abschnitt wird die Herangehensweise einer Konfiguration der Microfrontends unter Verwendung von React und Vite beschrieben. Das Projekt selbst wird in einem Monorepo (hier Turborepo) realisiert.
+Hierfür ist die Entwicklungsumgebung \textit{NodeJS} (Version >= 22.23.1, siehe \url{https://nodejs.org/}) und der dabei enthaltene Paketmanager \textit{npm} erforderlich. Dieser wird genutzt um Pakete wie Turborepo oder Vite zu verwalten.
+Die Implementierung wird in mehrere Schritte unterteilt. Zuerst wird kurz gezeigt, wie das Turborepo aufgesetzt wird, um eine organisatorische Grundlage für die folgenden Schritte zu schaffen. Anschließend werden
+zwei React-Projekte mit Vite als Build-Tool erstellt. Eines als \textit{Host} und das andere als \textit{Remote}. Darauf folgend wird gezeigt, wie mithilfe des Plugins \textit{@module-federation/vite} die Microfrontends konfiguriert werden.
+Der letzte Schritt zeigt exemplarisch die Einbindung der \textit{Remote}-App in die \textit{Host}-App.
 \subsubsection{Aufsetzen von Turborepo}
 Das Monorepo Turborepo wird mithilfe des folgenden Befehls aufgesetzt:
 \begin{lstlisting}[language=Shell, caption={Aufsetzen von Turborepo}, label={lst:microfrontends_turborepo}]
 npx create-turbo@latest -e with-vite
 \end{lstlisting}
-Wobei der Zusatzbefehl \textit{-e with-vite} das Monorepo direkt mit einer Vite-Umgebung initialisiert. Die Orderstruktur wird in \ref{monorepo_orga} verdeutlicht (vgl. Abbildung \ref{fig:monorepo}).
-Die \textit{package.json} im Grundverzeichnises des Repositories steuert hierbei unter anderem die Ausführung der einzelnen Apps, wie beispielsweise der Start der Host App und der Remote App, durch den folgenden Befehl:
+Der Zusatzbefehl \textit{-e with-vite} initialisiert das Monorepo direkt mit einer Vite-Umgebung. Die Ordnerstruktur wird in Abschnitt \ref{monorepo_orga} verdeutlicht (vgl. Abbildung \ref{fig:monorepo}).
+Die \texttt{package.json} im Grundverzeichnis des Repositories steuert hierbei unter anderem die Ausführung der einzelnen Apps, wie beispielsweise den Start der \textit{Host}-App und der \textit{Remote}-App, mithilfe des folgenden Befehls:
 \begin{lstlisting}[language=Shell, caption={Starten der Apps}, label={lst:microfrontends_apps_start}]
 turbo run dev --filter=< Name > --filter=< Name > ... --filter=< Name >
 \end{lstlisting}
-Der Ausdruck < Name > steht hier stellvertretend als der Name des Ordners der jeweiligen App im \textit{/app} Unterverzeichnis im Monorepo.
+Der Ausdruck < Name > steht hier stellvertretend für den Namen des Ordners der jeweiligen App im \texttt{/apps} Unterverzeichnis im Monorepo.
 \subsubsection{Konfiguration der Microfrontends}
-Die Konfiguration der Microfrontends wird hier unter der Verwendung des offiziellen Vite-Plugin \textit{@module-federation/vite} realisiert. Dieses Plugin vereinfacht die Konfiguration im Vergleich zu Webpack erheblich.
-Dabei stellt \textit{Module Federation} für viele gängigen Webtechnologien Plugins zur Verfügung (vgl. \cite{mf_integrations_guide}).
+Die Konfiguration der Microfrontends wird hier unter der Verwendung des offiziellen Vite-Plugins \textit{@module-federation/vite} realisiert. Dieses Plugin vereinfacht die Konfiguration im Vergleich zu Webpack erheblich.
+Dabei stellt \textit{Module Federation} für viele gängige Webtechnologien Plugins zur Verfügung (vgl. \cite{mf_integrations_guide}).
 In Vite wird das Plugin mit dem folgenden Befehl in der jeweiligen App installiert:
 \begin{lstlisting}[language=Shell, caption={Installieren des Vite-Plugins}, label={lst:microfrontends_plugin_install}]
-npm add @module-federation/vite --save
+npm install @module-federation/vite --save
 \end{lstlisting}
-%% Ablauf laden der Komponenten mit Verweis auf Module federation - dependency share etc verweis auf routing
-%% Beispiel Vite erklärung vite plugin - einfacher einzustellen
-%% relativ straight forward wie gemacht wird
-%% Shell Scripte
-%% Konfigdatei für ports etc ver microfrontends
-%% Nutzen der UI Libary
+Die Konfiguration des Plugins und damit auch der Microfrontends wird in den jeweiligen Konfigurationsdateien der eingesetzten Frontend-Technologien vorgenommen. Dabei ähneln sich die Konfigurationslogiken stark, insbesondere die Kernparameter \textit{remotes}, \textit{shared} und \textit{exposes} werden technologieübergreifend einheitlich verwendet (vgl. \cite[\texttt{building\_management/apps/communication/vite.config.js}]{eigener_code_usb}). Folgend werden diese Parameter erläutert:
+\begin{itemize}
+  \item \textbf{remotes}: Mit \textit{remotes} konfiguriert die \textit{Host}-Applikation, von welchen Microfrontends sie Komponenten empfangen möchte. Dabei ist der Pfad entscheidend, da er angibt, wo das Remote geladen wird.
+        \begin{lstlisting}[language=json, caption={Beispiel für die Angabe der Remotes in der Host-App}, label={lst:microfrontends_apps_remotes_konfig}]
+remotes: {
+        dashboard: {
+          type: "module",
+          name: "dashboard",
+          entry: "http://localhost:5000/remoteEntry.js",
+        },
+}
+\end{lstlisting}
+        Auffällig ist die Datei \texttt{remoteEntry.js}. Diese wird beim Build-Prozess der \textit{Remote}-Anwendung erzeugt und stellt zur Laufzeit ein Manifest bereit. Sie enthält essenzielle Metadaten über die freigegebenen Komponenten sowie die Pfade und URLs zu den eigentlichen Ressourcen der \textit{Remote}-App.
+  \item \textbf{shared}: Einer der Vorteile von \textit{Module Federation} is, wie bereits erwähnt, die Wiederverwendung von Bibliotheken. Diesbezüglich können Bibliotheken wie \textit{react} zwischen den Microfrontends geteilt werden, wodurch ein mehrmaliges Herunterladen vermieden wird. Welche Bibliotheken geteilt werden sollen wird im \texttt{shared}-Parameter angegeben. Dabei ist es wichtig, die Versionsstände der geteilten Bibliotheken zu berücksichtigen. Bei inkompatiblen Versionen nutzt \textit{Module Federation} sein integriertes Versionsmanagement, um eine passende Version auszuwählen.
+  \item \textbf{exposes}: Dieser Parameter wird nur von \textit{Remotes} verwendet. Er gibt an, welche Teile der App für die \textit{Host}-Applikation zur Verfügung gestellt werden sollen. Falls die gesamte App eingebunden werden soll, wird der Einstiegspunkt (hier \texttt{App.tsx}) angegeben.
+        \begin{lstlisting}[language=json, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_konfig}]
+exposes: {
+  "./Dashboard": "./src/App.tsx"
+}
+\end{lstlisting}
+        Für die \textit{Host}-Applikation wird so die \textit{Remote}-Applikation als \textit{Dashboard} herausgeführt
+        \begin{lstlisting}[language=javascript, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_import}]
+import("dashboard/Dashboard")
+\end{lstlisting}
+\end{itemize}
+\subsubsection{Automatisierung der Konfigurationen}
+Um den immer gleichen Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte  wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer \textit{Module Federation} Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
+\begin{itemize}
+  \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
+  \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite}, sowie Aktualisierung der Konfigurationsdatei \texttt{building\_management/packages/mfe-config/mfe.config.json}
+  \item \textbf{3. Schritt}: Konfiguration der Microfrontends in der Konfigurationsdatei \texttt{vite.config.ts} innerhalb der \textit{Host}-Applikation und der neu erstellen \texttt{Remote}-Applikation
+  \item \textbf{4. Schritt}: Einbinden des neuen Microfrontends in die \textit{Host}-Applikation (vgl. \cite[\texttt{building\_management/apps/main/src/App.tsx} und \texttt{building\_management/apps/main/src/components/Sidebar.tsx}]{eigener_code_usb})
+\end{itemize}
+\subsection{Evaluierung}
+Die praktische Umsetzung des Prototyps zeigt, dass die Kombination aus \textit{Module Federation} und modernen Monorepo-Werkzeugen wie \textit{Turborepo} einen äußerst tragfähigen und praxisnahen Ansatz zur Bewältigung der einleitend beschriebenen Herausforderungen im Inbetriebnahmemanagement darstellt. Das primäre Ziel, eine erweiterbare und flexible Softwarearchitektur zu entwerfen, konnte erfolgreich demonstriert werden.
 
+\subsubsection{Entwicklungsgeschwindigkeit und Erweiterbarkeit}
+Durch die Kopplung des Module-Federation-Plugins mit einer zentralisierten Infrastruktur wird die Erstellung und Integration neuer funktionaler Module (wie spezifische Gewerke- oder ERP-Anbindungen) erheblich erleichtert. Die Evaluierung zeigt folgende Kernpunkte:
+\begin{itemize}
+  \item \textbf{Zentralisierte Konfiguration}: Die Auslagerung von Ports und Metadaten in eine zentrale Konfigurationsdatei (\texttt{mfe.config.json}) fungiert als \textit{Single Source of Truth}. Sie verhindert effektiv eine Divergenz der Systemparameter (\textit{Configuration Drift}) zwischen dem \textit{Host} und den autonomen \textit{Remotes}.
+  \item \textbf{Automatisierung durch Skripte}: Mithilfe des entwickelten Shell-Skripts wird der initiale Aufwand für das Scaffolding und die Konfiguration neuer Microfrontends auf ein Minimum reduziert. Die automatisierte Anpassung der Routing- und Verbundstrukturen beweist, dass die Architektur auch für zukünftige, individuelle Spezialaufträge hochgradig skalierbar und ohne tiefe Vorkenntnisse des Gesamtsystems erweiterbar ist.
+  \item \textbf{Design-Konformität}: Die Nutzung geteilter UI-Bibliotheken (\texttt{@workspace/ui}) innerhalb des Monorepos stellt sicher, dass trotz der organisatorischen Trennung der Codebasen eine visuelle Konsistenz über die gesamte Benutzeroberfläche hinweg gewahrt bleibt.
+\end{itemize}
 
+\subsubsection{Beherrschung der Kernherausforderungen}
+Die für verteilte Frontend-Systeme typischen Hürden in den Bereichen Isolation, Kommunikation, Routing und Organisation ließen sich durch die dargelegten Techniken stark vereinfachen:
+\begin{itemize}
+  \item \textbf{Isolation und Ausführung}: Das Zusammenspiel aus Vite und Turborepo erlaubt es, Microfrontends vollständig isoliert zu entwickeln und zu testen, während app-übergreifende Startskripte den parallelen Betrieb zur Laufzeit nahtlos koordinieren.
+  \item \textbf{Kommunikation und Routing}: Wie im Microfrontend \textit{communication} gezeigt, bricht Module Federation die starren Grenzen monolithischer Anwendungen auf. Es bewahrt die volle Flexibilität moderner Webapplikationen, sodass zustands- und eventbasierte Kommunikationsmuster elegant und ohne technologische Sackgassen implementiert werden können.
+\end{itemize}
+
+Zusammenfassend lässt sich konstatieren, dass der Entwurf einer solchen modularen Softwarearchitektur mit dem heutigen Ökosystem nicht nur theoretisch fundiert, sondern in der Praxis mit hoher Effizienz umsetzbar ist. Der administrative Mehraufwand, der initial durch die Konfiguration des Monorepos entsteht, amortisiert sich bereits bei der Integration des ersten zusätzlichen Moduls durch den hohen Grad an Wiederverwendbarkeit und Automatisierung.
