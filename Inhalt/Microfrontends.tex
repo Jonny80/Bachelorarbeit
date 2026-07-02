@@ -19,10 +19,10 @@ Hierbei wird grundlegend zwischen einem horizontalen und einem vertikalen Ansatz
 Microfrontends simultan auf einer Oberfläche dargestellt werden können \cite[Kap.~3.1]{taibi2022micro}.
 In Abbildung \ref{fig:micro_frontends} wird ein horizontaler Aufbau exemplarisch dargestellt:
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Mcirofrontends_Example.png}
-    \caption{Exemplarischer horizontalen Aufbau von Microfrontends}
-    \label{fig:micro_frontends}
+  \centering
+  \includegraphics[width=1\textwidth]{Mcirofrontends_Example.png}
+  \caption{Exemplarischer horizontalen Aufbau von Microfrontends}
+  \label{fig:micro_frontends}
 \end{figure}
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
 oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden. Die Hostapplikation fungiert hier nicht nur im
@@ -36,21 +36,17 @@ welcher Routing-Ansatz genutzt werden soll (vgl. Abbildung \ref{lst:microfronten
 \subsection{Kommunikation zwischen Microfrontends}
 In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Kapitel \ref{sec:microfrontends} erwähnt, stellt dies eine größere Herausforderung für Microfrontends, als für monolithische Anwendungen dar.
 Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze: \newline
-Bei der \textbf{Eventgesteuerten} Kommunikation wird das \gls{Interface} \gls{eventemitter} verwendet. Dieser basiert auf dem Observer-Pattern und erlaubt
-über einen Publish/Subscribe Mechanismus Daten innerhalb des Browsers auszutauschen. Dabei kann ein Microfrontend ein Event auslösen, auf welches
-abonnierte Microfrontends reagieren können um ggf. ihre Daten zu aktualisieren. \newline
-Die \textbf{API-basierte} Kommunikation verlagert die Synchronisationslogik auf den Server. Hier kommunizieren die Microfrontends ausschließlich
-über API Aufrufe mit dem Server. Datenänderungen werden bei dieser Methode zuerst mit dem Server synchronisiert, bis andere Microfrontends
-diese abfragen können. \newline
-Der Ansatz über \textbf{geteilte Bibliotheken oder Services} nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch.
-Anders als der Name vermuten lässt, müssen Microfrontends nicht als Oberflächen herausgeführt werden. Sie können auch als Logikschicht fungieren
-z.B. um als \gls{middleware} für den übergeordneten Datenaustausch zwischen Microfrontends zu dienen.
-Das \textbf{Framework-unabhängige State-Management} nutzt technologieübergreifende Mechaniken wie native, browserbasierte Speicher um Daten auszutauschen.
-Hierbei werden z.B. Änderungen in den \gls{local_storage} gespeichert, worauf andere Microfrontends zugreifen können.\newline
+\begin{itemize}
+  \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface} \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das abonnierte Microfrontends reagieren können, um gegebenenfalls ihre Daten zu aktualisieren.
+  \item \textbf{API-basierte Kommunikation}: Verlagert die Synchronisationslogik auf den Server. Die Microfrontends kommunizieren ausschließlich über API-Aufrufe mit dem Server. Datenänderungen werden zuerst mit dem Server synchronisiert, bevor andere Microfrontends diese abfragen können.
+  \item \textbf{Geteilte Bibliotheken oder Services}: Nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch. Da Microfrontends nicht zwingend eine Benutzeroberfläche besitzen müssen, können sie auch als Logikschicht fungieren (z.~B. als \gls{middleware} für den übergeordneten Datenaustausch).
+  \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native, browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
+\end{itemize}
 Welcher dieser Ansätze gewählt oder ob eine Kombination aus mehreren Methoden implementiert wird,
 hängt letztlich stark von den spezifischen Anforderungen der jeweiligen Softwarelösung ab.
+Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \textit{building\_management/apps/communication/src/App.tsx} auf dem beigelegten USB-Stick \cite{eigener_code_usb}.
 
-\subsection{Organisation der Applikationen}
+\subsection{Organisation der Applikationen} \label{monorepo_orga}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu verwalten und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
 Ein Monorepo ist eine Strategie, bei welcher mehrere Codebasen in einem \Gls{vcs}, wie z.B. Git, verwaltet werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
 verwaltet werden \cite{wieruch2024monorepo}. Hierbei können die einzelnen Remotes und der Host die UI-Bibliothek direkt importieren \cite{turborepo_internal_packages}. Die Namenskonvention des Importpfades ist dabei,
@@ -63,20 +59,40 @@ import { Button } from "@workspace/ui/components/button";
 
 In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht:
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Monorepo_Example.png}
-    \caption{Exemplarischer Aufbau eines Monorepos}
-    \label{fig:monorepo}
+  \centering
+  \includegraphics[width=1\textwidth]{Monorepo_Example.png}
+  \caption{Exemplarischer Aufbau eines Monorepos}
+  \label{fig:monorepo}
 \end{figure}
 Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startscripts zu schreiben, um mehrere Anwendungen, wie beispielsweise die Host-App mit zwei Remote-Apps,
 parallel auszuführen. Auch die Paketverwaltung wird optimiert - da \gls{npm}-Pakete zentral installiert werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
 
 \subsection{Konfiguration von Module Federation in React}
-In dem folgenden Absatz wird die Herangehensweise einer Konfiguration der Microfrontends unter Verwendung von react und vite beschrieben. Dies das Projekt selber soll in einem Monorepo (hier turborepo) realisiert werden.
-
+In dem folgenden Kapitel wird die Herangehensweise einer Konfiguration der Microfrontends unter Verwendung von React und Vite beschrieben. Das Projekt selber wird in einem Monorepo (hier turborepo) realisiert.
+Hierbei notwendig ist die Entwicklungsumgebung \textit{NodeJS} (Version >= 22.23.1, siehe \url{https://nodejs.org/}) und der dabei enthaltene Paketmanager \textit{npm}. Dieser wird genutzt um Pakete wie Turborepo oder Vite zu verwalten.
+Die Implementierung wird in mehrere Schritte unterteilt. Zuerst wird kurz gezeigt wie das Turborepo aufgesetzt wird, um eine organisatorische Grundlage für die folgenden Schritte zu schaffen. Anschließend werden
+zwei React Projekte mit Vite als Build-Tool erstellt. Einer als Host und einer als Remote App. Dem folgend wird gezeigt wie mithilfe des Plugins \textit{@module-federation/vite} die Microfrontends konfiguriert werden.
+Der letzte Schritt zeigt exemplarisch die Einbindung der Remote-App in der Host-App.
+\subsubsection{Aufsetzen von Turborepo}
+Das Monorepo Turborepo wird mithilfe des folgenden Befehls aufgesetzt:
+\begin{lstlisting}[language=Shell, caption={Aufsetzen von Turborepo}, label={lst:microfrontends_turborepo}]
+npx create-turbo@latest -e with-vite
+\end{lstlisting}
+Wobei der Zusatzbefehl \textit{-e with-vite} das Monorepo direkt mit einer Vite-Umgebung initialisiert. Die Orderstruktur wird in \ref{monorepo_orga} verdeutlicht (vgl. Abbildung \ref{fig:monorepo}).
+Die \textit{package.json} im Grundverzeichnises des Repositories steuert hierbei unter anderem die Ausführung der einzelnen Apps, wie beispielsweise der Start der Host App und der Remote App, durch den folgenden Befehl:
+\begin{lstlisting}[language=Shell, caption={Starten der Apps}, label={lst:microfrontends_apps_start}]
+turbo run dev --filter=< Name > --filter=< Name > ... --filter=< Name >
+\end{lstlisting}
+Der Ausdruck < Name > steht hier stellvertretend als der Name des Ordners der jeweiligen App im \textit{/app} Unterverzeichnis im Monorepo.
+\subsubsection{Konfiguration der Microfrontends}
+Die Konfiguration der Microfrontends wird hier unter der Verwendung des offiziellen Vite-Plugin \textit{@module-federation/vite} realisiert. Dieses Plugin vereinfacht die Konfiguration im Vergleich zu Webpack erheblich.
+Dabei stellt \textit{Module Federation} für viele gängigen Webtechnologien Plugins zur Verfügung (vgl. \cite{mf_integrations_guide}).
+In Vite wird das Plugin mit dem folgenden Befehl in der jeweiligen App installiert:
+\begin{lstlisting}[language=Shell, caption={Installieren des Vite-Plugins}, label={lst:microfrontends_plugin_install}]
+npm add @module-federation/vite --save
+\end{lstlisting}
 %% Ablauf laden der Komponenten mit Verweis auf Module federation - dependency share etc verweis auf routing
 %% Beispiel Vite erklärung vite plugin - einfacher einzustellen
-%% Erklärung Typescript
 %% relativ straight forward wie gemacht wird
 %% Shell Scripte
 %% Konfigdatei für ports etc ver microfrontends
