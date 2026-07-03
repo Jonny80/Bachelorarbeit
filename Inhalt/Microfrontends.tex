@@ -113,30 +113,26 @@ exposes: {
 import("dashboard/Dashboard")
 \end{lstlisting}
 \end{itemize}
+\subsubsection{Isolation und Fehlerresilienz}
+Ein Kernaspekt der Microfrontend-Architektur ist die Isolation der einzelnen \textit{Remote}-Applikationen voneinander. Dies bedeutet zum einen, dass die einzelnen Microfrontends unabhängig voneinander entwickelt, ausgerollt und betrieben werden können und zum anderen, dass Fehler oder sogar Abstürze in einzelnen Microfrontends die \textit{Host}-Applikation nicht beeinträchtigen \cite{sandeepa}. Um diese Fehlerisolation zu testen wurde das Microfrontend \textit{error-mfe} erstellt. Dieses Microfrontend simuliert einen Fehler durch das Werfen eines \textit{Errors} (siehe Listing \ref{lst:error_mf}). Um dem Absturz der Gesamtanwendung entgegenzuwirken wurde wie in Listing \ref{lst:error_boundry_mf} zu sehen ist, eine Error Boundary Komponente implementiert. Dabei wurde die React-Dokumentation als Referenz verwendet \cite{react_docs_error_boundaries}.
+Wie der Prototyp bestätigt (vgl. \cite[\texttt{building\_management/apps/error\_mf/App.tsx}]{eigener_code_usb}), kann bei Einhaltung der Kapselung durch eine Error Boundary die lokale Fehlerresilienz zur Laufzeit erhöht werden. Zusätzlich können nach Abfangen der Fehler die Microfrontends neu geladen werden oder ein Fallback-Mechanismus eingebaut werden \cite{sandeepa}.
+
 \subsubsection{Automatisierung der Konfigurationen}
-Um den immer gleichen Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte  wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer \textit{Module Federation} Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
+Um den immer gleichen Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte  wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer \textit{Module Federation} Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
 \begin{itemize}
   \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
-  \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite}, sowie Aktualisierung der Konfigurationsdatei \texttt{building\_management/packages/mfe-config/mfe.config.json}
-  \item \textbf{3. Schritt}: Konfiguration der Microfrontends in der Konfigurationsdatei \texttt{vite.config.ts} innerhalb der \textit{Host}-Applikation und der neu erstellen \texttt{Remote}-Applikation
-  \item \textbf{4. Schritt}: Einbinden des neuen Microfrontends in die \textit{Host}-Applikation (vgl. \cite[\texttt{building\_management/apps/main/src/App.tsx} und \texttt{building\_management/apps/main/src/components/Sidebar.tsx}]{eigener_code_usb})
+  \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite},\\
+        sowie Aktualisierung der Konfigurationsdatei \\
+        \texttt{building\_management/packages/mfe-config/mfe.config.json}
+  \item \textbf{3. Schritt}: Konfiguration der Microfrontends in der Konfigurationsdatei \\
+        \texttt{vite.config.ts} innerhalb der \textit{Host}-Applikation und der neu erstellen \texttt{Remote}-Applikation
+  \item \textbf{4. Schritt}: Einbinden des neuen Microfrontends in die \textit{Host}-Applikation \\
+        (vgl. \cite[\texttt{building\_management/apps/main/src/App.tsx} und \\ \texttt{building\_management/apps/main/src/components/Sidebar.tsx}]{eigener_code_usb})
 \end{itemize}
+Dies ermöglicht eine unkomplizierte und schnelle Methode die bestehende Architektur um neue Microfrontends zu erweitern.
+
 \subsection{Evaluierung}
-Die praktische Umsetzung des Prototyps zeigt, dass die Kombination aus \textit{Module Federation} und modernen Monorepo-Werkzeugen wie \textit{Turborepo} einen äußerst tragfähigen und praxisnahen Ansatz zur Bewältigung der einleitend beschriebenen Herausforderungen im Inbetriebnahmemanagement darstellt. Das primäre Ziel, eine erweiterbare und flexible Softwarearchitektur zu entwerfen, konnte erfolgreich demonstriert werden.
-
-\subsubsection{Entwicklungsgeschwindigkeit und Erweiterbarkeit}
-Durch die Kopplung des Module-Federation-Plugins mit einer zentralisierten Infrastruktur wird die Erstellung und Integration neuer funktionaler Module (wie spezifische Gewerke- oder ERP-Anbindungen) erheblich erleichtert. Die Evaluierung zeigt folgende Kernpunkte:
-\begin{itemize}
-  \item \textbf{Zentralisierte Konfiguration}: Die Auslagerung von Ports und Metadaten in eine zentrale Konfigurationsdatei (\texttt{mfe.config.json}) fungiert als \textit{Single Source of Truth}. Sie verhindert effektiv eine Divergenz der Systemparameter (\textit{Configuration Drift}) zwischen dem \textit{Host} und den autonomen \textit{Remotes}.
-  \item \textbf{Automatisierung durch Skripte}: Mithilfe des entwickelten Shell-Skripts wird der initiale Aufwand für das Scaffolding und die Konfiguration neuer Microfrontends auf ein Minimum reduziert. Die automatisierte Anpassung der Routing- und Verbundstrukturen beweist, dass die Architektur auch für zukünftige, individuelle Spezialaufträge hochgradig skalierbar und ohne tiefe Vorkenntnisse des Gesamtsystems erweiterbar ist.
-  \item \textbf{Design-Konformität}: Die Nutzung geteilter UI-Bibliotheken (\texttt{@workspace/ui}) innerhalb des Monorepos stellt sicher, dass trotz der organisatorischen Trennung der Codebasen eine visuelle Konsistenz über die gesamte Benutzeroberfläche hinweg gewahrt bleibt.
-\end{itemize}
-
-\subsubsection{Beherrschung der Kernherausforderungen}
-Die für verteilte Frontend-Systeme typischen Hürden in den Bereichen Isolation, Kommunikation, Routing und Organisation ließen sich durch die dargelegten Techniken stark vereinfachen:
-\begin{itemize}
-  \item \textbf{Isolation und Ausführung}: Das Zusammenspiel aus Vite und Turborepo erlaubt es, Microfrontends vollständig isoliert zu entwickeln und zu testen, während app-übergreifende Startskripte den parallelen Betrieb zur Laufzeit nahtlos koordinieren.
-  \item \textbf{Kommunikation und Routing}: Wie im Microfrontend \textit{communication} gezeigt, bricht Module Federation die starren Grenzen monolithischer Anwendungen auf. Es bewahrt die volle Flexibilität moderner Webapplikationen, sodass zustands- und eventbasierte Kommunikationsmuster elegant und ohne technologische Sackgassen implementiert werden können.
-\end{itemize}
-
-Zusammenfassend lässt sich konstatieren, dass der Entwurf einer solchen modularen Softwarearchitektur mit dem heutigen Ökosystem nicht nur theoretisch fundiert, sondern in der Praxis mit hoher Effizienz umsetzbar ist. Der administrative Mehraufwand, der initial durch die Konfiguration des Monorepos entsteht, amortisiert sich bereits bei der Integration des ersten zusätzlichen Moduls durch den hohen Grad an Wiederverwendbarkeit und Automatisierung.
+Die praktische Umsetzung des Prototyps zeigt, dass die Kombination aus \textit{Module Federation} und Monorepos wie \textit{Turborepo} eine äußerst tragfähige Lösung zur Bewältigung der Probleme, in Bezug auf eine modulare Softwarearchitektur, aus Kapitel \ref{sec:problemstellung} darstellt. \textit{Module Federation} ermöglicht es eine grundlegende Struktur, hier die \textit{Host}-Applikation, flexibel um autonome \textit{Remote}-Applikationen zu erweitern. Dabei können die einzelnen Anwendungen unabhängig voneinander entwickelt und in die bestehende Architektur integriert werden. Des Weiteren erlaubt die Kombination mit \textit{Turborepo}, eine konsistente Verwendung einheitlicher Konfigurationsdateien und UI-Bibliotheken.
+%% Fehlerisolation
+%% Erweiterbarkeit
+%% Kommunikation

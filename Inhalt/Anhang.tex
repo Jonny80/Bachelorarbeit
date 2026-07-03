@@ -70,3 +70,48 @@ export default function RoutingVergleichApp() {
   );
 }
 \end{lstlisting}
+\subsection{Simulation eines Fehlers im Microfrontend \textit{error\_mf}}
+
+Folgend wird durch das manuelle Werfen eines Errors in Verbindung mit einem Timer ein periodischer Absturz in dem Microfrontend \textit{error\_mf} simuliert.
+Nach 30 Sekunden löst die Komponente automatisch einen Absturz aus. Im Listing \ref{lst:error_mf} ist die Implementierung dieser Logik dargestellt.
+
+\begin{lstlisting}[language=Javascript, caption={Periodischer Absturz eines Microfrontends}, label={lst:error_mf}]
+  // Periodischer Absturz Timer
+  useEffect(() => {
+    if (isPaused || countdown <= 0) return;
+
+    const timer = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [countdown, isPaused]);
+
+  // Throw rendering error to trigger ErrorBoundary
+  if (countdown <= 0 || manualCrash) {
+    // Reset countdown for next mount recovery
+    sessionStorage.setItem("error_mf_initial_crashed", "true");
+    throw new Error(
+      countdown <= 0
+        ? "Periodischer Absturz nach 30 Sekunden! (Simulierter Fehler)"
+        : "Manueller Absturz ausgelöst! (Simulierter Fehler)"
+    );
+  }
+\end{lstlisting}
+\subsection{Abfangen von Fehlern in Microfrontends mittels \textit{Error Boundries}}
+
+Hier wird die Verwendung von Error Boundries gezeigt, um einen Absturz der Applikation zu vermeiden.
+
+\begin{lstlisting}[language=Javascript, caption={Nutzen von Error Boundries}, label={lst:error_boundry_mf}]
+            <ErrorBoundary name="Error MF">
+                  <Suspense
+                    fallback={
+                      <div className="p-12 text-center text-muted-foreground animate-pulse">
+                        Lade Remote App "Error_mf"...
+                      </div>
+                    }
+                  >
+                    <Error_mfApp />
+                  </Suspense>
+                </ErrorBoundary>
+\end{lstlisting}
