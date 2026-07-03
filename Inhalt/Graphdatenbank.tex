@@ -151,6 +151,7 @@ für den Typ \textit{IfcSensor} die \textit{@node} Direktive verwendet. Zum eine
 die native GraphQL-Bibliothek von Neo4j, das Schema und generiert automatisiert Mutationen für Lese-Schreib und Aktualisierungsoperationen, sowie Resolver mit standardisierten Filterungs- und Sortierungsoperationen \cite{neo4j_graphql_node}.
 Obwohl sich diese Automation nur auf einfache CRUD-Operationen beschränkt, verhilft dies trotzdem zu einem erheblichen Zeitersparnis. Komplexere Abfragen müssen hingegen manuell definiert werden. Dafür stehen
 zwei Methoden zur Verfügung:
+%% Umformulieren
 \begin{itemize}
   \item Bei der \textbf{clientseitigen Methode} formuliert die GraphQL-Bibliothek mittels der GraphQL Abfragesprache Cypher-Abfragen, um mit der Graphdatenbank zu kommunizieren, wie dieses Beispiel
         veranschaulicht:
@@ -182,8 +183,14 @@ type Query {
 }
 \end{lstlisting}
 \end{itemize}
-Die Auswahl zwischen den Methoden hängt stark von den Präferenzen des Entwicklers ab. Da auch bei der clientseitigen Methode im Hintergrund die Anfragen in Cypher formuliert werden, um mit der
-Graphdatenbank zu kommunizieren, überlässt GraphQL dem Entwickler die Entscheidung, welche Methode er bevorzugt.
+%% umschreiben 
+%% Beispiel abfrage von Bäumen
+%% Kein performance sondern ein Rekursionsproblem bei ungewissen pfadlängen versagt 
+%% GraphQL siehe https://neo4j.com/docs/cypher-manual/current/patterns/variable-length-paths/
+%% https://neo4j.com/docs/graphql/current/directives/custom-logic/
+Obwohl moderne Object-Graph-Mapper (wie die Neo4j-GraphQL-Library) das klassische N+1-Problem durch die Kompilierung geschachtelter Felder in ein einzelnes Cypher-Statement technisch lösen, bleibt der Einsatz von @cypher-Direktiven für die MSR-Topologie unumgänglich.
+
+Die Entscheidung für die Direktive begründet sich hierbei primär durch die semantische Mächtigkeit: Sie ermöglicht die in der Gebäudeautomation essenziellen variablen Pfadlängen (rekursive Suchen über unbestimmte Controller-Hierarchien) und realisiert eine Kapselung der IFC-Strukturkomplexität (Information Hiding). Dadurch wird das Frontend von der tiefen Schachtelung des IFC-Schemas entkoppelt, was die Wartbarkeit und Resilienz der Gesamtanwendung drastisch erhöht.
 \newline
 Während bei der Datenabfrage die generierten Resolver meist nicht ausreichen um das volle Potential der GRaphdatenbank zu nutzen, reichen die generierten Mutationen für die meisten Anwendungsfälle aus.
 Da die Schemata basierend auf der IFC-Spezifikation klar strukturiert sind, decken die generierten \textit{Create} und \textit{Update} Methoden die wesentlich benötigten Datenmanipulationen ab.
