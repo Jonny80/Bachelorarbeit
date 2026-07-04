@@ -7,35 +7,34 @@ Während in der Planungsphase durch Methoden wie Building Information Modeling (
 Fortschritte erzielt werden, hinkt insbesondere die Ausführungsphase auf der Baustelle deutlich hinterher \cite[Kap.~3.2]{bertschek2019zukunft}.
 Dieser Rückstand führt in der Praxis zu einer Vielzahl von Ineffizienzen, die den Projekterfolg bei
 Großbauvorhaben gefährden.
-\newline
 Ein zentrales Hemmnis ist die mangelnde Interkonnektivität der eingesetzten Softwaresysteme.
 Da einheitliche Standards und Schnittstellen oft fehlen, entstehen isolierte Datensilos.
 Dies führt regelmäßig zum sogenannten „Excel-Fallback“:
-Um den Informationsfluss zwischen den unterschiedlichen Systemen und verschiedenen Gewerken aufrechtzuerhalten,
+Um den Informationsfluss zwischen den unterschiedlichen Systemen und beteiligten Gewerken aufrechtzuerhalten,
 werden Daten manuell in Tabellenkalkulationen übertragen. Dieser Prozess ist nicht nur fehleranfällig,
 sondern verhindert auch eine revisionssichere Dokumentation und Echtzeit-Auswertungen \cite[Kap.~4.1]{feth2023studie}.
 
 Zusätzlich verschärft das Problem des Vendor-Locks die Situation.
 Unternehmen sind oft an geschlossene Ökosysteme einzelner Softwareanbieter gebunden,
 was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert  \cite[Kap.~1]{feth2023studie}.
-Bestehende Anwendungen agieren häufig als Insellösungen, die den spezifischen Anforderungen komplexer Bauprozesse, wie einem durchgängigen Inbetriebnahmemanagement, nicht gerecht werden.
+Bestehende Anwendungen agieren häufig als Insellösungen, die den spezifischen Anforderungen komplexer Bauprozesse, wie des durchgängigen Inbetriebnahmemanagements, nicht gerecht werden.
 Das Inbetriebnahmemanagement stellt während der Bauphase und bei der Inbetriebnahme die Qualitätssicherung dar. Ziel ist es, die vertraglich vereinbarten Leistungen, sowie die behördlich festgelegten Anforderungen nachzuweisen
-um eine rechtssichere, geordnete Übergabe an den Bauherren zu gewährleisten. Da dieser Prozess eine Vielzahl unterschiedlicher Gewerke mit meist unterschiedlichen Softwarelösungen involviert \cite[Kap.~4.1]{feth2023studie},
-blockiert die fehlende Kompatibilität den notwendigen, systemübergreifenden Informationsaustausch \cite[Kap.]{BBSR}.
+um eine rechtssichere, geordnete Übergabe an den Bauherren zu gewährleisten. Da dieser Prozess eine Vielzahl Gewerke mit meist eigenen Softwarelösungen involviert \cite[Kap.~4.1]{feth2023studie},
+erschwert die fehlende Kompatibilität den notwendigen, systemübergreifenden Informationsaustausch stark \cite[Kap.~4.2]{BBSR}.
 \subsection{Forschungslücke}
 Trotz der Verfügbarkeit diverser Softwarelösungen im BIM-Kontext, primär in den Bereichen des digitalen Bautagebuchs und der Mängelerfassung \cite{feth2023studie}, weisen diese oftmals Defizite hinsichtlich ihrer Flexibilität und Adaptierbarkeit an spezifische
 Projektanforderungen auf. Zur Lösung dieser Problematik kann eine modulare Architektur helfen, die es ermöglicht, spezialisierte Anwendungen flexibel als Add-ons zu integrieren, sodass diese nahtlos auf bestehende Daten zugreifen können.
-Um dies zu ermöglichen, bedarf es einer standardisierten und transparenten Schnittstelle, um einen problemlosen Informationsaustausch zu gewährleisten \cite[Kap.~4.1]{feth2023studie}.
+Um dies zu ermöglichen, bedarf es einer standardisierten und transparenten Schnittstelle, die einen problemlosen Informationsaustausch gewährleistet \cite[Kap.~4.1]{feth2023studie}.
 Es existieren bereits Forschungen und etablierte Ansätze für graphbasierte Domänenmodelle sowie die Nutzung von GraphQL als Vermittlungsschicht, um die komplexen Strukturen des IFC-Standards abzubilden. Arbeiten wie \cite{wolf:2025:ifc2graphql} zeigen bereits,
-dass die Überführung von IFC-Daten in ein GraphQL-Schema grundlegend machbar ist, jedoch eine exakte 1:1-Abbildung an ihre Grenzen hinsichtlich der Komplexität stößt. Trotzdem heben die Autoren hervor, dass eine solche Überführung Vorteile in Form von Effizienz
+dass die Überführung von IFC-Daten in ein GraphQL-Schema grundlegend machbar ist, jedoch eine exakte 1:1-Abbildung hinsichtlich der Komplexität an ihre Grenzen stößt. Trotzdem heben die Autoren hervor, dass eine solche Überführung Vorteile in Form von Effizienz
 und Entwicklerfreundlichkeit mit sich bringen kann.
-Durch das Fehlen praktischer Softwarelösungen, sowie die bereits beschriebenen Problemen des Vendor Locks und der Insellösungen im Kontext der bestehenden Softwarelösungen, wird die Annahme begründet, dass eine Verknüpfung
+Durch das Fehlen praktischer Softwarelösungen, sowie den bereits beschriebenen Problemen des Vendor Locks und der Insellösungen im Kontext der bestehenden Softwarelösungen wird die Annahme begründet, dass eine Verknüpfung
 einer offenen Schnittstelle mit einer modularen Softwarearchitektur bislang nicht berücksichtigt wurde. Daher soll im Rahmen dieser Arbeit untersucht werden, wie mithilfe einer solchen Architektur die Probleme aus \ref{sec:problemstellung}
-gezielt angegangen werden können
+gezielt angegangen werden können.
 \subsection{Forschungsfragen}
 Um die oben genannten Zielsetzungen methodisch zu untersuchen, konzentriert sich diese Arbeit auf die Beantwortung der folgenden zwei Kernfragen:
 \begin{description}
-    \item[FF1:] Wie lässt sich eine Graph-basierte Datenstruktur auf Basis des IFC-Standards gestalten, um die komplexen funktionalen Abhängigkeiten der TGA und MSR effizient abzubilden und als Grundlage für ein erweiterbares Inbetriebnahmemanagement zu nutzen?
+    \item[FF1:] Wie lässt sich eine graphbasierte Datenstruktur auf Basis des IFC-Standards gestalten, um die komplexen funktionalen Abhängigkeiten der TGA und MSR effizient abzubilden und als Grundlage für ein erweiterbares Inbetriebnahmemanagement zu nutzen?
     \item[FF2:] Wie lässt sich eine modulare Multi-Tenant-Architektur für Inbetriebnahmemanagement-Software gestalten, welche funktionale Erweiterungen ermöglicht?
 \end{description}
 \subsection{Zielsetzung}
@@ -46,13 +45,13 @@ Um die komplexen Beziehungen zwischen Bauteilen, Gewerken und Prozessen performa
 wird das System auf einer Graphdatenbank aufgesetzt. Im Gegensatz zu starren relationalen Tabellen
 ermöglicht die Graphentechnologie eine flexible Verknüpfung der Datenquellen und bildet so das Rückgrat
 für die Interkonnektivität zwischen den Projektbeteiligten.
-Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-on-fähige Software-Architektur.
+Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-on-fähige Softwarearchitektur.
 Diese erlaubt es, spezifische Anforderungen für das Inbetriebnahmemanagement als modulare Erweiterungen zu implementieren,
-ohne den Software-Kern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
-entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern Unternehmen die
+ohne den Softwarekern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
+entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern den Unternehmen die
 Souveränität über ihre digitalen Prozesse zurückgibt und eine zukunftssichere Skalierbarkeit in Großprojekten ermöglicht.
 \subsection{Methodik}
 Um die beschriebene Zielsetzung zu erreichen, wird diese Arbeit in drei Teilschritte unterteilt. Zuerst soll durch Literaturrecherche und prototypische Tests ein Domänenmodell mit der Graphdatenbank \textit{Neo4j} und dem \gls{Framework} \textit{GraphQL} als Vermittlerinstanz
-auf seine Vorteile und Machbarkeit untersucht werden. Im nächsten Schritt soll eine modulare Softwarearchitektur innerhalb des Javascript-Ökosystems und aufbauend auf dem Konzept der Microfrontends, entworfen werden. Die technische Umsetzung soll mit React als Frontend-Technologie
+auf seine Vorteile und Machbarkeit untersucht werden. Im nächsten Schritt soll eine modulare Softwarearchitektur innerhalb des Javascript-Ökosystems und aufbauend auf dem Konzept der Microfrontends entworfen werden. Die technische Umsetzung soll mit React als Frontend-Technologie
 zusammen mit dem Build-Tool \textit{Vite} und dem Architekturmuster \textit{Module Federation} erfolgen. Dabei soll anhand eines Prototyps die modulare und erweiterbare Architektur gezeigt werden.
 Auf diesen beiden Lösungsansätzen aufbauend soll als letzter Schritt die Zusammenführung beider Teilsysteme erfolgen. Hierbei wird der Prototyp der modularen Softwarearchitektur über die GraphQL-Schnittstelle an die Graphdatenbank angebunden.
