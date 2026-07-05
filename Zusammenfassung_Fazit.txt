@@ -1,0 +1,40 @@
+% !TEX root = ../Abschlussarbeit_Jan_Händl.tex
+\section{Zusammenfassung und Fazit}
+\label{sec:zusammenfassung_fazit}
+
+\subsection{Zusammenfassung der Arbeit}
+Die fortschreitende Komplexität moderner Bauprojekte kontrastiert stark mit dem geringen Digitalisierungsgrad in der Ausführungs- und Inbetriebnahmephase. Proprietäre Softwareinseln, Vendor-Lock-in-Effekte sowie der fehleranfällige „Excel-Fallback“ gefährden regelmäßig die revisionssichere Dokumentation und Qualitätssicherung im Inbetriebnahmemanagement. Das Ziel dieser Bachelorarbeit war der Entwurf einer erweiterbaren, transparenten Softwarearchitektur auf Basis des offenen IFC-Standards, die diese systemischen Ineffizienzen überwindet.
+
+Im Rahmen der Arbeit wurden hierfür zwei technologische Kernkonzepte konzipiert, prototypisch implementiert und anschließend zusammengeführt:
+\begin{enumerate}
+    \item \textbf{Graphbasiertes Domänenmodell:} Unter Nutzung der Graphdatenbank Neo4j wurde ein digitaler Zwilling der Bauwerksdaten erstellt. Die hierarchischen und stark vernetzten Strukturen des IFC-Standards (IFC 4.3) wurden nativ als Labeled Property Graph abgebildet. Als Schnittstelle und Validierungsinstanz dient eine GraphQL-Middleware, welche über typisierte Schemata die IFC-Konformität eingehender Datenänderungen (Mutationen) sicherstellt.
+    \item \textbf{Modulare Microfrontend-Architektur:} Zur flexiblen Erweiterung der Anwendung wurde eine modulare Client-Architektur im React-Ökosystem entworfen. Mithilfe des modernen Build-Tools Vite und des Webpack-Nachfolgers \textit{Module Federation} wurden funktionale Module als autonome \textit{Remotes} entwickelt, die von einer zentralen \textit{Host}-Applikation zur Laufzeit dynamisch geladen und orchestriert werden. Die Organisation erfolgte in einem performanten Monorepo unter Verwendung von Turborepo.
+\end{enumerate}
+
+Die erfolgreiche Zusammenführung beider Teilsysteme demonstriert die Praxistauglichkeit des Entwurfs. Über die GraphQL-Schnittstelle greifen die einzelnen Microfrontends flexibel und typsicher auf die Graphdatenbank zu. Ein durchgängiges Berechtigungsmanagement ermöglicht zudem das dynamische, rechtebasierte Nachladen von Modulen zur Realisierung der Multi-Tenant-Fähigkeit im Frontend.
+
+\subsection{Beantwortung der Forschungsfragen}
+Auf Basis der praktischen Umsetzung und der Evaluierung des Prototyps lassen sich die in Kapitel~\ref{sec:problemstellung} aufgeworfenen Forschungsfragen wie folgt beantworten:
+
+\paragraph{FF1: Wie lässt sich eine graphbasierte Datenstruktur auf Basis des IFC-Standards gestalten, um die komplexen funktionalen Abhängigkeiten der TGA und MSR effizient abzubilden und als Grundlage für ein erweiterbares Inbetriebnahmemanagement zu nutzen?}
+Die Abbildung des IFC-Standards als Labeled Property Graph in Neo4j erweist sich als äußerst effizient, da sie die inhärente, verweisbasierte Datenstruktur des IFC-Express-Schemas nativ widerspiegelt. Komplexe TGA- und MSR-Strukturen, wie beispielsweise geschlossene Regelkreise zwischen Sensoren (\textit{IfcSensor}), Aktoren (\textit{IfcActuator}) und Reglern (\textit{IfcController}), können ohne rechenintensive Tabellen-Joins als topologische Pfade modelliert werden. 
+
+Zur datenseitigen Konsistenzsicherung und zur Erleichterung der Anwendungsentwicklung wurde eine GraphQL-Schnittstelle als Middleware integriert. Die Definition IFC-konformer GraphQL-Schemata erzwingt eine strikte Typsicherheit. Um eine Entkopplung und Isolation von Bauteilen im Graphen zu vermeiden, wurden relationale Kanten wie \textit{CONTAINED\_IN\_SPATIAL\_STRUCTURE} als essenzielle Beziehungen definiert. 
+Für die Abfrage komplexer und in ihrer Pfadtiefe variabler MSR-Verbindungen stoßen reine GraphQL-Queries an funktionale Grenzen. Hier bietet die Kombination mit serverseitig in GraphQL eingebetteten, rekursiven Cypher-Abfragen (unter Verwendung variabler Pfadlängen wie \texttt{*1..15}) eine performante Lösung, um verschachtelte Systemstrukturen über mehrere Ports und Bus-Kopplungen hinweg zu traversieren.
+
+\paragraph{FF2: Wie lässt sich eine modulare Multi-Tenant-Architektur für Inbetriebnahmemanagement-Software gestalten, welche funktionale Erweiterungen ermöglicht?}
+Die gestellte Anforderung wird durch eine Microfrontend-Architektur gelöst, die mittels \textit{Vite} und dem Plugin \textit{@module-federation/vite} realisiert wird. Die Host-Applikation fungiert als flexibler Orchestrator (Shell), der die Benutzeroberfläche strukturiert und Remotes zur Laufzeit lädt.
+Die funktionale Erweiterbarkeit wird durch eine zweifache Entkopplung erreicht:
+\begin{itemize}
+    \item \textbf{Entwicklung und Deployment:} Durch die Organisation im Turborepo-Monorepo können neue Erweiterungen (Add-ons) isoliert als eigenständige Apps entwickelt werden, während gemeinsame UI-Komponenten (\texttt{@workspace/ui}) und Konfigurationen konsistent geteilt werden.
+    \item \textbf{Laufzeit-Integration:} Ein Shell-Skript automatisiert das Bootstrapping neuer Remotes und aktualisiert eine zentrale Konfigurationsdatei (\texttt{mfe.config.json}), um eine nahtlose Integration in die Host-Umgebung zu gewährleisten.
+\end{itemize}
+Die Multi-Tenancy-Fähigkeit im Frontend wird durch ein rechtebasiertes Laden realisiert: Die Host-App gleicht die Nutzerberechtigungen ab und rendert Remotes (wie das \textit{error-mfe}) nur bei vorliegender Autorisierung. Zur Absicherung des Gesamtsystems gegen fehlerhafte Erweiterungen wurden React \textit{Error Boundaries} implementiert. Der Prototyp belegt, dass lokale Abstürze innerhalb eines Microfrontends dank dieser Kapselung isoliert werden und die Stabilität der Host-Anwendung nicht beeinträchtigen.
+
+\subsection{Kritische Würdigung}
+Obwohl das vorgestellte System die Kernanforderungen an Flexibilität, Typsicherheit und Ausfallsicherheit erfüllt, zeigt die Evaluierung auch architektonische Herausforderungen auf.
+Der Einsatz von Microfrontends führt zu einer signifikant höheren Komplexität bei der initialen Konfiguration sowie im Bereich der anwendungsübergreifenden Kommunikation. Da React-spezifische Mechanismen wie Props und Context-Stores die technologische Unabhängigkeit der Remotes verletzen würden, müssen alternative Kommunikationspfade (wie Event-Emitter, lokale Browser-Speicher oder API-Synchronisationen) gewählt werden, was einen erhöhten Entwicklungsaufwand bedingt.
+
+Im Kontext der Datenmodellierung stellte das manuelle Erstellen der komplexen GraphQL-Schemata für den umfangreichen IFC-Standard eine erhebliche Hürde dar. Der unterstützende Einsatz von Large Language Models (LLMs) wie \textit{Gemini 3.5 (Medium)} erwies sich hierbei als wertvolle Hilfe und reduzierte den Entwicklungsaufwand drastisch. Allerdings zeigte sich auch eine spürbare Fehleranfälligkeit des Modells bei fehlender Spezifizierung, was eine kontinuierliche, manuelle Überprüfung anhand der offiziellen buildingSMART-Dokumentation zwingend erforderlich machte. Zudem muss die clientseitige Multi-Tenant-Filterung stets durch serverseitige Sicherheitsmechanismen in der GraphQL-Middleware gestützt werden, um Datenlecks zuverlässig zu verhindern.
+
+Insgesamt bietet die Kombination aus graphbasierter IFC-Modellierung und einer Microfrontend-Architektur jedoch ein zukunftsweisendes Fundament, um den Vendor-Lock-in im Bauwesen aufzubrechen und Unternehmen die Souveränität über ihre digitalen Prozesse im Inbetriebnahmemanagement zurückzugeben.
