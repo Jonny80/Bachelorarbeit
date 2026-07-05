@@ -1,0 +1,1122 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{alkhatib2021graph}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=e2ff5c24e379f589d997ebb8c9b40ef7}{%
+           family={Alkhatib},
+           familyi={A\bibinitperiod},
+           given={Hamza},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=505420795dd49792cdfa7fbf788d399a}{%
+           family={Olbina},
+           familyi={O\bibinitperiod},
+           given={Svetlana},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27b5d17f6c0fbc18839c7a5ad8ff622a}{%
+           family={Issa},
+           familyi={I\bibinitperiod},
+           given={Raja\bibnamedelimb R.\bibnamedelimi A.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{fullhash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{fullhashraw}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{bibnamehash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{authorbibnamehash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{authornamehash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{authorfullhash}{aba09024d2afa6e31338cf6db31ed9cf}
+      \strng{authorfullhashraw}{aba09024d2afa6e31338cf6db31ed9cf}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Information Technology in Construction (ITcon)}
+      \field{title}{A Graph Database and Query Approach to IFC Data Management}
+      \field{urlday}{28}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{26}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{89\bibrangedash 112}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.36680/j.itcon.2021.006
+      \endverb
+      \verb{urlraw}
+      \verb https://ufdcimages.uflib.ufl.edu/IR/00/01/11/93/00006/A%20Graph%20Database%20and%20Query%20Approach%20to%20IFC%20Data%20Management.pdf
+      \endverb
+      \verb{url}
+      \verb https://ufdcimages.uflib.ufl.edu/IR/00/01/11/93/00006/A%20Graph%20Database%20and%20Query%20Approach%20to%20IFC%20Data%20Management.pdf
+      \endverb
+    \endentry
+    \entry{BBSR}{report}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=67712ab12d18491ed9b25638733be855}{%
+           family={BBSR},
+           familyi={B\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Bundesinstitut für Bau-, Stadt- und Raumforschung (BBR)}%
+      }
+      \list{location}{1}{%
+        {Bonn}%
+      }
+      \strng{namehash}{67712ab12d18491ed9b25638733be855}
+      \strng{fullhash}{67712ab12d18491ed9b25638733be855}
+      \strng{fullhashraw}{67712ab12d18491ed9b25638733be855}
+      \strng{bibnamehash}{67712ab12d18491ed9b25638733be855}
+      \strng{authorbibnamehash}{67712ab12d18491ed9b25638733be855}
+      \strng{authornamehash}{67712ab12d18491ed9b25638733be855}
+      \strng{authorfullhash}{67712ab12d18491ed9b25638733be855}
+      \strng{authorfullhashraw}{67712ab12d18491ed9b25638733be855}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{title}{Beitrag der Digitalisierung zur Produktivität in der Baubranche}
+      \field{type}{BBSR-Online-Publikation}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://www.bbsr.bund.de/BBSR/DE/veroeffentlichungen/bbsr-online/2019/bbsr-online-19-2019-dl.pdf?__blob=publicationFile&v=2
+      \endverb
+      \verb{url}
+      \verb https://www.bbsr.bund.de/BBSR/DE/veroeffentlichungen/bbsr-online/2019/bbsr-online-19-2019-dl.pdf?__blob=publicationFile&v=2
+      \endverb
+    \endentry
+    \entry{bertschek2019zukunft}{report}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=6bb61a12adecd1cdc1dcf067f9e4320c}{%
+           family={Bertschek},
+           familyi={B\bibinitperiod},
+           given={Irene},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e60761da1ebe070317a03f68a4511ee1}{%
+           family={Niebel},
+           familyi={N\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9f4bfdf3317b36720536cae44fade7c2}{%
+           family={Ohnemus},
+           familyi={O\bibinitperiod},
+           given={Jörg},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Zentrum für Europäische Wirtschaftsforschung (ZEW) im Auftrag des Bundesinstituts für Bau-, Stadt- und Raumforschung (BBSR)}%
+      }
+      \strng{namehash}{1c96086976851ece59ba57b548dba448}
+      \strng{fullhash}{1c96086976851ece59ba57b548dba448}
+      \strng{fullhashraw}{1c96086976851ece59ba57b548dba448}
+      \strng{bibnamehash}{1c96086976851ece59ba57b548dba448}
+      \strng{authorbibnamehash}{1c96086976851ece59ba57b548dba448}
+      \strng{authornamehash}{1c96086976851ece59ba57b548dba448}
+      \strng{authorfullhash}{1c96086976851ece59ba57b548dba448}
+      \strng{authorfullhashraw}{1c96086976851ece59ba57b548dba448}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{german}
+      \field{number}{10.08.17.7-17.48}
+      \field{subtitle}{Endbericht}
+      \field{title}{Zukunft Bau – Beitrag der Digitalisierung zur Produktivität in der Baubranche}
+      \field{type}{BBSR-Online-Publikation}
+      \field{urlday}{26}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://savearchive.zbw.eu/bitstream/11159/3753/1/ZukunftBau_BBSR_Endbericht2019.pdf
+      \endverb
+      \verb{url}
+      \verb https://savearchive.zbw.eu/bitstream/11159/3753/1/ZukunftBau_BBSR_Endbericht2019.pdf
+      \endverb
+    \endentry
+    \entry{google_graphdb}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b4e595bd8646c01df540ff38696a35be}{%
+           family={Cloud},
+           familyi={C\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {Google}%
+      }
+      \strng{namehash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{fullhash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{fullhashraw}{b4e595bd8646c01df540ff38696a35be}
+      \strng{bibnamehash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{authorbibnamehash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{authornamehash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{authorfullhash}{b4e595bd8646c01df540ff38696a35be}
+      \strng{authorfullhashraw}{b4e595bd8646c01df540ff38696a35be}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{german}
+      \field{title}{Was ist eine Graphdatenbank?}
+      \field{urlday}{13}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://cloud.google.com/discover/what-is-a-graph-database?hl=de
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/discover/what-is-a-graph-database?hl=de
+      \endverb
+    \endentry
+    \entry{react_docs_error_boundaries}{online}{}{}
+      \list{organization}{1}{%
+        {Meta Open Source}%
+      }
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Offizielle React-Dokumentation zur Implementierung von Fehlergrenzen (Error Boundaries) in Komponentenstrukturen}
+      \field{title}{Component – React Reference: Catching rendering errors with an Error Boundary}
+      \field{urlday}{3}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+      \endverb
+      \verb{url}
+      \verb https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+      \endverb
+    \endentry
+    \entry{mf_integrations_guide}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8e9e2647b4b9d87d7833b4fc3f834497}{%
+           family={Federation},
+           familyi={F\bibinitperiod},
+           given={Module},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{fullhash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{fullhashraw}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{bibnamehash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{authorbibnamehash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{authornamehash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{authorfullhash}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \strng{authorfullhashraw}{8e9e2647b4b9d87d7833b4fc3f834497}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Overview of official ecosystem integrations and build plugins for Module Federation 2.0}
+      \field{title}{Integrations - Module Federation Documentation}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://module-federation.io/integrations/index.html
+      \endverb
+      \verb{url}
+      \verb https://module-federation.io/integrations/index.html
+      \endverb
+    \endentry
+    \entry{feth2023studie}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=3c9c932f125cab557138ed3ff989e580}{%
+           family={Feth},
+           familyi={F\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=09dc6f5b815e24a5b60211d985e00273}{%
+           family={Jeswein},
+           familyi={J\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d70faead903eb65e1ea299c02c6f25b2}{%
+           family={Ludborzs},
+           familyi={L\bibinitperiod},
+           given={Stefanie},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ae7647ab4146a7f15652a84695415653}
+      \strng{fullhash}{ae7647ab4146a7f15652a84695415653}
+      \strng{fullhashraw}{ae7647ab4146a7f15652a84695415653}
+      \strng{bibnamehash}{ae7647ab4146a7f15652a84695415653}
+      \strng{authorbibnamehash}{ae7647ab4146a7f15652a84695415653}
+      \strng{authornamehash}{ae7647ab4146a7f15652a84695415653}
+      \strng{authorfullhash}{ae7647ab4146a7f15652a84695415653}
+      \strng{authorfullhashraw}{ae7647ab4146a7f15652a84695415653}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Fraunhofer IESE}
+      \field{title}{Studie: Stand der Digitalisierung in der Baubranche}
+      \field{volume}{12}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://www.iese.fraunhofer.de/blog/digitalisierung-baubranche-studie/
+      \endverb
+      \verb{url}
+      \verb https://www.iese.fraunhofer.de/blog/digitalisierung-baubranche-studie/
+      \endverb
+    \endentry
+    \entry{sandeepa}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8f40b95af28160ab5547917caff25e3c}{%
+           family={Genne},
+           familyi={G\bibinitperiod},
+           given={Sandeepa},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{fullhash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{fullhashraw}{8f40b95af28160ab5547917caff25e3c}
+      \strng{bibnamehash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{authorbibnamehash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{authornamehash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{authorfullhash}{8f40b95af28160ab5547917caff25e3c}
+      \strng{authorfullhashraw}{8f40b95af28160ab5547917caff25e3c}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{7}
+      \field{journaltitle}{Journal Of Engineering And Computer Sciences}
+      \field{month}{07}
+      \field{title}{Micro-Frontend Architecture: Challenges, Solutions, and Future Trends in Modern Web Development}
+      \field{urlday}{3}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{volume}{4}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{754\bibrangedash 760}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb https://sarcouncil.com/download-article/SJECS-219-2025-754-760.pdf
+      \endverb
+      \verb{url}
+      \verb https://sarcouncil.com/download-article/SJECS-219-2025-754-760.pdf
+      \endverb
+    \endentry
+    \entry{giehl}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d4f2b37f5ab6c63d31e9f9e58d7665db}{%
+           family={Giehl},
+           familyi={G\bibinitperiod},
+           given={Ayu\bibnamedelima Justina},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität München}%
+      }
+      \strng{namehash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{fullhash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{fullhashraw}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{bibnamehash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{authorbibnamehash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{authornamehash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{authorfullhash}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \strng{authorfullhashraw}{d4f2b37f5ab6c63d31e9f9e58d7665db}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{note}{Betreut durch Prof. Dr.-Ing. André Borrmann und Sebastian Esser}
+      \field{title}{Validierung von BIM-Modellen auf Basis graphenbasierter Repräsentation}
+      \field{type}{Bachelor of Science (B.Sc.)}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://mediatum.ub.tum.de/doc/1690155/uw2py9y821bqme4e03hajpb0o.Giehl_2022_Esser.pdf
+      \endverb
+      \verb{url}
+      \verb https://mediatum.ub.tum.de/doc/1690155/uw2py9y821bqme4e03hajpb0o.Giehl_2022_Esser.pdf
+      \endverb
+    \endentry
+    \entry{eigener_code_usb}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=01dfd1e06221883b7100f3106b97c4e8}{%
+           family={Händl},
+           familyi={H\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{fullhash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{fullhashraw}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{bibnamehash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{authorbibnamehash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{authornamehash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{authorfullhash}{01dfd1e06221883b7100f3106b97c4e8}
+      \strng{authorfullhashraw}{01dfd1e06221883b7100f3106b97c4e8}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Digitaler Anhang auf beiliegendem USB-Stick}
+      \field{note}{Enthält die vollständige Implementierung inklusive der Vite- und Module-Federation-Konfiguration}
+      \field{title}{Quellcode und Konfigurationsdateien}
+      \field{year}{2026}
+    \endentry
+    \entry{heise_mf}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=41d8aabe028808b7d38773c770f04ed1}{%
+           family={Hartmann},
+           familyi={H\bibinitperiod},
+           given={Nils},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Heise Medien GmbH \& Co. KG}%
+      }
+      \strng{namehash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{fullhash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{fullhashraw}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{bibnamehash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{authorbibnamehash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{authornamehash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{authorfullhash}{41d8aabe028808b7d38773c770f04ed1}
+      \strng{authorfullhashraw}{41d8aabe028808b7d38773c770f04ed1}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{heise online}
+      \field{month}{10}
+      \field{title}{Die Micro-Frontend-Revolution: Webpack 5 Module Federation}
+      \field{urlday}{13}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.heise.de/hintergrund/Die-Micro-Frontend-Revolution-Webpack-5-Module-Federation-4930583.html
+      \endverb
+      \verb{url}
+      \verb https://www.heise.de/hintergrund/Die-Micro-Frontend-Revolution-Webpack-5-Module-Federation-4930583.html
+      \endverb
+      \keyw{Micro-Frontends,Webpack 5,Module Federation,Software-Architektur}
+    \endentry
+    \entry{ibm_graphql_2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IBM Deutschland}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhashraw}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhashraw}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{german}
+      \field{note}{Think Topics}
+      \field{title}{Was ist GraphQL?}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ibm.com/de-de/think/topics/graphql
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/de-de/think/topics/graphql
+      \endverb
+    \endentry
+    \entry{turborepo_internal_packages}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a3228e7b06434cb80b81a8511f0b3ccc}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Vercel},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{fullhash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{fullhashraw}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{bibnamehash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{authorbibnamehash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{authornamehash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{authorfullhash}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \strng{authorfullhashraw}{a3228e7b06434cb80b81a8511f0b3ccc}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Turborepo Docs}
+      \field{title}{Creating an Internal Package -- Turborepo Documentation}
+      \field{urlday}{30}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://turborepo.dev/docs/crafting-your-repository/creating-an-internal-package
+      \endverb
+      \verb{url}
+      \verb https://turborepo.dev/docs/crafting-your-repository/creating-an-internal-package
+      \endverb
+    \endentry
+    \entry{IfcObjectDefinition}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9933600153227f4ecf00c74672a9ff52}{%
+           family={International},
+           familyi={I\bibinitperiod},
+           prefix={buildingSMART},
+           prefixi={b\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{organization}{1}{%
+        {buildingSMART}%
+      }
+      \strng{namehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{fullhash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{fullhashraw}{9933600153227f4ecf00c74672a9ff52}
+      \strng{bibnamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorbibnamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authornamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorfullhash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorfullhashraw}{9933600153227f4ecf00c74672a9ff52}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{Industry Foundation Classes (IFC) Specification}
+      \field{title}{IFC 4.3.0.1 Official Standard -- IfcObjectDefinition}
+      \field{urlday}{22}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ifc43-docs.standards.buildingsmart.org/IFC/RELEASE/IFC4x3/HTML/lexical/IfcObjectDefinition.htm
+      \endverb
+      \verb{url}
+      \verb https://ifc43-docs.standards.buildingsmart.org/IFC/RELEASE/IFC4x3/HTML/lexical/IfcObjectDefinition.htm
+      \endverb
+    \endentry
+    \entry{IfcSensor}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9933600153227f4ecf00c74672a9ff52}{%
+           family={International},
+           familyi={I\bibinitperiod},
+           prefix={buildingSMART},
+           prefixi={b\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{organization}{1}{%
+        {buildingSMART}%
+      }
+      \strng{namehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{fullhash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{fullhashraw}{9933600153227f4ecf00c74672a9ff52}
+      \strng{bibnamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorbibnamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authornamehash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorfullhash}{9933600153227f4ecf00c74672a9ff52}
+      \strng{authorfullhashraw}{9933600153227f4ecf00c74672a9ff52}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{Industry Foundation Classes (IFC) Specification}
+      \field{title}{IFC 4.3.0.1 Official Standard -- IfcSensor}
+      \field{urlday}{22}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ifc43-docs.standards.buildingsmart.org/IFC/RELEASE/IFC4x3/HTML/lexical/IfcSensor.htm
+      \endverb
+      \verb{url}
+      \verb https://ifc43-docs.standards.buildingsmart.org/IFC/RELEASE/IFC4x3/HTML/lexical/IfcSensor.htm
+      \endverb
+    \endentry
+    \entry{ismail}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=f3be4a39ca4394dd52938540e3a0e5ab}{%
+           family={Ismail},
+           familyi={I\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=443efffb418f418bf7a8e60f84b1f173}{%
+           family={Nahar},
+           familyi={N\bibinitperiod},
+           given={Ahmed},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=88c41cec16efeb05bf904a45be6ea6dc}{%
+           family={Scherer},
+           familyi={S\bibinitperiod},
+           given={Raimar},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{fullhash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{fullhashraw}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{bibnamehash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{authorbibnamehash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{authornamehash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{authorfullhash}{01e91c1fd34cb377efca61e0da5dedbe}
+      \strng{authorfullhashraw}{01e91c1fd34cb377efca61e0da5dedbe}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{07}
+      \field{title}{Application of graph databases and graph theory concepts for advanced analysing of BIM models based on IFC standard}
+      \field{year}{2017}
+    \endentry
+    \entry{marktl2023micro}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a577ea2d16410b15746272f0e8b37ac5}{%
+           family={Marktl},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Alpen-Adria-Universität Klagenfurt}%
+      }
+      \list{location}{1}{%
+        {Klagenfurt, Österreich}%
+      }
+      \strng{namehash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{fullhash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{fullhashraw}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{bibnamehash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{authorbibnamehash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{authornamehash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{authorfullhash}{a577ea2d16410b15746272f0e8b37ac5}
+      \strng{authorfullhashraw}{a577ea2d16410b15746272f0e8b37ac5}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{title}{Micro Frontends as Architectural Style for Web Applications}
+      \field{type}{Masterarbeit}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://netlibrary.aau.at/obvuklhs/download/pdf/9161714
+      \endverb
+      \verb{url}
+      \verb https://netlibrary.aau.at/obvuklhs/download/pdf/9161714
+      \endverb
+    \endentry
+    \entry{neo4j_graphql_node}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b91d20fe47cad9e636a3670f7d2f8b8f}{%
+           family={Neo4j},
+           familyi={N\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {Neo4j Documentation}%
+      }
+      \strng{namehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{fullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{fullhashraw}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{bibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorbibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authornamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorfullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorfullhashraw}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{Automatic generation of Queries and Mutations for CRUD interactions}
+      \field{title}{Neo4j GraphQL Library -- Introduction}
+      \field{urlday}{23}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://neo4j.com/docs/graphql/current/
+      \endverb
+      \verb{url}
+      \verb https://neo4j.com/docs/graphql/current/
+      \endverb
+    \endentry
+    \entry{neo4j_cypher_variable_length}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2c62f21ebf40e60bcbdb27fa929899f6}{%
+           family={{Neo4j, Inc.}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Neo4j Graph Data Platform}%
+      }
+      \strng{namehash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{fullhash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{fullhashraw}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{bibnamehash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{authorbibnamehash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{authornamehash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{authorfullhash}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \strng{authorfullhashraw}{2c62f21ebf40e60bcbdb27fa929899f6}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{Patterns -- Variable-length paths}
+      \field{title}{Neo4j Cypher Manual}
+      \field{urlday}{3}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://neo4j.com/docs/cypher-manual/current/patterns/variable-length-paths/
+      \endverb
+      \verb{url}
+      \verb https://neo4j.com/docs/cypher-manual/current/patterns/variable-length-paths/
+      \endverb
+    \endentry
+    \entry{npm_doku}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bb30e85411b56df41296726ab445dc8f}{%
+           family={npm},
+           familyi={n\bibinitperiod}}}%
+      }
+      \strng{namehash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{fullhash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{fullhashraw}{bb30e85411b56df41296726ab445dc8f}
+      \strng{bibnamehash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{authorbibnamehash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{authornamehash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{authorfullhash}{bb30e85411b56df41296726ab445dc8f}
+      \strng{authorfullhashraw}{bb30e85411b56df41296726ab445dc8f}
+      \field{sortinit}{n}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{npm Documentation}
+      \field{urlday}{30}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.npmjs.com/cli/v10/using-npm/
+      \endverb
+      \verb{url}
+      \verb https://docs.npmjs.com/cli/v10/using-npm/
+      \endverb
+    \endentry
+    \entry{RAMONELL2023105109}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=05760494937998213ff256e8fdf6bf07}{%
+           family={Ramonell},
+           familyi={R\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ba8e67f79ac143a009d27e00a381de70}{%
+           family={Chacón},
+           familyi={C\bibinitperiod},
+           given={Rolando},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e079431459811a1e0b8294437f8807df}{%
+           family={Posada},
+           familyi={P\bibinitperiod},
+           given={Héctor},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{fullhash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{fullhashraw}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{bibnamehash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{authorbibnamehash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{authornamehash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{authorfullhash}{fe548e50a275cd270dd91d2c1435d956}
+      \strng{authorfullhashraw}{fe548e50a275cd270dd91d2c1435d956}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The emergence of digital twin technologies offers a promising avenue for improving decision-making through the integrated use of up-to-date physical or synthetically simulated data. Nevertheless, the practical implementation of digital twins in the built environment remains a significant challenge. This paper describes a system that seamlessly integrates data into digital twins of built assets. The system uses a knowledge graph to achieve data integration, which is designed to be modular, flexible, and interoperable. The graph includes BIM models, metadata from an external IoT platform, and process-related information. The system is microservice-based and revolves around a graph database housing the knowledge graph. It employs dynamic operations to update the knowledge graph and is tested using civil engineering infrastructure examples. Results from this work can be used to create pipelines that extract and operate with data connecting computational agents integrated into the system as microservices or connected through the system API.}
+      \field{issn}{0926-5805}
+      \field{journaltitle}{Automation in Construction}
+      \field{title}{Knowledge graph-based data integration system for digital twins of built assets}
+      \field{volume}{156}
+      \field{year}{2023}
+      \field{pages}{105109}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.autcon.2023.105109
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0926580523003692
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0926580523003692
+      \endverb
+      \keyw{Digital twin,BIM,Data integration,Knowledge graph,Microservice architecture}
+    \endentry
+    \entry{microservices_state_management}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3097ac4c07fdaef621fdefd1b234fa7a}{%
+           family={Savani},
+           familyi={S\bibinitperiod},
+           given={Nilesh},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IJ Publication}%
+      }
+      \strng{namehash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{fullhash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{fullhashraw}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{bibnamehash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{authorbibnamehash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{authornamehash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{authorfullhash}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \strng{authorfullhashraw}{3097ac4c07fdaef621fdefd1b234fa7a}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2349-5162}
+      \field{journaltitle}{Journal of Emerging Technologies and Innovative Research (JETIR)}
+      \field{month}{11}
+      \field{number}{11}
+      \field{title}{State Management in Micro Frontends: Challenges and Strategies}
+      \field{volume}{10}
+      \field{year}{2023}
+      \field{pages}{d477\bibrangedash d481}
+      \range{pages}{-1}
+      \verb{urlraw}
+      \verb https://www.jetir.org/papers/JETIR2311359.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.jetir.org/papers/JETIR2311359.pdf
+      \endverb
+    \endentry
+    \entry{seidel2020graph}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e9a6cf3ea332e3712bbf90e53515819a}{%
+           family={Seidel},
+           familyi={S\bibinitperiod},
+           given={Udo},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{fullhash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{fullhashraw}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{bibnamehash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{authorbibnamehash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{authornamehash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{authorfullhash}{e9a6cf3ea332e3712bbf90e53515819a}
+      \strng{authorfullhashraw}{e9a6cf3ea332e3712bbf90e53515819a}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{07}
+      \field{journaltitle}{Linux-Magazin}
+      \field{langid}{german}
+      \field{month}{7}
+      \field{title}{Beziehungsfragen: Einstieg in Graph-Datenbanken}
+      \field{urlday}{13}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.linux-magazin.de/ausgaben/2020/07/graph-datenbanken/
+      \endverb
+      \verb{url}
+      \verb https://www.linux-magazin.de/ausgaben/2020/07/graph-datenbanken/
+      \endverb
+    \endentry
+    \entry{taibi2022micro}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4d08ae1a3f71e9cc303d7cc0722f5186}{%
+           family={Taibi},
+           familyi={T\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8177ace3c931bb6727eeb5543cef35cc}{%
+           family={Mezzalira},
+           familyi={M\bibinitperiod},
+           given={Luca},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {ACM New York, NY, USA}%
+      }
+      \strng{namehash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{fullhash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{fullhashraw}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{bibnamehash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{authorbibnamehash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{authornamehash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{authorfullhash}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \strng{authorfullhashraw}{2567c2488cb4dc6b6d92e24fd4cfb13d}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM SIGSOFT Software Engineering Notes}
+      \field{number}{4}
+      \field{title}{Micro-Frontends: Principles, Implementations, and Pitfalls}
+      \field{volume}{47}
+      \field{year}{2022}
+      \field{pages}{25\bibrangedash 29}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1145/3561846.3561853
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3561846.3561853
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3561846.3561853
+      \endverb
+      \keyw{Micro-frontends,Software Architecture,Architectural Pitfalls,Web Engineering}
+    \endentry
+    \entry{wieruch2024monorepo}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=243e85ae7a690c6e398cd334598b4873}{%
+           family={Wieruch},
+           familyi={W\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{fullhash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{fullhashraw}{243e85ae7a690c6e398cd334598b4873}
+      \strng{bibnamehash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{authorbibnamehash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{authornamehash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{authorfullhash}{243e85ae7a690c6e398cd334598b4873}
+      \strng{authorfullhashraw}{243e85ae7a690c6e398cd334598b4873}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{https://www.robinwieruch.de/javascript-monorepos/\#why-use-a-monorepo}
+      \field{month}{2}
+      \field{title}{Why use a {M}onorepo in {J}ava{S}cript?}
+      \field{urlday}{28}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{wolf:2025:ifc2graphql}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=44e995af642c63105228ac7d51852098}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=49946a8cf5db4e1251683b8c7f487ab8}{%
+           family={Esser},
+           familyi={E\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=20aaece1a4ca14e26567b7dd9816d8ec}{%
+           family={Borrmann},
+           familyi={B\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{fullhash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{fullhashraw}{58541d339cc9d913607efc9fec90c16b}
+      \strng{bibnamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorbibnamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authornamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorfullhash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorfullhashraw}{58541d339cc9d913607efc9fec90c16b}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 42nd International CIB W78 Conference}
+      \field{month}{5}
+      \field{title}{IFC2GraphQL: Schema Mapping and Automated API Construction from IFC to GraphQL}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.35490/ec3.2025.254
+      \endverb
+      \keyw{BauPuls360; GNI; IFC; BIM;}
+    \endentry
+    \entry{wolf_20206_graphql}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=44e995af642c63105228ac7d51852098}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=49946a8cf5db4e1251683b8c7f487ab8}{%
+           family={Esser},
+           familyi={E\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=20aaece1a4ca14e26567b7dd9816d8ec}{%
+           family={Borrmann},
+           familyi={B\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{fullhash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{fullhashraw}{58541d339cc9d913607efc9fec90c16b}
+      \strng{bibnamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorbibnamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authornamehash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorfullhash}{58541d339cc9d913607efc9fec90c16b}
+      \strng{authorfullhashraw}{58541d339cc9d913607efc9fec90c16b}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proc. of the European Conference on Computing in Construction (EC3)}
+      \field{month}{5}
+      \field{title}{An Extensible GraphQL API for Fine-Grained Access to Building Information Models}
+      \field{year}{2026}
+      \keyw{LOCenter; GNI; CCBE; BauPuls360;}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
