@@ -93,8 +93,8 @@ Nach 30 Sekunden löst die Komponente automatisch einen Absturz aus. Im Listing 
     sessionStorage.setItem("error_mf_initial_crashed", "true");
     throw new Error(
       countdown <= 0
-        ? "Periodischer Absturz nach 30 Sekunden! (Simulierter Fehler)"
-        : "Manueller Absturz ausgelöst! (Simulierter Fehler)"
+        ? "Simulierter automatischer Absturz!"
+        : "Manueller Absturz simuliert!"
     );
   }
 \end{lstlisting}

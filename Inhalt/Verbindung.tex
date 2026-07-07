@@ -1,13 +1,19 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
 \section{Verknüpfung der Microfrontends und der Graphdatenbank}
-Die zentrale
-%% Allgemeine Anbindung
-%% Erstellen eines prototyps zur veranschaulichung
-%% GraphQL mit listeners
-%% erwähnung von Middlewares evtl
-\subsection{Deployment Graphdatenbank}
-\subsection{Multi-Tenant Fähigkeit}
-%% konzentration auf App nicht auf die Datenbankstruktur
-%% evtl GraphQL mit exten type und dann auth hinzufügen
-%% evtl erwähnung vorgefertigter Apps 
-%% Microfrontends nach Rechten geladen und angezeigt werden
+Zuletzt soll die Implementierung der GraphQL Schnittstelle in der aus Kapitel \ref{sec:microfrontends} untersucht werden. Dabei soll primär auf die Entwicklerfreundlichkeit, die Nutzung der Introspection und der Dateneffizienz eingegangen werden.
+\begin{itemize}
+    \item \textbf{Entwicklerfreundlichkeit}: Bei einer modular erweiterbaren Architektur können mehrere Entwicklerteams an unterschiedlichen Microfrontends gleichzeitig arbeiten. Dabei ist eine übersichtliche und einfache Nutzung und Implementierung der Schnittstellen entscheidend für eine sowohl effiziente als auch skalierbare Entwicklung.
+    \item \textbf{Nutzung der Introspection}: Ein Kernaspekt der für die Überwindung des "Vendor-Locks", ist die Bereitstellung einer transparenten Schnittstelle. Dabei ist eine umfangreiche Dokumentation unerlässlich. Mit Sicht auf die Implementierung mittels GraphQL, kann die Introspection hierbei einen wichtigen Beitrag leisten. Wie bereits in Absatz \ref{sec:standard_api} beschrieben, bietet diese die Möglichkeit, die Dokumentation direkt aus den Schemata heraus bereitgestellt. Dabei bleibt die Dokumentation stets aktuell.
+    \item \textbf{Dateneffizienz}: Durch die Komplexität des IFC-Standards ist die Effizienz der Datenabfrage von entscheidender Bedeutung. Dabei soll GraphQL durch seine individuellen Abfragemöglichkeiten Probleme des Over- und Under-Fetching im Vergleich zu REST-Schnittstellen helfen zu überwinden.
+\end{itemize}
+\subsection{Einrichtung der Testumgebung}
+Um
+\subsection{Implementierung der Schnittstelle zwischen GraphQL und Microfrontends}
+%% Intrsospection Problematik
+\subsection{Nutzung der Introspection}
+\subsection{Dateneffizienz}
+\subsection{Fazit}
+
+
+
+
