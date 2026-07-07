@@ -8,18 +8,18 @@ Der IFC-Standard ist stark hierarchisch aufgebaut und besteht aus Objekten, Attr
 von der Basisklasse \textit{IfcRoot} ab und erben über spezialisiertere Zwischenklassen weitere spezifische Attribute.
 Abbildung \ref{fig:wall_hier} zeigt die Hierarchie der Klasse \textit{IfcWall} auf:
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\textwidth]{Hierarchie.png}
-  \caption{Hierarchischer Aufbau der IFC-Klassen.}
-  \label{fig:wall_hier}
+    \centering
+    \includegraphics[width=1\textwidth]{Hierarchie.png}
+    \caption{Hierarchischer Aufbau der IFC-Klassen.}
+    \label{fig:wall_hier}
 \end{figure}
 
 Die Objekte werden durch Beziehungen miteinander verknüpft. Beispielsweise ist ein Gebäude (\textit{IfcBuilding}) über die Relation \textit{IfcRelAggregates} mit einem Bauplatz (\textit{IfcSite}) verbunden. Dies ist schematisch in Abbildung \ref{fig:loc_structure} dargestellt:
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\textwidth]{LocationStructure.png}
-  \caption{Struktureller Aufbau der IFC-Klassen.}
-  \label{fig:loc_structure}
+    \centering
+    \includegraphics[width=1\textwidth]{LocationStructure.png}
+    \caption{Struktureller Aufbau der IFC-Klassen.}
+    \label{fig:loc_structure}
 \end{figure}
 
 \subsection{Graphdatenbanken}
@@ -27,10 +27,10 @@ Graphdatenbanken organisieren ihre Daten in Form eines Graphen. Dies bedeutet, d
 Dies wird insbesondere wichtig bei Datenmengen, bei denen die Beziehungen untereinander einen elementaren Bestandteil der Datenerhebung darstellen. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labeled Property Graphs. Hierbei können nicht nur
 Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden.
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\textwidth]{Graph_Database.png}
-  \caption{Labeled Property Graph}
-  \label{fig:property_graph}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Graph_Database.png}
+    \caption{Labeled Property Graph}
+    \label{fig:property_graph}
 \end{figure}
 Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier die Datenobjekte logisch miteinander verknüpft und aufwändige JOIN-Operationen vermieden
 werden können \cite{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten wie Social Media, Betrugserkennung oder Lieferketten \cite{google_graphdb}, da hierbei die Analyse der Verbindungen im Vordergrund
@@ -39,9 +39,9 @@ steht.
 Neo4j ist eine \gls{acid}-konforme Graphdatenbank auf der Grundlage von Labeled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
 Abfragesprache Cypher. Sie ist eine SQL-ähnliche deklarative Sprache, das bedeutet, dass im Fokus die Frage steht, was gesucht wird. Sie folgt dabei einem einfachen, strukturellen Aufbau:
 \begin{itemize}
-  \item \textbf{Knoten} werden in Klammern dargestellt: \texttt{(Node)};
-  \item \textbf{Beziehungen} werden als Pfeile zwischen den Knoten visualisiert: \texttt{-[:FOLGT]->};
-  \item \textbf{Eigenschaften} werden als Schlüssel-Wert-Paare in geschweiften Klammern definiert: \texttt{\{name: 'Max'\}}.
+    \item \textbf{Knoten} werden in Klammern dargestellt: \texttt{(Node)};
+    \item \textbf{Beziehungen} werden als Pfeile zwischen den Knoten visualisiert: \texttt{-[:FOLGT]->};
+    \item \textbf{Eigenschaften} werden als Schlüssel-Wert-Paare in geschweiften Klammern definiert: \texttt{\{name: 'Max'\}}.
 \end{itemize}
 Das folgende Listing zeigt beispielhaft eine Abfrage von offenen Mängeln an einer technischen Komponente:
 \begin{lstlisting}[language=cypher, caption={Abfrage von offenen Mängeln an einer technischen Komponente}]
@@ -55,10 +55,10 @@ RETURN c, i
 Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizienz der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um nur die benötigten
 Daten zu erhalten und so sogenanntes Over-oder Underfetching stark zu reduzieren. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
 \begin{itemize}
-  \item Schemata
-  \item Resolver
-  \item Mutationen
-  \item Abfragen
+    \item Schemata
+    \item Resolver
+    \item Mutationen
+    \item Abfragen
 \end{itemize}
 Das Herzstück von GraphQL sind die \texttt{Schemata}. Sie definieren die Struktur der Daten, welche abgefragt werden können, und werden in der stark typisierten Schemadefinitionssprache (SDL) geschrieben.
 
@@ -72,29 +72,29 @@ Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese V
 React ist eine von Meta entwickelte JavaScript-\gls{Bibliothek} zur Entwicklung von Webseiten und \glspl{SPA}. Die Bibliothek basiert auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere wiederverwendbare Komponenten unterteilt wird. Dafür
 führte React die Syntaxerweiterung \texttt{JSX} ein, die JavaScript, HTML und CSS in einer Datei vereint. React hat sich seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek entwickelt und sich als maßgebliche Methode für die Entwicklung moderner,
 interaktiver Benutzeroberflächen etabliert.
-\subsection{Microfrontends} \label{sec:microfrontends}
+\subsection{Microfrontends} \label{sec:microfrontends_intro}
 Analog zum Konzept der serverseitigen Microservices zerlegen Microfrontends das Frontend in mehrere semiautonome Komponenten. Die grundlegende Idee dahinter ist es, ein komplexes Gesamtsystem in kleinere, überschaubare Teilbereiche zu unterteilen und diese getrennt zu bearbeiten. Dabei bietet diese Architektur sowohl Vorteile als auch Hürden und Nachteile.
 \textbf{Vorteile} \\
 \begin{itemize}
-  \item \textbf{Unabhängige Entwicklung und Bereitstellung}: Teams können einzelne Microfrontends innerhalb der Gesamtanwendung unabhängig voneinander entwickeln und bereitstellen.
-  \item \textbf{Technologieunabhängigkeit}: Teams haben freie Wahl der Technologien, die ihren Anforderungen gerecht werden.
-  \item \textbf{Fehlerisolation}: Bei Fehlern fällt nur das betroffene Microfrontend aus, nicht die gesamte Anwendung.
-  \item \textbf{Skalierbarkeit}: Während bei Lastspitzen monolithische Anwendungen als Ganzes hochskaliert werden müssen, können bei Microfrontends gezielt einzelne Teilsysteme hochskaliert werden.
+    \item \textbf{Unabhängige Entwicklung und Bereitstellung}: Teams können einzelne Microfrontends innerhalb der Gesamtanwendung unabhängig voneinander entwickeln und bereitstellen.
+    \item \textbf{Technologieunabhängigkeit}: Teams haben freie Wahl der Technologien, die ihren Anforderungen gerecht werden.
+    \item \textbf{Fehlerisolation}: Bei Fehlern fällt nur das betroffene Microfrontend aus, nicht die gesamte Anwendung.
+    \item \textbf{Skalierbarkeit}: Während bei Lastspitzen monolithische Anwendungen als Ganzes hochskaliert werden müssen, können bei Microfrontends gezielt einzelne Teilsysteme hochskaliert werden.
 \end{itemize}
 \cite[Kap.~2.2.1]{marktl2023micro}\\
 \textbf{Nachteile} \\
 \begin{itemize}
-  \item \textbf{Kommunikation}: Kommunikation, die über die Grenzen einzelner Microfrontends hinausgeht, erfordert zusätzliche Komplexität \cite[Kap.~2.3.1]{marktl2023micro}.
-  \item \textbf{Verwaltung gemeinsamer Ressourcen}: Gemeinsam genutzte Ressourcen müssen über die einzelnen Microfrontends hinweg koordiniert und geteilt werden \cite[Kap.~2.3.2]{marktl2023micro}.
-  \item \textbf{Einheitlichkeit}: Da die Microfrontends unabhängig voneinander entwickelt werden, muss eine Konsistenz der Benutzeroberfläche und der Anwendungsarchitektur gewährleistet werden \cite[Kap.~1.1]{marktl2023micro}.
+    \item \textbf{Kommunikation}: Kommunikation, die über die Grenzen einzelner Microfrontends hinausgeht, erfordert zusätzliche Komplexität \cite[Kap.~2.3.1]{marktl2023micro}.
+    \item \textbf{Verwaltung gemeinsamer Ressourcen}: Gemeinsam genutzte Ressourcen müssen über die einzelnen Microfrontends hinweg koordiniert und geteilt werden \cite[Kap.~2.3.2]{marktl2023micro}.
+    \item \textbf{Einheitlichkeit}: Da die Microfrontends unabhängig voneinander entwickelt werden, muss eine Konsistenz der Benutzeroberfläche und der Anwendungsarchitektur gewährleistet werden \cite[Kap.~1.1]{marktl2023micro}.
 \end{itemize}
 \subsubsection{Module Federation}
 Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, das 2020 mit der Veröffentlichung von Webpack 5 eingeführt wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen
 in Microfrontends zu unterteilen. Dabei wird eine Anwendung als \textit{Host} und die restlichen als \textit{Remotes} definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der \textit{Remotes} zugreifen, die von diesen aktiv bereitgestellt werden (siehe \ref{fig:mf_vergleich_konfig}).
 \begin{figure}[H]
-  \centering
-  \begin{minipage}{0.48\textwidth}
-    \begin{lstlisting}[language=javascript, caption={Host}, label={lst:host}]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=javascript, caption={Host}, label={lst:host}]
 {
  import('mfe1/Cmp')
 
@@ -103,10 +103,10 @@ in Microfrontends zu unterteilen. Dabei wird eine Anwendung als \textit{Host} un
  }
 }
         \end{lstlisting}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.48\textwidth}
-    \begin{lstlisting}[language=javascript, caption={Remote}, label={lst:remote}]
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=javascript, caption={Remote}, label={lst:remote}]
 {
   exposes: {
 
@@ -115,34 +115,34 @@ in Microfrontends zu unterteilen. Dabei wird eine Anwendung als \textit{Host} un
   }
 }
         \end{lstlisting}
-  \end{minipage}
-  \caption{Webpack-Konfiguration für Host und Remote (Quelle: \cite{heise_mf})}
-  \label{fig:mf_vergleich_konfig}
+    \end{minipage}
+    \caption{Webpack-Konfiguration für Host und Remote (Quelle: \cite{heise_mf})}
+    \label{fig:mf_vergleich_konfig}
 \end{figure}
 
 
 Eine wesentliche Besonderheit von Module Federation besteht darin, dass Abhängigkeiten der einzelnen Anwendungen untereinander geteilt werden können \cite{heise_mf}, wodurch sich die Bundle-Größen erheblich verringern und die Effizienz gesteigert wird.
 \begin{figure}[H]
-  \centering
-  \begin{minipage}{0.48\textwidth}
-    \begin{lstlisting}[language=javascript, caption={Host}, label={lst:host_shared}]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=javascript, caption={Host}, label={lst:host_shared}]
 {
  shared: [
   "@angular/core", "..."
  ]
 }
         \end{lstlisting}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.48\textwidth}
-    \begin{lstlisting}[language=javascript, caption={Remote}, label={lst:remote_shared}]
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \begin{lstlisting}[language=javascript, caption={Remote}, label={lst:remote_shared}]
 {
   shared: [
   "@angular/core", "..."
  ]
 }
         \end{lstlisting}
-  \end{minipage}
-  \caption{Module Federation erlaubt das Teilen von Bibliotheken zwischen einzelnen Anwendungen (Quelle: \cite{heise_mf})}
-  \label{fig:mf_vergleich_depend}
+    \end{minipage}
+    \caption{Module Federation erlaubt das Teilen von Bibliotheken zwischen einzelnen Anwendungen (Quelle: \cite{heise_mf})}
+    \label{fig:mf_vergleich_depend}
 \end{figure}

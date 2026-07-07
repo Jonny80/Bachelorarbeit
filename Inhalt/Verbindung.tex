@@ -7,13 +7,11 @@ Zuletzt soll die Implementierung der GraphQL Schnittstelle in der aus Kapitel \r
     \item \textbf{Dateneffizienz}: Durch die Komplexität des IFC-Standards ist die Effizienz der Datenabfrage von entscheidender Bedeutung. Dabei soll GraphQL durch seine individuellen Abfragemöglichkeiten Probleme des Over- und Under-Fetching im Vergleich zu REST-Schnittstellen helfen zu überwinden.
 \end{itemize}
 \subsection{Einrichtung der Testumgebung}
-Um
-\subsection{Implementierung der Schnittstelle zwischen GraphQL und Microfrontends}
-%% Intrsospection Problematik
+Um eine Datengrundlage zur Bewertung der Kriterien zu schaffen, wurde lokal eine Neo4j Datenbank in einem \gls{docker} Container deployed. Zur Reduzierung des Konfigurationsaufwandes wurde \gls{docker_compose} verwendet. Die dafür erstelle Konfigurationsdatei ist unter \cite[\texttt{building\_management/tooling/docker/docker-compose.yml}]{eigener_code_usb} einsehbar. Neben der Graphdatenbank wird mit der Konfigurationsdatei auch der Neo4j Browser bereitgestellt. Dieser bietet die Möglichkeit Daten innerhalb der Graphdatenbank zu visualisieren, wie beispielsweise in Abbildung \ref{fig:graphdb_test}. Die Testdaten orientierten sich an den aus \ref{fig:MSR_TGA} dargestellten IFC-Klassen. Anhand derer wurden mit KI-Unterstützung die notwendigen GraphQL-Schemata, sowie die benötigten Beziehungen definiert. Die Befüllung der Graphdatenbank mit Testdaten erfolgte mittels eines KI-generierten Skriptes (bgl. \cite[\texttt{building\_management/apps/server/prototype/seed\_ifc.ts}]{eigener_code_usb}). Die verwendeten IFC-Klassen orientierten sich aus den in Abbildung \ref{fig:MSR_TGA} dargestellten Typen.
+%% Evtl Bild der fertigen Graphdatenbank
 \subsection{Nutzung der Introspection}
+
+\subsection{Implementierung der Schnittstelle zwischen GraphQL und Microfrontends}
+Mit dem der
 \subsection{Dateneffizienz}
 \subsection{Fazit}
-
-
-
-
