@@ -24,7 +24,7 @@ Die Objekte werden durch Beziehungen miteinander verknüpft. Beispielsweise ist 
 
 \subsection{Graphdatenbanken}
 Graphdatenbanken organisieren ihre Daten in Form eines Graphen. Dies bedeutet, dass Objekte als Knoten repräsentiert und über Kanten miteinander verbunden werden. Der wesentliche Vorteil dieser Struktur ist die native Darstellung von Beziehungen zwischen Objekten.
-Dies wird insbesondere wichtig bei Datenmengen, bei denen die Beziehungen untereinander einen elementaren Bestandteil der Datenerhebung darstellen. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labeled Property Graphs. Hierbei können nicht nur
+Dies wird insbesondere bei Datenmengen wichtig, bei denen die Beziehungen untereinander einen elementaren Bestandteil der Datenerhebung darstellen. Bei den gängigsten Graphdatenbanken handelt es sich um sogenannte Labeled Property Graphs. Hierbei können nicht nur
 Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden.
 \begin{figure}[htbp]
     \centering
@@ -32,12 +32,12 @@ Knoten, sondern auch Kanten mit Labels und Eigenschaften versehen werden.
     \caption{Labeled Property Graph}
     \label{fig:property_graph}
 \end{figure}
-Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier die Datenobjekte logisch miteinander verknüpft und aufwändige JOIN-Operationen vermieden
-werden können \cite{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei stark vernetzten Daten wie Social Media, Betrugserkennung oder Lieferketten \cite{google_graphdb}, da hierbei die Analyse der Verbindungen im Vordergrund
+Dieser Ansatz bietet eine hohe Flexibilität gegenüber relationalen Datenbanken, da hier die Datenobjekte logisch miteinander verknüpft und aufwendige JOIN-Operationen vermieden
+werden können \cite{seidel2020graph}. Graphdatenbanken erfreuen sich vor allem großer Beliebtheit bei der Analyse stark vernetzter Daten, beispielsweise in sozialen Netzwerken, bei der Betrugserkennung oder im Lieferkettenmanagement \cite{google_graphdb}, da hierbei die Analyse der Verbindungen im Vordergrund
 steht.
 \subsubsection{Neo4j}
 Neo4j ist eine \gls{acid}-konforme Graphdatenbank auf der Grundlage von Labeled Property Graphs. Sie wurde erstmalig 2007 von Emil Eifrem veröffentlicht und avancierte zu einer der weltweit führenden Graphdatenbanken. Ein zentrales Merkmal von Neo4j ist ihre
-Abfragesprache Cypher. Sie ist eine SQL-ähnliche deklarative Sprache, das bedeutet, dass im Fokus die Frage steht, was gesucht wird. Sie folgt dabei einem einfachen, strukturellen Aufbau:
+Abfragesprache Cypher. Sie ist eine SQL-ähnliche, deklarative Sprache. Das bedeutet, dass die Frage im Fokus steht, wonach gesucht wird. Sie folgt dabei einem einfachen, strukturellen Aufbau:
 \begin{itemize}
     \item \textbf{Knoten} werden in Klammern dargestellt: \texttt{(Node)};
     \item \textbf{Beziehungen} werden als Pfeile zwischen den Knoten visualisiert: \texttt{-[:FOLGT]->};
@@ -52,8 +52,8 @@ RETURN c, i
 
 
 \subsubsection{GraphQL} \label{sec:graphql}
-Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und erhöhten Effizienz der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um nur die benötigten
-Daten zu erhalten und so sogenanntes Over-oder Underfetching stark zu reduzieren. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
+Als Alternative zu \gls{Rest-API}s wurde GraphQL 2015 von Meta entwickelt. Der Vorteil liegt in der Flexibilität und der erhöhten Effizienz der Abfragesprache. Im Gegensatz zu REST kann mit GraphQL die Anfrage strukturiert werden, um nur die benötigten
+Daten zu erhalten und so das sogenannte Over- oder Underfetching stark zu reduzieren. Zusammengefasst kann der Entwickler genau definieren, welche Daten er abfragen möchte. Um dies zu ermöglichen, nutzt GraphQL vier Schlüsselkonzepte:
 \begin{itemize}
     \item Schemata
     \item Resolver
@@ -69,11 +69,11 @@ anhand der Schemata, was angefragt wurde, und bearbeitet diese.
 Für die Veränderung von Daten sind \texttt{Mutationen} verantwortlich. Diese Vorgänge ersetzen die \texttt{POST}-, \texttt{PUT}-, \texttt{PATCH}- und \texttt{DELETE}-Methoden, die von REST bekannt sind. Analog zu den Abfragen werden auch Mutationen in Schemata validiert.
 \cite{ibm_graphql_2024}
 \subsection{React}
-React ist eine von Meta entwickelte JavaScript-\gls{Bibliothek} zur Entwicklung von Webseiten und \glspl{SPA}. Die Bibliothek basiert auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere wiederverwendbare Komponenten unterteilt wird. Dafür
-führte React die Syntaxerweiterung \texttt{JSX} ein, die JavaScript, HTML und CSS in einer Datei vereint. React hat sich seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek entwickelt und sich als maßgebliche Methode für die Entwicklung moderner,
+React ist eine von Meta entwickelte JavaScript-\gls{Bibliothek} zur Entwicklung von Webanwendungen und \glspl{SPA}. Die Bibliothek basiert auf einem komponentenorientierten Ansatz, bei dem die Oberfläche in mehrere wiederverwendbare Komponenten unterteilt wird. Dafür
+führte React die Syntaxerweiterung \texttt{JSX} ein, die JavaScript und eine HTML-ähnliche Syntax in einer Datei vereint. React hat sich seit seiner Einführung im Jahr 2013 zur populärsten Frontend-Bibliothek entwickelt und als maßgebliche Methode für die Entwicklung moderner,
 interaktiver Benutzeroberflächen etabliert.
 \subsection{Microfrontends} \label{sec:microfrontends_intro}
-Analog zum Konzept der serverseitigen Microservices zerlegen Microfrontends das Frontend in mehrere semiautonome Komponenten. Die grundlegende Idee dahinter ist es, ein komplexes Gesamtsystem in kleinere, überschaubare Teilbereiche zu unterteilen und diese getrennt zu bearbeiten. Dabei bietet diese Architektur sowohl Vorteile als auch Hürden und Nachteile.
+Analog zum Konzept der serverseitigen Microservices zerlegen Microfrontends das Frontend in mehrere semiautonome Komponenten. Die grundlegende Idee dahinter ist, ein komplexes Gesamtsystem in kleinere, überschaubare Teilbereiche zu unterteilen und diese getrennt zu bearbeiten. Dabei bringt diese Architektur sowohl Vorteile als auch Nachteile und Herausforderungen mit sich.
 \textbf{Vorteile} \\
 \begin{itemize}
     \item \textbf{Unabhängige Entwicklung und Bereitstellung}: Teams können einzelne Microfrontends innerhalb der Gesamtanwendung unabhängig voneinander entwickeln und bereitstellen.
@@ -90,7 +90,7 @@ Analog zum Konzept der serverseitigen Microservices zerlegen Microfrontends das 
 \end{itemize}
 \subsubsection{Module Federation}
 Module Federation ist ein von Zack Jackson erfundenes Architekturmuster, das 2020 mit der Veröffentlichung von Webpack 5 eingeführt wurde. Es bietet die Möglichkeit, Code externer Anwendungen zur Laufzeit zu laden und somit monolithische Anwendungen
-in Microfrontends zu unterteilen. Dabei wird eine Anwendung als \textit{Host} und die restlichen als \textit{Remotes} definiert. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der \textit{Remotes} zugreifen, die von diesen aktiv bereitgestellt werden (siehe \ref{fig:mf_vergleich_konfig}).
+in Microfrontends zu unterteilen. Dabei wird eine Anwendung als \textit{Host} definiert, während die restlichen als \textit{Remotes} fungieren. Während der Laufzeit der Hostanwendung kann diese bei Bedarf auf Code bzw. Komponenten der \textit{Remotes} zugreifen, die von diesen aktiv bereitgestellt werden (siehe \ref{fig:mf_vergleich_konfig}).
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}

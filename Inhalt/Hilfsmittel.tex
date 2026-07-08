@@ -11,19 +11,19 @@ Folgend werden die genutzten Hilfsmittel aufgelistet.
     \toprule
     \textbf{Hilfsmittel}                                        & \textbf{Werkzeuge}                                                   & \textbf{Verwendung}                                                                                    \\
     \midrule
-    Zeichentool für Skizzen und Diagramme                       & Mermaid (M), Excalidraw (E), Screenshots (S), Neo4j Browser (N)      & Abb. 2.1 (M), 2.2 (M), 2.3 (E), 3.1 (N), 3.2 (N), 3.3 (S), 3.4 (N), 3.5 (M), 4.1 (E), 4.2 (M), 5.1 (N) \\ \hline
+    Zeichentool für Skizzen und Diagramme                       & Mermaid (M), Excalidraw (E), Screenshots (S), Neo4j-Browser (N)      & Abb. 2.1 (M), 2.2 (M), 2.3 (E), 3.1 (N), 3.2 (N), 3.3 (S), 3.4 (N), 3.5 (M), 4.1 (E), 4.2 (M), 5.1 (N) \\ \hline
     Rechtschreib- und Grammatikprüfung                          & Gemini 3.5, LTeX+ grammar/spell checking using LanguageTool  v15.7.1 & Komplette Arbeit                                                                                       \\ \hline
     Schreibprogramm                                             & Visual Studio Code, LaTeX Workshop                                   & Komplette Arbeit                                                                                       \\ \hline
-    Version Control System                                      & Git                                                                  & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
+    Versionskontrollsystem (VCS)                                & Git                                                                  & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
     Literaturrecherche                                          & Google Scholar, Researchgate, NotebookLM                             & Komplette Arbeit                                                                                       \\ \hline
     Integrated Development Environment                          & Visual Studio Code                                                   & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
-    Deployment Neo4j Datenbank                                  & Docker Compose                                                       & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
-    Visualisierung Neo4j Graph                                  & Neo4j Browser                                                        & Abb. 3.1, 3.2, 3.4                                                                                     \\ \hline
-    Generierung Code und GraphQL Schema, Resolver und Mutations & Gemini 3.1, Gemini 3.5                                               & Programmierteil (siehe digitalen Anhang), Listing. 6, 7, 8, 10, 11, 12                                 \\ \hline
-    Konfiguration Latex Projekt                                 & Gemini 3.1, Gemini 3.5                                               & Komplette Arbeit                                                                                       \\ \hline
+    Bereitstellung der Neo4j-Datenbank                          & Docker Compose                                                       & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
+    Visualisierung des Neo4j-Graphen                            & Neo4j Browser                                                        & Abb. 3.1, 3.2, 3.4                                                                                     \\ \hline
+    Generierung von Programmcode, GraphQL-Schemata, Resolvern und Mutationen & Gemini 3.1, Gemini 3.5                                               & Programmierteil (siehe digitalen Anhang), Listing. 6, 7, 8, 10, 11, 12                                 \\ \hline
+    Konfiguration des LaTeX-Projekts                            & Gemini 3.1, Gemini 3.5                                               & Komplette Arbeit                                                                                       \\ \hline
     Formulierung der Glossareinträge                            & Gemini 3.1, Gemini 3.5                                               & Glossar                                                                                                \\ \hline
     Formulierungsvorschläge von Sätzen                          & Gemini 3.1, Gemini 3.5                                               & Kapitel 1, Kapitel 2, Kapitel 3, Kapitel 4                                                             \\ \hline
-    Programmierung (Microfrontends, Scripte und Servercode)     & Gemini 3.1, Gemini 3.5                                               & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
+    Programmierung (Microfrontends, Skripte und Servercode)     & Gemini 3.1, Gemini 3.5                                               & Programmierteil (siehe digitalen Anhang)                                                               \\ \hline
 
     \bottomrule
   \end{tabularx}
@@ -32,7 +32,7 @@ Folgend werden die genutzten Hilfsmittel aufgelistet.
 \newpage
 \subsection{Verwendete KI-Prompts}
 \label{subsec:ki_prompts}
-Folgend sind exemplarisch die maßgeblichen in der Arbeit verwendeten KI-Prompts aufgelistet.
+Im Folgenden sind exemplarisch die maßgeblichen in der Arbeit verwendeten KI-Prompts aufgelistet.
 \begin{table}[H]
   \centering
   \small
@@ -44,14 +44,14 @@ Folgend sind exemplarisch die maßgeblichen in der Arbeit verwendeten KI-Prompts
     \toprule
     \textbf{Prompt}                                                                                      & \textbf{Ergebnis}                                              & \textbf{KI Modell}     \\
     \midrule
-    Wie kan ich den Text < Text > umformulieren                                                          & Vorschläge für Formulierungen                                  & Gemini 3.5, Gemini 3.1 \\ \hline
-    Mit gefällt folgendes Wort < Wort > in dem Text < Text > nicht finde Alternativen                    & Alternativen bzw. Synonyme für das Wort < Wort >               & Gemini 3.5, Gemini 3.1 \\ \hline
-    Schreibe einen Glossareintrag in Latex zu diesem Ausdruck < Ausdruck >                               & Latex Glossar Eintrag                                          & Gemini 3.5, Gemini 3.1 \\ \hline
+    Wie kann ich den Text < Text > umformulieren                                                         & Vorschläge für Formulierungen                                  & Gemini 3.5, Gemini 3.1 \\ \hline
+    Mir gefällt folgendes Wort < Wort > in dem Text < Text > nicht. Finde Alternativen                  & Alternativen bzw. Synonyme für das Wort < Wort >               & Gemini 3.5, Gemini 3.1 \\ \hline
+    Schreibe einen Glossareintrag in LaTeX zu diesem Ausdruck < Ausdruck >                               & LaTeX-Glossareintrag                                           & Gemini 3.5, Gemini 3.1 \\ \hline
     Fasse diese Quelle zusammen < Quelle >                                                               & Zusammenfassung der Quelle < Quelle >                          & Gemini 3.5, Gemini 3.1 \\ \hline
-    Finde in der folgenden Quelle < Quelle > Kapitel zu dem Thema < Thema >                              & Kapitelnummern welche inhaltlich das Thema < Thema > behandeln & Gemini 3.5, Gemini 3.1 \\ \hline
+    Finde in der folgenden Quelle < Quelle > Kapitel zu dem Thema < Thema >                              & Kapitelnummern, die inhaltlich das Thema < Thema > behandeln   & Gemini 3.5, Gemini 3.1 \\ \hline
     Implementiere folgendes Feature: < Programmieranweisung >                                            & Programmcode                                                   & Gemini 3.1, Gemini 3.5 \\ \hline
-    Überprüfe diesen Text auf Grammatikfehler: < Text >                                                  & Grammatikfehler in dem vorgegebenen Text                       & Gemini 3.1, Gemini 3.5 \\ \hline
-    Generiere für folgende IFC Klasse <IFC Klasse > ein GraphQL Schema, nutze dabei den IFC Standard 4.3 & GraphQL Schema der Klasse < IFC Klasse >                       & Gemini 3.1, Gemini 3.5 \\ \hline
+    Überprüfe diesen Text auf Grammatikfehler: < Text >                                                  & Grammatikfehler im vorgegebenen Text                           & Gemini 3.1, Gemini 3.5 \\ \hline
+    Generiere für folgende IFC-Klasse <IFC-Klasse > ein GraphQL-Schema, nutze dabei den IFC-Standard 4.3 & GraphQL-Schema der Klasse < IFC-Klasse >                       & Gemini 3.1, Gemini 3.5 \\ \hline
     Übersetze folgenden Text < Text >                                                                    & Übersetzung des folgenden Textes < Text > in Deutsch           & Gemini 3.1, Gemini 3.5 \\ \hline
 
 
