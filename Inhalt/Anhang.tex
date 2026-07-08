@@ -1,5 +1,4 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
-\appendix
 \section{Anhang}
 \subsection{Routing in Microfrontends}
 \label{subsec:microfrontends_routing}
@@ -114,4 +113,28 @@ Hier wird die Verwendung von Error Boundries gezeigt, um einen Absturz der Appli
                     <Error_mfApp />
                   </Suspense>
                 </ErrorBoundary>
+\end{lstlisting}
+\subsection{Beispielabfrage in Microfrontend an GraphQL}
+Folgend ist eine Fetch-Abfrage aus einem Microfrontend an die GraphQL-Schnittstelle abgebildet.
+\begin{lstlisting}[language=Javascript, caption={Abfrage an GraphQL aus Microfrontend}, label={lst:graphql_request}]
+const response = await fetch("http://localhost:4000/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({query: query})
+    });
+\end{lstlisting}
+Mit der folgenden Query
+\begin{lstlisting}[language=graphql, caption={GraphqlQuery um alle Sensoren und Pumpen zu erhalten}, label={lst:graphql_query}]
+query GetSensorsAndPumps {
+            ifcSensors {
+              name
+              tag
+            }
+            ifcPumps {
+              name
+              predefinedType
+            }
+          }
 \end{lstlisting}

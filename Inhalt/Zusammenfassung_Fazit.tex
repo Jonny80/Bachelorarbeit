@@ -1,11 +1,10 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
 \section{Zusammenfassung und Fazit}
 \label{sec:zusammenfassung_fazit}
-Teilprobleme der Digitalisierung der Baubranche sind unter anderem inkompatible Softwarelösungen, aufgrund von proprietären Schnittstellen, sowie unflexible Softwarelösungen, welche
-nur schwer an individuelle Anforderungen von Großbaustellen angepasst werden können. Für die erste Problemstellung wurde untersucht, inwiefern ein graphbasiertes Domänenmodell, welches auf den
+Teilprobleme der Digitalisierung der Baubranche sind unter anderem inkompatible und unflexible Softwarelösungen. Durch Nutzen proprietärer Schnittstellen gestaltet sich die Kommunikation zwischen einzelnen Anbietern oft als schwierig. Zudem lassen sich diese nur schwer an individuelle Anforderungen von Großbaustellen anpassen. Für die erste Problemstellung wurde untersucht, inwiefern ein graphbasiertes Domänenmodell, welches auf den
 IFC-Standard basiert und unterstützt von GraphQL als Vermittlungsinstanz, eine Lösung für die Inkompatibilität von Softwarelösungen darstellen kann. Um die zweite Problemstellung zu untersuchen, wurde
 eine modulare Softwarearchitektur, basierend auf Microfrontends und React, entwickelt. Hierbei wurde Module Federation für die Konfiguration der Microfrontends und Monorepos als organisatorisches Hilfsmittel
-verwendet. \newline
+verwendet. Ziel hierbei war es durch die Erweiterbarkeit von Modulen auf spezielle Anforderungen reagieren zu können. \newline
 Es konnte in Kapitel \ref{sec:graphdatabase} gezeigt werden, wie durch die Verwendung einer Graphdatenbank der IFC-Standard mit seiner komplexen und stark vernetzten Struktur gut abgebildet werden kann. GraphQL fungiert dabei als Vermittlungsschicht
 zwischen der Graphdatenbank und des Clients. Durch das Zusammenspiel beider Technologien können IFC-Daten strukturiert und effizient abgefragt werden. Ein wichtiger Eckpfeiler sind dabei die Schemata von GraphQL, welche
 durch ihre Typsicherheit die Einhaltung des IFC-Standards sicherstellen und auf Basis deren, grundlegende Abfrage- und Manipulationsmethoden automatisch generiert werden können. Zudem bietet GraphQL auch die Flexibilität,
