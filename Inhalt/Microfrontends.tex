@@ -5,7 +5,7 @@ scheitern sie oft an den spezifischen Detailanforderungen oder sind zu komplex u
 In der Praxis führt dies oft zu individuellen Spezialaufträgen an die Softwarehersteller, was meist einen Prozess beinhaltet, der mit erheblichen Zusatzkosten und langen Entwicklungszeiten verbunden ist \cite[Kap.~4.1]{feth2023studie}.
 Um dem entgegenzuwirken, bedarf es einer flexiblen und vor allem einfach erweiterbaren Struktur, in welcher individuelle Softwarelösungen als Erweiterungen implementiert werden können.
 Ein möglicher Ansatzpunkt hierfür ist das Konzept der Microfrontends. Dabei werden einzelne Funktionalitäten als eigenständige \glspl{Webapplikation} entwickelt,
-die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, die sogenannte Shell, als Container, in die die Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
+die sich zu einer gemeinsamen Benutzeroberfläche zusammenfügen lassen. Dabei fungiert eine Webapplikation, der sogenannte Host, als Container, in welchen die Microfrontends geladen werden. In Bezug auf eine Inbetriebnahmemanagementsoftware können die einzelnen Microfrontends exemplarisch eine \ac{ERP}-Software darstellen oder für
 einzelne Gewerke wie \ac{MSR} oder \ac{TGA} fungieren. Wie bereits in Absatz \ref{sec:microfrontends_intro} erwähnt, bietet dieser Ansatz mehrere Vorteile. Somit kann gewährleistet werden,
 dass bei Änderungen oder Updates nicht das Gesamtsystem beeinträchtigt wird und so ein kontinuierlicher Betrieb auf der Baustelle sichergestellt werden kann.
 Des Weiteren bietet diese Architektur auch bei Lastspitzen einzelner Gewerke, beispielsweise durch Prüfprozesse oder Mängelbehebungen, Vorteile. So ist es möglich, die Backend-Dienste einzelner
@@ -17,10 +17,10 @@ Hierbei wird grundlegend zwischen einem horizontalen und einem vertikalen Ansatz
 Microfrontends simultan auf einer Oberfläche dargestellt werden können \cite[Kap.~3.1]{taibi2022micro}.
 In Abbildung \ref{fig:micro_frontends} wird ein horizontaler Aufbau exemplarisch dargestellt:
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{microfrontends_example.png}
-    \caption{Exemplarischer horizontaler Aufbau von Microfrontends}
-    \label{fig:micro_frontends}
+  \centering
+  \includegraphics[width=1\textwidth]{microfrontends_example.png}
+  \caption{Exemplarischer horizontaler Aufbau von Microfrontends}
+  \label{fig:micro_frontends}
 \end{figure}
 Hier bildet die \textcolor[HTML]{2E7D32}{Shell} (grün) als Header und Sidebar den äußeren Rahmen der Anwendung, während einzelne Funktionalitäten wie ein \textcolor[HTML]{1565C0}{Dashboard} (blau)
 oder eine \textcolor[HTML]{EF6C00}{Managementsoftware} (orange) separat geladen werden. Die Hostapplikation fungiert hier nicht nur im
@@ -35,10 +35,10 @@ welcher Routing-Ansatz genutzt werden soll (vgl. Listing \ref{lst:microfrontends
 In bestimmten Szenarien ist eine direkte Kommunikation zwischen den Microfrontends notwendig. Wie bereits in Abschnitt \ref{sec:microfrontends_intro} erwähnt, stellt dies eine größere Herausforderung für Microfrontends als für monolithische Anwendungen dar.
 Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_state_management} mehrere Lösungsansätze:
 \begin{itemize}
-    \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface}s \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das andere Microfrontends reagieren können, die dieses Event abonniert haben, um gegebenenfalls ihre Daten zu aktualisieren.
-    \item \textbf{API-basierte Kommunikation}: Verlagert die Synchronisationslogik auf den Server. Die Microfrontends kommunizieren ausschließlich über API-Aufrufe mit dem Server. Datenänderungen werden zuerst mit dem Server synchronisiert, bevor andere Microfrontends diese abfragen können.
-    \item \textbf{Geteilte Bibliotheken oder Services}: Nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch. Da Microfrontends nicht zwingend eine Benutzeroberfläche besitzen müssen, können sie auch als Logikschicht fungieren (z.~B. als \gls{middleware} für den übergeordneten Datenaustausch).
-    \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
+  \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface}s \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das andere Microfrontends reagieren können, die dieses Event abonniert haben, um gegebenenfalls ihre Daten zu aktualisieren.
+  \item \textbf{API-basierte Kommunikation}: Verlagert die Synchronisationslogik auf den Server. Die Microfrontends kommunizieren ausschließlich über API-Aufrufe mit dem Server. Datenänderungen werden zuerst mit dem Server synchronisiert, bevor andere Microfrontends diese abfragen können.
+  \item \textbf{Geteilte Bibliotheken oder Services}: Nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch. Da Microfrontends nicht zwingend eine Benutzeroberfläche besitzen müssen, können sie auch als Logikschicht fungieren (z.~B. als \gls{middleware} für den übergeordneten Datenaustausch).
+  \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
 \end{itemize}
 Welcher dieser Ansätze gewählt wird oder ob eine Kombination aus mehreren Methoden implementiert wird,
 hängt letztlich stark von den spezifischen Anforderungen der jeweiligen Softwarelösung ab.
@@ -56,10 +56,10 @@ import { Button } from "@workspace/ui/components/button";
 
 In der folgenden Abbildung wird eine mögliche Ordnerstruktur am Beispiel des verwendeten Monorepos (\gls{turborepo}) verdeutlicht.
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Monorepo_Example.png}
-    \caption{Exemplarischer Aufbau eines Monorepos}
-    \label{fig:monorepo}
+  \centering
+  \includegraphics[width=1\textwidth]{Monorepo_Example.png}
+  \caption{Exemplarischer Aufbau eines Monorepos}
+  \label{fig:monorepo}
 \end{figure}
 Zusätzlich ermöglicht das Verwalten mehrerer Codebasen in einem zentralen Repository App-übergreifende Startskripte zu schreiben, um mehrere Anwendungen, wie beispielsweise die \textit{Host}-App mit zwei \textit{Remote}-Apps,
 parallel auszuführen. Auch die Paketverwaltung wird optimiert, da \gls{npm}-Pakete zentral verlinkt werden, können mehrere Apps darauf zugreifen, was einer Mehrfachinstallation entgegenwirkt.
@@ -90,8 +90,8 @@ npm install @module-federation/vite --save
 \end{lstlisting}
 Die Konfiguration des Plugins und damit auch der Microfrontends wird in den jeweiligen Konfigurationsdateien der eingesetzten Frontend-Technologien vorgenommen. Dabei ähneln sich die Konfigurationslogiken stark, insbesondere die Kernparameter \textit{remotes}, \textit{shared} und \textit{exposes} werden technologieübergreifend einheitlich verwendet (vgl. \cite[\texttt{building\_management/apps/communication/vite.config.js}]{eigener_code_usb}). Folgend werden diese Parameter erläutert:
 \begin{itemize}
-    \item \textbf{remotes}: Mit \textit{remotes} konfiguriert die \textit{Host}-Applikation, von welchen Microfrontends sie Komponenten empfangen möchte. Dabei ist der Pfad entscheidend, da er angibt, wo das Remote geladen wird.
-          \begin{lstlisting}[language=json, caption={Beispiel für die Angabe der Remotes in der Host-App}, label={lst:microfrontends_apps_remotes_konfig}]
+  \item \textbf{remotes}: Mit \textit{remotes} konfiguriert die \textit{Host}-Applikation, von welchen Microfrontends sie Komponenten empfangen möchte. Dabei ist der Pfad entscheidend, da er angibt, wo das Remote geladen wird.
+        \begin{lstlisting}[language=json, caption={Beispiel für die Angabe der Remotes in der Host-App}, label={lst:microfrontends_apps_remotes_konfig}]
 remotes: {
         dashboard: {
           type: "module",
@@ -100,34 +100,34 @@ remotes: {
         },
 }
 \end{lstlisting}
-          Auffällig ist die Datei \texttt{remoteEntry.js}. Diese wird beim Build-Prozess der \textit{Remote}-Anwendung erzeugt und stellt zur Laufzeit ein Manifest bereit. Sie enthält essenzielle Metadaten über die freigegebenen Komponenten sowie die Pfade und URLs zu den eigentlichen Ressourcen der \textit{Remote}-App.
-    \item \textbf{shared}: Einer der Vorteile von \textit{Module Federation} is, wie bereits erwähnt, die Wiederverwendung von Bibliotheken. Diesbezüglich können Bibliotheken wie \textit{react} zwischen den Microfrontends geteilt werden, wodurch ein mehrmaliges Herunterladen vermieden wird. Welche Bibliotheken geteilt werden sollen, wird im \texttt{shared}-Parameter angegeben. Dabei ist es wichtig, die Versionsstände der geteilten Bibliotheken zu berücksichtigen. Bei inkompatiblen Versionen nutzt \textit{Module Federation} sein integriertes Versionsmanagement, um eine passende Version auszuwählen.
-    \item \textbf{exposes}: Dieser Parameter wird nur von \textit{Remotes} verwendet. Er gibt an, welche Teile der App für die \textit{Host}-Applikation zur Verfügung gestellt werden sollen. Falls die gesamte App eingebunden werden soll, wird der Einstiegspunkt (hier \texttt{App.tsx}) angegeben.
-          \begin{lstlisting}[language=json, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_konfig}]
+        Auffällig ist die Datei \texttt{remoteEntry.js}. Diese wird beim Build-Prozess der \textit{Remote}-Anwendung erzeugt und stellt zur Laufzeit ein Manifest bereit. Sie enthält essenzielle Metadaten über die freigegebenen Komponenten sowie die Pfade und URLs zu den eigentlichen Ressourcen der \textit{Remote}-App.
+  \item \textbf{shared}: Einer der Vorteile von \textit{Module Federation} ist, wie bereits erwähnt, die Wiederverwendung von Bibliotheken. Diesbezüglich können Bibliotheken wie \textit{react} zwischen den Microfrontends geteilt werden, wodurch ein mehrmaliges Herunterladen vermieden wird. Welche Bibliotheken geteilt werden sollen, wird im \texttt{shared}-Parameter angegeben. Dabei ist es wichtig, die Versionsstände der geteilten Bibliotheken zu berücksichtigen. Bei inkompatiblen Versionen nutzt \textit{Module Federation} sein integriertes Versionsmanagement, um eine passende Version auszuwählen.
+  \item \textbf{exposes}: Dieser Parameter wird nur von \textit{Remotes} verwendet. Er gibt an, welche Teile der App für die \textit{Host}-Applikation zur Verfügung gestellt werden sollen. Falls die gesamte App eingebunden werden soll, wird der Einstiegspunkt (hier \texttt{App.tsx}) angegeben.
+        \begin{lstlisting}[language=json, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_konfig}]
 exposes: {
   "./Dashboard": "./src/App.tsx"
 }
 \end{lstlisting}
-          Für die \textit{Host}-Applikation wird so die \textit{Remote}-Applikation als \textit{Dashboard} herausgeführt
-          \begin{lstlisting}[language=javascript, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_import}]
+        Für die \textit{Host}-Applikation wird so die \textit{Remote}-Applikation als \textit{Dashboard} herausgeführt
+        \begin{lstlisting}[language=javascript, caption={Beispiel für den expose Parameter}, label={lst:microfrontends_apps_expose_import}]
 import("dashboard/Dashboard")
 \end{lstlisting}
 \end{itemize}
 \subsubsection{Isolation und Fehlerresilienz}  \label{sec:isolation_mf}
-Ein Kernaspekt der Microfrontend-Architektur is die Isolation der einzelnen \textit{Remote}-Applikationen voneinander. Dies bedeutet zum einen, dass die einzelnen Microfrontends unabhängig voneinander entwickelt, ausgerollt und betrieben werden können und zum anderen, dass Fehler oder sogar Abstürze in einzelnen Microfrontends die \textit{Host}-Applikation nicht beeinträchtigen \cite{sandeepa}. Um diese Fehlerisolation zu testen, wurde das Microfrontend \textit{error-mfe} erstellt. Dieses Microfrontend simuliert einen Fehler durch das Werfen eines \textit{Errors} (siehe Listing \ref{lst:error_mf}). Um dem Absturz der Gesamtanwendung entgegenzuwirken, wurde, wie in Listing \ref{lst:error_boundry_mf} zu sehen ist, eine Error-Boundary-Komponente implementiert. Dabei wurde die React-Dokumentation als Referenz verwendet \cite{react_docs_error_boundaries}.
+Ein Kernaspekt der Microfrontend-Architektur ist die Isolation der einzelnen \textit{Remote}-Applikationen voneinander. Dies bedeutet zum einen, dass die einzelnen Microfrontends unabhängig voneinander entwickelt, ausgerollt und betrieben werden können und zum anderen, dass Fehler oder sogar Abstürze in einzelnen Microfrontends die \textit{Host}-Applikation nicht beeinträchtigen \cite{sandeepa}. Um diese Fehlerisolation zu testen, wurde das Microfrontend \textit{error-mfe} erstellt. Dieses Microfrontend simuliert einen Fehler durch das Werfen eines \textit{Errors} (siehe Listing \ref{lst:error_mf}). Um dem Absturz der Gesamtanwendung entgegenzuwirken, wurde, wie in Listing \ref{lst:error_boundry_mf} zu sehen ist, eine Error-Boundary-Komponente implementiert. Dabei wurde die React-Dokumentation als Referenz verwendet \cite{react_docs_error_boundaries}.
 Wie der Prototyp bestätigt (vgl. \cite[\texttt{building\_management/apps/error\_mf/App.tsx}]{eigener_code_usb}), kann bei Einhaltung der Kapselung durch eine Error Boundary die lokale Fehlerresilienz zur Laufzeit erhöht werden. Zusätzlich können nach Abfangen der Fehler die Microfrontends neu geladen oder ein Fallback-Mechanismus integriert werden \cite{sandeepa}.
 
 \subsubsection{Automatisierung der Konfigurationen}
 Um den immer gleichen Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer Module-Federation-Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
 \begin{itemize}
-    \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
-    \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite},\\
-          sowie Aktualisierung der Konfigurationsdatei \\
-          \texttt{building\_management/packages/mfe-config/mfe.config.json}
-    \item \textbf{3. Schritt}: Konfiguration der Microfrontends in der Konfigurationsdatei \\
-          \texttt{vite.config.ts} innerhalb der \textit{Host}-Applikation und der neu erstellten \texttt{Remote}-Applikation
-    \item \textbf{4. Schritt}: Einbinden des neuen Microfrontends in die \textit{Host}-Applikation \\
-          (vgl. \cite[\texttt{building\_management/apps/main/src/App.tsx} und \\ \texttt{building\_management/apps/main/src/components/Sidebar.tsx}]{eigener_code_usb})
+  \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
+  \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite},\\
+        sowie Aktualisierung der Konfigurationsdatei \\
+        \texttt{building\_management/packages/mfe-config/mfe.config.json}
+  \item \textbf{3. Schritt}: Konfiguration der Microfrontends in der Konfigurationsdatei \\
+        \texttt{vite.config.ts} innerhalb der \textit{Host}-Applikation und der neu erstellten \texttt{Remote}-Applikation
+  \item \textbf{4. Schritt}: Einbinden des neuen Microfrontends in die \textit{Host}-Applikation \\
+        (vgl. \cite[\texttt{building\_management/apps/main/src/App.tsx} und \\ \texttt{building\_management/apps/main/src/components/Sidebar.tsx}]{eigener_code_usb})
 \end{itemize}
 Dies ermöglicht eine unkomplizierte und schnelle Methode, die bestehende Architektur um neue Microfrontends zu erweitern.
 
