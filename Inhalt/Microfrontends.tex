@@ -38,11 +38,83 @@ Um dieser Hürde entgegenzuwirken, gibt es nach \cite[Kap.~4]{microservices_stat
   \item \textbf{Eventgesteuerte Kommunikation}: Verwendung des \gls{Interface}s \gls{eventemitter}. Dieser basiert auf dem Observer-Pattern und erlaubt über einen Publish/Subscribe-Mechanismus den Datenaustausch innerhalb des Browsers. Ein Microfrontend löst ein Event aus, auf das andere Microfrontends reagieren können, die dieses Event abonniert haben, um gegebenenfalls ihre Daten zu aktualisieren.
   \item \textbf{API-basierte Kommunikation}: Verlagert die Synchronisationslogik auf den Server. Die Microfrontends kommunizieren ausschließlich über API-Aufrufe mit dem Server. Datenänderungen werden zuerst mit dem Server synchronisiert, bevor andere Microfrontends diese abfragen können.
   \item \textbf{Geteilte Bibliotheken oder Services}: Nutzt geteilte Bibliotheken oder eigenständige Microfrontends für den Datenaustausch. Da Microfrontends nicht zwingend eine Benutzeroberfläche besitzen müssen, können sie auch als Logikschicht fungieren (z.~B. als \gls{middleware} für den übergeordneten Datenaustausch).
-  \item \textbf{Framework-unabhängiges State-Management}: Nutzt technologieübergreifende Mechanismen wie native browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
+  \item \textbf{Framework-unabhängige Kommunikation}: Nutzt technologieübergreifende Mechanismen wie native browserbasierte Speicher (z.~B. \gls{local_storage}) für den Datenaustausch.
 \end{itemize}
 Welcher dieser Ansätze gewählt wird oder ob eine Kombination aus mehreren Methoden implementiert wird,
 hängt letztlich stark von den spezifischen Anforderungen der jeweiligen Softwarelösung ab.
-Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \texttt{building\_management/apps/communication/src/App.tsx} auf dem beigelegten digitalen Anhang \cite{eigener_code_usb}.
+Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{perera2023enhancing} und \cite[Kap.~3, Kap.~4]{inproceedings} tabellarisch aufgezeigt:
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{xltabular}{\textwidth}{>{\hsize=0.65\hsize\raggedright\arraybackslash}X|>{\hsize=1.175\hsize\raggedright\arraybackslash}X|>{\hsize=1.175\hsize\raggedright\arraybackslash}X}
+  \caption{Vergleich übergreifender Kommunikationsmethoden in Micro-Frontend-Architekturen}
+  \label{tab:mfe_communication_comparison} \\
+  \hline
+  \textbf{Kommunikationsmethode} & \textbf{Vorteile} & \textbf{Nachteile} \\ \hline
+  \endfirsthead
+
+  \multicolumn{3}{c}{\tablename\ \thetable{} -- fortgesetzt von vorheriger Seite} \\ \hline
+  \textbf{Kommunikationsmethode} & \textbf{Vorteile} & \textbf{Nachteile} \\ \hline
+  \endhead
+
+  \hline
+  \multicolumn{3}{r}{Fortsetzung auf der nächsten Seite...} \\
+  \endfoot
+
+  \hline
+  \endlastfoot
+
+  \textbf{Eventgesteuerte Kommunikation} \newline Quelle: \cite[Kap.~3]{perera2023enhancing} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Frameworkunabhängigkeit}: Ermöglicht eine unabhängige Kommunikation ohne Code-Abhängigkeiten, da native Browser-APIs genutzt werden.
+    \item \textbf{Starke Isolation}: Ermöglicht einen Austausch über isolierte Browser-Kontexte hinweg.
+    \item \textbf{Kein Bundle-Overhead}: Verursacht keinerlei zusätzliche Paketgröße, da ausschließlich native Browser-Features genutzt werden.
+  \end{itemize} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Kein Replay-Mechanismus}: Gesendete Events, die nicht empfangen werden, gehen verloren, da keine Empfangsbestätigung oder Antwort erfolgt.
+    \item \textbf{Performance}: Bei erhöhter Threadanzahl bzw. erhöhter Eventanzahl erhöht sich die Sendezeit enorm.
+    \item \textbf{Erschwertes Debugging}: Bei einer hohen Anzahl an Ereignissen wird der Informationsfluss unübersichtlich und schwer nachzuverfolgen.
+    \item \textbf{Keine native Typsicherheit}: Daten können nur als Strings versandt werden und müssen manuell serialisiert und deserialisiert werden.
+  \end{itemize} \\ \hline
+
+  \textbf{Geteilte Bibliotheken oder Services} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Zentrale sichere Datenquelle}: Bietet eine konfliktfreie Quelle für globale Domänendaten (wie aktive Benutzer-Sessions oder Authentifizierungen).
+    \item \textbf{Hohe Performance}: Auch bei stark erhöhter Kommunikation bleibt die Performance hoch.
+    \item \textbf{Globale Zugriffsmöglichkeit}: Auf Daten kann im Kontext der gesamten Anwendung durchgehend zugegriffen werden.
+  \end{itemize} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Erhöhter Konfigurationsaufwand}: Die Schnittstellen müssen über alle Microfrontends hinweg klar vordefiert sein.
+    \item \textbf{Bruch der Isolation}: Widerspricht dem Kernprinzip der Isolation zwischen einzelnen Microfrontends.
+  \end{itemize} \\ \hline
+
+  \textbf{Framework-unabhängiges State-Management} (LocalStorage \& SessionStorage) &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Extrem einfache Umsetzung}: Sehr leichtgewichtig zu implementieren und von Haus aus frameworkunabhängig.
+    \item \textbf{Persistenz}: Daten bleiben persistent im lokalen Speicher des Browsers bestehen.
+  \end{itemize} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Keine native Typsicherheit}: Daten können nur als Strings versandt werden und müssen manuell serialisiert und deserialisiert werden.
+    \item \textbf{Koordinationsaufwand}: Daten im lokalen Speicher werden als Key-Value Paare gespeichert. Bei gleichen Keys werden die alten Werte überschrieben. Das kann zu Informationsverlust führen und muss demnach übergreifend koordiniert werden.
+  \end{itemize} \\ \hline
+
+  \textbf{API-basierte Kommunikation} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Hohe Performance}: Die Kommunikationszeiten bleiben selbst bei hoher Last stabil.
+    \item \textbf{Echtzeitfähig}: Daten können über Websockets oder GraphQL-Subscriptions in Echtzeit an Microfrontends gesendet werden.
+    \item \textbf{Hohe Datenkonsistenz}: Daten werden über eine zentrale Instanz validiert und synchronisiert. Dadurch können Daten durchgehend aktuell und persistent gehalten werden.
+  \end{itemize} &
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Erhöhte Netzwerklast}: Kann bei häufiger Abfrage zu hoher Netzwerklast führen.
+    \item \textbf{Konnektivitätsabhängig}: Für eine zuverlässige Datensynchronisation muss durchgehend eine stabile Verbindung zum Server bestehen.
+    \item \textbf{Hohe Latenz}: Bei geringer Auslastung des Servers entstehen zusätzliche Kommunikationszeiten im Vergleich zu rein lokalen Lösungen, da die Daten zuerst über einen Server gesendet werden müssen.
+    \item \textbf{Hohe architektonische Komplexität}: Die Methode erfordert die Bereitstellung, das Hosting sowie die kontinuierliche Verwaltung einer Server-Infrastruktur.
+  \end{itemize} \\ \hline
+\end{xltabular}
+\endgroup
+
+Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \texttt{building\_management/apps/communication} auf dem beigelegten digitalen Anhang \cite{eigener_code_usb}.
 
 \subsection{Organisation der Applikationen} \label{monorepo_orga}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu organisieren und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
@@ -118,7 +190,7 @@ Ein Kernaspekt der Microfrontend-Architektur ist die Isolation der einzelnen \te
 Wie der Prototyp bestätigt (vgl. \cite[\texttt{building\_management/apps/error\_mf/App.tsx}]{eigener_code_usb}), kann bei Einhaltung der Kapselung durch eine Error Boundary die lokale Fehlerresilienz zur Laufzeit erhöht werden. Zusätzlich können nach Abfangen der Fehler die Microfrontends neu geladen oder ein Fallback-Mechanismus integriert werden \cite{sandeepa}.
 
 \subsubsection{Automatisierung der Konfigurationen}
-Um den immer gleichen Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer Module-Federation-Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
+Um den immer repetetiven Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer Module-Federation-Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
 \begin{itemize}
   \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
   \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite},\\
