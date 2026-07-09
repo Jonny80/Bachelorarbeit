@@ -120,11 +120,11 @@ IfcObject & IfcProduct & IfcElement & IfcDistributionElement
 \end{lstlisting}
 Nicht optionale Attribute wie \textit{globalId} werden mit dem Suffix \textit{!} versehen.
 Als essenziell werden in diesem Kontext Beziehungen eingestuft, die für die strukturelle Integrität innerhalb der Graphdatenbank erforderlich sind.
-Als Beispiel hierfür dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
+Als Beispiel hierfür dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante (hier Rot markiert) aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
 Die strukturelle Notwendigkeit dieser Beziehung wird in Abbildung \ref{fig:graph_isolation} visuell verdeutlicht.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{Essential_rel.png}
+  \includegraphics[width=0.5\textwidth]{Essential_rel2.png}
   \caption{Vergleich der Graphenstruktur: Ohne die Relation \textit{IfcSpatialStructureElement} existiert der Sensor als isolierter Knoten ohne topologische Anbindung.}
   \label{fig:graph_isolation}
 \end{figure}
