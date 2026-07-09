@@ -115,7 +115,7 @@ Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{per
 \endgroup
 
 Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \texttt{building\_management/apps/communication} auf dem beigelegten digitalen Anhang \cite{eigener_code_usb}.
-
+Eine Erklärung zum Starten des Prototypes ist in der \texttt{README.md} im Hauptverzeichnis des Ordners \texttt{building\_management} zu finden.
 \subsection{Organisation der Applikationen} \label{monorepo_orga}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu organisieren und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
 Ein Monorepo ist eine Strategie, bei der mehrere Codebasen in einem \Gls{vcs}, wie z.~B. Git, zusammengeführt werden. Dabei können auch Hilfsmittel wie UI-Bibliotheken, Konfigurationsdateien oder Dokumentationen zentral
@@ -190,7 +190,7 @@ Ein Kernaspekt der Microfrontend-Architektur ist die Isolation der einzelnen \te
 Wie der Prototyp bestätigt (vgl. \cite[\texttt{building\_management/apps/error\_mf/App.tsx}]{eigener_code_usb}), kann bei Einhaltung der Kapselung durch eine Error Boundary die lokale Fehlerresilienz zur Laufzeit erhöht werden. Zusätzlich können nach Abfangen der Fehler die Microfrontends neu geladen oder ein Fallback-Mechanismus integriert werden \cite{sandeepa}.
 
 \subsubsection{Automatisierung der Konfigurationen}
-Um den immer repetetiven Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer Module-Federation-Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
+Um den immer repetitiven Prozess zur Erstellung neuer Microfrontends zu vereinfachen, wurde ein Shell-Skript erstellt. Dieses automatisiert die Initialisierung neuer Vite-Projekte sowie deren Einbindung in die bestehende \textit{Host}-Applikation und die Konfiguration von \textit{Module Federation}. Dennoch ist zu beachten, dass die Einbindung in die \textit{Host}-Applikation spezifisch auf den Prototypen abgestimmt ist und somit nicht verallgemeinert werden kann. Die Parameter \textit{name} und \textit{port} der Microfrontends und der Vite-Projekte wurden in einer Konfigurationsdatei zentralisiert (vgl. \cite[\texttt{building\_management/packages/mfe-config/mfe.config.json}]{eigener_code_usb}). Diese soll eine Konformität zwischen der \textit{Host}-Applikation und den einzelnen \textit{Remote}-Applikationen gewährleisten, da beide in ihrer Module-Federation-Konfiguration darauf zugreifen. Das Skript selbst geht wie folgt vor:
 \begin{itemize}
   \item \textbf{1. Schritt}: Initialisierung eines Vite-Projekts mit React im \texttt{/apps} Verzeichnis
   \item \textbf{2. Schritt}: Installation des Plugins \textit{@module-federation/vite},\\
