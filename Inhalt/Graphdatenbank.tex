@@ -1,10 +1,10 @@
 % !TEX root = ../Abschlussarbeit_Jan_Händl.tex
 \section{Graphbasiertes Datenmodell und Schnittstellendesign} \label{sec:graphdatabase}
 Der IFC-Standard ist ein stark vernetztes und hierarchisches Datenmodell, bei dem die Beziehungen selbst oft eine sehr wichtige Rolle einnehmen. Während relationale Datenbanken die Daten in starre Tabellen zwingen und Beziehungen
-aufwendig über rechenintensive \texttt{JOIN}-Operationen modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \cite[Kap.~2.2.3]{avgoren}. Somit können Datenpunkte mit deren zugehörigen Beziehungen gezielt abgefragt werden.
+aufwendig über rechenintensive \texttt{JOIN}-Operationen modelliert werden müssen, können Graphdatenbanken diese effizient darstellen \cite[Kap.~2.2.3]{avgoren}. Somit können Datenpunkte mit ihren zugehörigen Beziehungen gezielt abgefragt werden.
 \subsection{Graphbasierte Domänenmodellierung für IFC-Daten}
 Das Ziel der Domänenmodellierung ist es, mithilfe der Graphdatenbank eine möglichst realitätsnahe und intuitive Abbildung des IFC-Standards – einen sogenannten \textit{digitalen Zwilling} – zu erschaffen.
-Die derzeit gängigste Methode Bauwerksdaten auszutauschen ist die Nutzung von sogenannten \textit{.ifc}-Dateien \cite[Kap.~2.1]{avgoren}. Diese basieren auf dem \gls{STEP}-Dateiformat und beschreiben den IFC-Standard sequenziell in Textformat. Problematisch hierbei ist vor allem der monolithische Ansatz. Die Bauwerksdaten können über \textit{.ifc}-Dateien nur als einheitliches Ganzes exportiert werden, obwohl meist nur Teilgebiete erforderlich sind \cite{wolf_20206_graphql}. In Bezug auf Webapplikationen stellt dies, bedingt durch die Größe der Dateien, eine hohe Hürde dar.
+Die derzeit gängigste Methode, Bauwerksdaten auszutauschen, ist die Nutzung von sogenannten \textit{.ifc}-Dateien \cite[Kap.~2.1]{avgoren}. Diese basieren auf dem \gls{STEP}-Dateiformat und beschreiben den IFC-Standard sequenziell in Textformat. Problematisch hierbei ist vor allem der monolithische Ansatz. Die Bauwerksdaten können über \textit{.ifc}-Dateien nur als einheitliches Ganzes exportiert werden, obwohl meist nur Teilgebiete erforderlich sind \cite{wolf_20206_graphql}. In Bezug auf Webapplikationen stellt dies, bedingt durch die Größe der Dateien, eine hohe Hürde dar.
 \begin{lstlisting}[language=IFC, caption={Beispielhafter IFC-Datenauszug im STEP-Dateiformat (ISO 10303-21).}, label={lst:ifc_step_example}]
 // *KI generierte Textpassage*
 ISO-10303-21;
@@ -42,9 +42,9 @@ Für die visuelle Darstellung des Graphen bietet Neo4j mit seinem \textit{Neo4j 
   \label{fig:graphdb_test}
 \end{figure}
 Wie in Abbildung \ref{fig:graphdb_test} dargestellt, werden die Knoten anhand ihrer Labels farbig kodiert.
-In der exemplarischen Graphdatenbankstruktur werden die Stockwerke durch den labeled Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
+In der exemplarischen Graphdatenbankstruktur werden die Stockwerke durch den gelabelten Knoten \textcolor{neo4jStorey}{IfcBuildingStorey} in Pastellviolett dargestellt, während die einzelnen Räume als Knoten vom Typ \textcolor{neo4jSpace}{IfcSpace} in Lachsrosa farblich hervorgehoben werden.
 \subsection{GraphQL als Vermittlungsinstanz}
-Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen dem Server und der Graphdatenbank, sowie als Schnittstelle zwischen dem Server und den Clients implementiert. Diese Middleware hilft bei der Bewältigung zentraler Herausforderungen, indem sie Typsicherheit und einen detaillierten Datenabruf gewährleistet.
+Für eine effiziente und IFC-konforme Kommunikation wird als Vermittlungsschicht GraphQL zwischen dem Server und der Graphdatenbank sowie als Schnittstelle zwischen dem Server und den Clients implementiert. Diese Middleware hilft bei der Bewältigung zentraler Herausforderungen, indem sie Typsicherheit und einen detaillierten Datenabruf gewährleistet.
 Während Knoten in Graphdatenbanken beliebig definiert werden können, was eine konsequente Einhaltung des IFC-Standards erschwert, können mittels GraphQL-Schemata feste Strukturen vorgegeben werden, um genau dies zu verhindern \cite{wolf_20206_graphql}.
 Folgend ist exemplarisch ein Schema für die IFC-Klasse \textit{IfcObject} und deren Superklassen dargestellt:
 \begin{lstlisting}[caption={GraphQL-Schema für IFC-Kernausschnitte}, label={lst:graphql_ifc}]
@@ -95,7 +95,7 @@ Folgend wird die Vererbungshierarchie der Klasse \textit{IfcSensor} aus der offi
   \label{fig:ifc_sensor_hierarchy}
 \end{figure}
 Wie bereits in Listing \ref{lst:graphql_ifc} ersichtlich, kann diese Vererbungshierarchie in den GraphQL-Schemata abgebildet werden.
-Für eine pragmatische Umsetzung wurde jedoch auf die Definition nicht essentieller Beziehungen in den GraphQL-Schemata verzichtet. Ein Beispiel hierbei liefert die abstrakte Klasse
+Für eine pragmatische Umsetzung wurde jedoch auf die Definition nicht essenzieller Beziehungen in den GraphQL-Schemata verzichtet. Ein Beispiel hierbei liefert die abstrakte Klasse
 \textit{IfcObjectDefinition} \cite{IfcObjectDefinition}, die sieben optionale Beziehungen definiert. Die Anzahl der Definitionen für die Klasse \textit{IfcSensor} erhöht sich somit von acht auf 37 \cite{IfcSensor}.
 Dies wird in dem folgenden Schema ersichtlich, welches die Implementierung der IFC-Klasse \textit{IfcSensor} verdeutlicht:
 \begin{lstlisting}[caption={GraphQL-Schema für die Klasse IfcSensor}, label={lst:graphql_ifcSensor}]
@@ -120,7 +120,7 @@ IfcObject & IfcProduct & IfcElement & IfcDistributionElement
 \end{lstlisting}
 Nicht optionale Attribute wie \textit{globalId} werden mit dem Suffix \textit{!} versehen.
 Als essenziell werden in diesem Kontext Beziehungen eingestuft, die für die strukturelle Integrität innerhalb der Graphdatenbank erforderlich sind.
-Als Beispiel hierfür dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante (hier Rot markiert) aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
+Als Beispiel hierfür dient die Beziehung \textit{ContainedInStructure}. Während die übrigen IFC-Relationen entfallen, verhindert diese Kante (hier rot markiert) aus Sicht der Graphenstruktur die Entstehung isolierter Knoten.
 Die strukturelle Notwendigkeit dieser Beziehung wird in Abbildung \ref{fig:graph_isolation} visuell verdeutlicht.
 \begin{figure}[H]
   \centering
@@ -140,7 +140,7 @@ ContainedInStructure: [IfcSpatialStructureElement!]!
   )
 \end{lstlisting}
 \subsubsection{Mutationen und Resolver} \label{sec:Mutations_Resolvers}
-Wie bereits in Kapitel \ref{sec:graphql} beschrieben, nutzt GraphQL sogenannte Resolver für die Datenabfrage und Mutationen für die Datenmanipulation. Wie in Abbildung~\ref{lst:graphql_ifcSensor} erkennbar ist, wird
+Wie bereits in Kapitel \ref{sec:graphql} beschrieben, nutzt GraphQL sogenannte Resolver für die Datenabfrage und Mutationen für die Datenmanipulation. Wie in Listing~\ref{lst:graphql_ifcSensor} erkennbar ist, wird
 für den Typ \textit{IfcSensor} die \textit{@node}-Direktive verwendet. Zum einen signalisiert dies, dass es sich um einen Knoten in der Graphdatenbank handelt, aber zum anderen analysiert
 die native GraphQL-Bibliothek von Neo4j das Schema und generiert automatisiert Mutationen für Lese-, Schreib- und Aktualisierungsoperationen sowie Resolver mit standardisierten Filterungs- und Sortierungsoperationen \cite{neo4j_graphql_node}.
 Obwohl sich diese Automation nur auf einfache CRUD-Operationen beschränkt, verhilft dies trotzdem zu einem erheblichen Zeitersparnis. Komplexere Abfragen müssen hingegen manuell definiert werden. Dafür stehen
@@ -176,7 +176,7 @@ type Query {
 }
 \end{lstlisting}
 \end{itemize}
-Die Entscheidung, wann welche Abfragemethode sinnvoll ist, hängt stark von dem Anwendungsfall ab. Wie bereits beschrieben nutzt auch die GraphQL-Bibliothek Cypher, um mit der Graphdatenbank zu kommunizieren. Dabei werden auch automatisiert Performanceprobleme, wie das Lösen des N + 1 Problems (vgl. \cite{neo4j_graphql_node}) gelöst. Das \textsl{N + 1 Problem} beschreibt die Problematik, bei der für eine Liste von \texttt{N} Elementen, insgesamt \texttt{N + 1} Abfragen an die Datenbank geschickt werden, anstatt alle Abfragen in einer einzigen zu kapseln. Zudem können Queries, wie in Listing \ref{lst:graphql_clientQuery} beschrieben, direkt vom Client formuliert und an die GraphQL-Schnittstelle geschickt werden. Da der Client jedoch nicht direkt über die Cypher Direktive mit GraphQL kommunizieren kann, ist es bei dieser Methode notwendig die Cypher Abfrage zuerst auf dem Server zu implementieren, um sie anschließend als Query für den Client herauszuführen. \newline
+Die Entscheidung, wann welche Abfragemethode sinnvoll ist, hängt stark von dem Anwendungsfall ab. Wie bereits beschrieben nutzt auch die GraphQL-Bibliothek Cypher, um mit der Graphdatenbank zu kommunizieren. Dabei werden auch automatisiert Performanceprobleme, wie das Lösen des N + 1 Problems (vgl. \cite{neo4j_graphql_node}) gelöst. Das \textsl{N + 1 Problem} beschreibt die Problematik, bei der für eine Liste von \texttt{N} Elementen, insgesamt \texttt{N + 1} Abfragen an die Datenbank geschickt werden, anstatt alle Abfragen in einer einzigen zu kapseln. Zudem können Queries, wie in Listing \ref{lst:graphql_clientQuery} beschrieben, direkt vom Client formuliert und an die GraphQL-Schnittstelle geschickt werden. Da der Client jedoch nicht direkt über die Cypher Direktive mit GraphQL kommunizieren kann, ist es bei dieser Methode notwendig, die Cypher-Abfrage zuerst auf dem Server zu implementieren, um sie anschließend als Query für den Client herauszuführen. \newline
 Dennoch gibt es Einschränkungen bei der Nutzung von reinen GraphQL-Abfragen. Bei Graphtraversierungen, bei denen die genaue Tiefe des Graphen nicht im Voraus bekannt ist, stoßen reine GraphQL-Abfragen an ihre Grenzen. Hier zeigen sich die Vorteile von Cypher, da es semantisch in der Lage ist, die Pfade innerhalb der Graphdatenbank zu analysieren und die Tiefe rekursiv zu durchlaufen \cite{neo4j_cypher_variable_length}.
 Im Rahmen von MSR und TGA zeigt das folgende Beispiel die Problematik. Es soll der Controller (\textit{IfcController}), welcher einen Aktor (\textit{IfcActuator}) steuert, ermittelt werden. Hierfür muss der Pfad über mehrere Klassen hinweg durchlaufen werden. Die Anzahl der dazwischenliegenden Klassen und der daraus resultierenden Relationen ist jedoch variabel, da die genaue Struktur der Ports und Bus-Kopplungen bei komplexen Anlagen im Vorfeld nicht einheitlich ist. Cypher bietet hierfür eine semantische Lösung:
 \begin{lstlisting}[caption={Serverseitige Abfrage für die Klasse \textit{IfcSensor}}, label={lst:graphql_recurive_query}]
@@ -185,7 +185,7 @@ MATCH path = (actuator:IfcActuator {name: "Stellantrieb_Heizkreis_V01"})
   <-[:`:IfcRelNests`|`:IfcRelConnectsPorts`*1..15]- (controller:IfcController)
 RETURN controller.name AS ControllerName
 \end{lstlisting}
-Der entscheidende Parameter hierbei ist \textit{*1..15}. Hiermit kann eine variable Pfadlänge angegeben werden, welcher die Graphdatenbank anweist, den Pfad bis zu einer Maximallänge von 15 rekursiv zu durchsuchen.
+Der entscheidende Parameter hierbei ist \textit{*1..15}. Hiermit kann eine variable Pfadlänge angegeben werden, welche die Graphdatenbank anweist, den Pfad bis zu einer Maximallänge von 15 rekursiv zu durchsuchen.
 Eine solche Anweisung lässt sich nicht direkt in reinem GraphQL abbilden, da hier die Pfadtiefe und die zugrunde liegende Struktur explizit angegeben werden müssten.
 Da jedoch eine solche Komplexität bei einfachen CRUD-Operationen nicht notwendig ist, bietet GraphQL bei solchen Operationen eine bessere Entwicklererfahrung. Dazu tragen die Typsicherheit sowie die automatisch generierten Mutationen und Resolver bei.
 \subsection{Beispiel für MSR und TGA Klassen im IFC Standard}

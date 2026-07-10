@@ -48,7 +48,7 @@ Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{per
 \small
 \renewcommand{\arraystretch}{1.15}
 \begin{xltabular}{\textwidth}{>{\hsize=0.65\hsize\raggedright\arraybackslash}X|>{\hsize=1.175\hsize\raggedright\arraybackslash}X|>{\hsize=1.175\hsize\raggedright\arraybackslash}X}
-  \caption{Vergleich übergreifender Kommunikationsmethoden in Micro-Frontend-Architekturen}
+  \caption{Vergleich übergreifender Kommunikationsmethoden in Microfrontend-Architekturen}
   \label{tab:mfe_communication_comparison} \\
   \hline
   \textbf{Kommunikationsmethode} & \textbf{Vorteile} & \textbf{Nachteile} \\ \hline
@@ -85,7 +85,7 @@ Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{per
     \item \textbf{Globale Zugriffsmöglichkeit}: Auf Daten kann im Kontext der gesamten Anwendung durchgehend zugegriffen werden.
   \end{itemize} &
   \begin{itemize}[leftmargin=*]
-    \item \textbf{Erhöhter Konfigurationsaufwand}: Die Schnittstellen müssen über alle Microfrontends hinweg klar vordefiert sein.
+    \item \textbf{Erhöhter Konfigurationsaufwand}: Die Schnittstellen müssen über alle Microfrontends hinweg klar vordefiniert sein.
     \item \textbf{Bruch der Isolation}: Widerspricht dem Kernprinzip der Isolation zwischen einzelnen Microfrontends.
   \end{itemize} \\ \hline
 
@@ -96,7 +96,7 @@ Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{per
   \end{itemize} &
   \begin{itemize}[leftmargin=*]
     \item \textbf{Keine native Typsicherheit}: Daten können nur als Strings versandt werden und müssen manuell serialisiert und deserialisiert werden.
-    \item \textbf{Koordinationsaufwand}: Daten im lokalen Speicher werden als Key-Value Paare gespeichert. Bei gleichen Keys werden die alten Werte überschrieben. Das kann zu Informationsverlust führen und muss demnach übergreifend koordiniert werden.
+    \item \textbf{Koordinationsaufwand}: Daten im lokalen Speicher werden als Key-Value-Paare gespeichert. Bei gleichen Keys werden die alten Werte überschrieben. Das kann zu Informationsverlust führen und muss demnach übergreifend koordiniert werden.
   \end{itemize} \\ \hline
 
   \textbf{API-basierte Kommunikation} &

@@ -16,7 +16,7 @@ sondern verhindert auch eine revisionssichere Dokumentation und Echtzeit-Auswert
 
 Zusätzlich verschärft das Problem des Vendor-Locks die Situation.
 Unternehmen sind oft an geschlossene Ökosysteme einzelner Softwareanbieter gebunden,
-was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert  \cite[Kap.~1]{feth2023studie}.
+was die Erweiterbarkeit um spezialisierte Funktionen oder die Integration innovativer Drittanbieter-Lösungen massiv erschwert \cite[Kap.~1]{feth2023studie}.
 Bestehende Anwendungen agieren häufig als Insellösungen, die den spezifischen Anforderungen komplexer Bauprozesse, wie des durchgängigen Inbetriebnahmemanagements, nicht gerecht werden.
 Das Inbetriebnahmemanagement stellt während der Bauphase und bei der Inbetriebnahme die Qualitätssicherung dar. Ziel ist es, die vertraglich vereinbarten Leistungen sowie die behördlich festgelegten Anforderungen nachzuweisen,
 um eine rechtssichere, geordnete Übergabe an den Bauherrn zu gewährleisten. Da dieser Prozess eine Vielzahl von Gewerken mit meist eigenen Softwarelösungen involviert \cite[Kap.~4.1]{feth2023studie},
@@ -35,7 +35,7 @@ gezielt angegangen werden können.
 Um die oben genannten Zielsetzungen methodisch zu untersuchen, konzentriert sich diese Arbeit auf die Beantwortung der folgenden zwei Kernfragen:
 \begin{description}
     \item[FF1:] Wie lässt sich eine graphbasierte Datenstruktur auf Basis des IFC-Standards gestalten, um die komplexen funktionalen Abhängigkeiten der TGA und der MSR effizient abzubilden und als Grundlage für ein erweiterbares Inbetriebnahmemanagement zu nutzen?
-    \item[FF2:] Wie lässt sich eine modulare Multi-Tenant-Architektur für Inbetriebnahmemanagement-Software gestalten, welche funktionale Erweiterungen ermöglicht?
+    \item[FF2:] Wie lässt sich eine modulare Multi-Tenant-Architektur für Inbetriebnahmemanagementsoftware gestalten, welche funktionale Erweiterungen ermöglicht?
 \end{description}
 \subsection{Zielsetzung}
 Das primäre Ziel dieser Arbeit ist die Konzeption einer technologischen Architektur,
@@ -48,10 +48,10 @@ für die Interkonnektivität zwischen den Projektbeteiligten.
 Ergänzt wird dieser datenzentrierte Ansatz durch eine Add-on-fähige Softwarearchitektur.
 Diese erlaubt es, spezifische Anforderungen für das Inbetriebnahmemanagement als modulare Erweiterungen zu implementieren,
 ohne den Softwarekern modifizieren zu müssen. Durch die Kombination aus standardisiertem Datenaustausch (\ac{IFC}) und modularer Erweiterbarkeit
-entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern den Unternehmen die
+entsteht ein Ökosystem, das nicht nur den Datenaustausch zwischen verschiedenen Gewerken sicherstellt, sondern auch den Unternehmen die
 Souveränität über ihre digitalen Prozesse zurückgibt und eine zukunftssichere Skalierbarkeit in Großprojekten ermöglicht.
 \subsection{Methodik}
 Um die beschriebene Zielsetzung zu erreichen, wird diese Arbeit in drei Teilschritte unterteilt. Zuerst soll durch Literaturrecherche und prototypische Tests ein Domänenmodell mit der Graphdatenbank \textit{Neo4j} und dem \gls{Framework} \textit{GraphQL} als Vermittlungsinstanz
-auf seine Vorteile und Machbarkeit hin untersucht werden. Im nächsten Schritt soll eine modulare Softwarearchitektur innerhalb des JavaScript-Ökosystems und aufbauend auf dem Konzept der Micro-Frontends entworfen werden. Die technische Umsetzung soll mit React als Frontend-Technologie
+auf seine Vorteile und Machbarkeit hin untersucht werden. Im nächsten Schritt soll eine modulare Softwarearchitektur innerhalb des JavaScript-Ökosystems und aufbauend auf dem Konzept der Microfrontends entworfen werden. Die technische Umsetzung soll mit React als Frontend-Technologie
 sowie dem Build-Tool \textit{Vite} und dem Architekturmuster \textit{Module Federation} erfolgen. Dabei soll die modulare und erweiterbare Architektur anhand eines Prototyps demonstriert werden.
 Auf diesen beiden Lösungsansätzen aufbauend soll als letzter Schritt die Zusammenführung beider Teilsysteme erfolgen. Hierbei wird der Prototyp der modularen Softwarearchitektur über die GraphQL-Schnittstelle an die Graphdatenbank angebunden.
