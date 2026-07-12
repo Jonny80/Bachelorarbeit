@@ -114,7 +114,7 @@ Die Vor-und Nachteile werden folgend anhand der Quelle \cite[Kap.~3, Kap.~4]{per
 \end{xltabular}
 \endgroup
 
-Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \texttt{building\_management/apps/communication} auf dem beigelegten digitalen Anhang \cite{eigener_code_usb}.
+Ein Beispiel wurde im Microfrontend \textit{communication} umgesetzt, unter dem Pfad \\ \texttt{building\_management/apps/communication} auf dem beigelegten digitalen Anhang \cite{eigener_code_usb}.
 Eine Erklärung zum Starten des Prototypes ist in der \texttt{README.md} im Hauptverzeichnis des Ordners \texttt{building\_management} zu finden.
 \subsection{Organisation der Applikationen} \label{monorepo_orga}
 Um die einzelnen Codebasen der Microfrontends übersichtlich zu organisieren und eine durchgehende Konsistenz hinsichtlich einheitlicher \ac{UI}-Elemente zu gewährleisten, wurde das Projekt als Monorepo aufgesetzt.
@@ -147,7 +147,7 @@ Das Monorepo Turborepo wird mithilfe des folgenden Befehls aufgesetzt:
 \begin{lstlisting}[language=Shell, caption={Aufsetzen von Turborepo}, label={lst:microfrontends_turborepo}]
 npx create-turbo@latest -e with-vite
 \end{lstlisting}
-Der Zusatzbefehl \textit{-e with-vite} initialisiert das Monorepo direkt mit einer Vite-Umgebung. Die Ordnerstruktur wird in Abschnitt \ref{monorepo_orga} verdeutlicht (vgl. Abbildung \ref{fig:monorepo}).
+Der Zusatzbefehl \textit{-e with-vite} initialisiert das Monorepo direkt mit einer Vite-Umgebung. Die Ordnerstruktur wird in Abschnitt \ref{monorepo_orga} verdeutlicht (vgl. Abbildung \ref{fig:monorepo}). \\
 Die \texttt{package.json} im Grundverzeichnis des Repositories steuert hierbei unter anderem die Ausführung der einzelnen Apps, wie beispielsweise den Start der \textit{Host}-App und der \textit{Remote}-App, mithilfe des folgenden Befehls:
 \begin{lstlisting}[language=Shell, caption={Starten der Apps}, label={lst:microfrontends_apps_start}]
 turbo run dev --filter=< Name > --filter=< Name > ... --filter=< Name >
